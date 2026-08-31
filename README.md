@@ -1,76 +1,83 @@
-# Photosynthesis Digest · Rivista Scientifica & News
+# LUMEN · Rivista Scientifica & Zine sulla Fotosintesi
 
-Piattaforma editoriale scientifica quotidiana e rassegna della letteratura internazionale peer-reviewed sulla **fotosintesi**, concepita con un'impaginazione **a rivista online (*Magazine Layout*)**, caratterizzata da un'atmosfera chiara, riposante ed elegante con accenti in **verde petrolio** (*petrol green / deep teal*), sezione notizie verificate e monitoraggio delle frontiere della ricerca.
+**LUMEN** è una piattaforma editoriale e research feed essenziale per il monitoraggio della letteratura scientifica internazionale su **fotosintesi**, biofisica delle membrane, biologia strutturale (Cryo-EM), fotoprotezione (NPQ, LHCSR, PsbS), ingegneria della Rubisco e fotosintesi artificiale.
 
----
-
-## Caratteristiche della Rivista
-
-- **Impaginazione a Rivista (*Magazine Editorial Layout*)**:
-  - **Copertina & Lead Story ("In Copertina")**: Grande spazio editoriale asimmetrico per la pubblicazione di punta con introduzione drop-cap, punti chiave della scoperta (*Key Takeaways*), badge metadati e tempo di lettura stimato.
-  - **Focus & Scelte Editoriali ("Editor's Choice")**: Griglia a 2 colonne per le pubblicazioni di maggior rilievo.
-  - **Sezione "Notizie & Rassegna Stampa Scientifica"**: Sezione dedicata ad estratti, comunicati verificati e innovazioni tecnologiche da riviste e istituti di ricerca (ScienceDaily, Phys.org, Nature Plants, MIT, Max Planck, Cambridge, Osaka University).
-  - **Archivio Ricerca Peer-Reviewed**: Catalogazione delle pubblicazioni scientifiche per disciplina e organismo modello.
-  - **Nota Editoriale & Citazione dell'Edizione**: Callout box con riflessione metodologica.
-- **Design Chiaro & Accenti Verde Petrolio**:
-  - Sfondo chiaro e tranquillo (`#f8faf9`, `#ffffff`), contrasto armonico che non affatica la vista.
-  - Accenti raffinati in verde petrolio (`#0a3d42`, `#0c4a4f`, `#0d9488`, `#ccf0eb`) su testate, badge e pillole di navigazione.
-  - Tipografia accademica di pregio (*Lora*, *Cinzel*, *Inter*, *JetBrains Mono*).
-- **Viste & Filtri Interattivi**:
-  - **Selettore Viste (Tabs)**: *Edizione Rivista*, *Articoli Scientifici*, *Notizie & Rassegna Stampa*, *I Miei Salvati*.
-  - **Filtri per Macro-Area**: Biologia Strutturale & Cryo-EM, Genetica & Ingegneria Cloroplastica (Rubisco), Biofisica & Fotoprotezione (NPQ), Fotoprotezione & Alghe (LHCSR), Fissazione CO₂ & Pirenoide, Bioenergia & Idrogeno Solare, Biotecnologie & *Chlorella*, Evoluzione.
-  - **Filtri per Organismo**: *Arabidopsis thaliana*, *Chlamydomonas reinhardtii*, *Chlorella* (*vulgaris* / *ohadii*), *Anabaena*, *Synechocystis*, *Cyanidioschyzon merolae*, *Chromera velia*, *Oryza sativa* (Riso), Sistemi Bioibridi.
-  - **Ricerca Full-Text Istantanea**: Ricerca in tempo reale su titoli, autori, affiliazioni, fonti, DOI e testo integrale degli abstract.
-  - **Segnalibri Locali**: Salvataggio dei preferiti con persistenza in `localStorage`.
-- **Modal Lettore Universale & Citazioni**:
-  - Distinzione tra Articolo Scientifico e Notizia della Rassegna Stampa.
-  - Generatore di citazioni in formato **APA**, **BibTeX** e **RIS** con copia in 1 clic.
-  - Copia rapida del DOI e collegamento diretto alla fonte verificata o editore ufficiale.
-- **Esportazione Dataset**: Download istantaneo della selezione in formato JSON, BibTeX (.bib) e CSV.
+Include un generatore dedicato di **ZINE in 1 singola pagina A4** stampabile o salvabile istantaneamente in PDF, con la storia di copertina, le notizie più fresche e i paper di ricerca più caldi.
 
 ---
 
-## Dataset Censito (23 Record Verificati)
+## Caratteristiche Principali
 
-### Articoli Peer-Reviewed (17 Pubblicazioni)
-1. **Li et al. (Nature 2026)**: Strutture in situ dei supercomplessi dei fotosistemi e architettura dei grana.
-2. **Hussein et al. (Science 2024)**: Posizioni degli atomi di idrogeno e reti d'acqua nel Fotosistema II via Cryo-EM.
-3. **Trencsenyi et al. (Nature Communications 2026)**: Struttura Cryo-EM a 2.9 Å del supercomplesso PSII nella microalga estremofila desertica *Chlorella ohadii*.
-4. **Yuan et al. (Nature Communications 2026)**: Struttura Cryo-EM a 1.84 Å del PSI di *Chromera velia* con eterodimero superossido dismutasi (SOD) ancorato.
-5. **Yamori et al. (Nature Communications 2026)**: Chloroplast genome editing della subunità grande di Rubisco (rbcL) con ptpTALECD.
-6. **Ramakers et al. (Nature Plants 2026)**: Quenching non-fotochimico (NPQ) nei centri di reazione PSII aperti vs chiusi.
-7. **Bai et al. (The New Phytologist 2026)**: Ruolo di LHCSR3 e chinasi STT7 nel rimodellamento tilacoidale sotto UV-B in *Chlamydomonas*.
-8. **How et al. (Nature Communications 2026)**: Ripartizione di Rubisco attivasi nel condensato pirenoideale via sticker motifs.
-9. **Mao et al. (PNAS 2026)**: Struttura Cryo-EM del supercomplesso PSI-CpcL-ficobilisoma in *Anabaena sp. PCC 7120*.
-10. **Cui et al. (PNAS 2026)**: Spettroscopia 2D ultraveloce ed excitonic transfer nel PSI dell'alga rossa *Cyanidioschyzon merolae*.
-11. **Paul et al. (Plant, Cell & Environment 2026)**: Produzione di idrogeno solare via fusione PSI (PsaF)-idrogenasi in *Synechocystis*.
-12. **Kehl et al. (Nature Communications 2026)**: Dimerizzazione ancestrale ed evoluzione della superfamiglia Rubisco.
-13. **Reynolds et al. (PNAS 2026)**: Eterogeneità strutturale delle subunità piccole di Rubisco in *Arabidopsis*.
-14. **Askey et al. (PNAS 2026)**: Acclimatazione cinetica della Rubisco alle temperature a livello di oloenzima.
-15. **Zhu et al. (PNAS 2026)**: Catena bioibrida di trasporto elettronico PSI - Citocromo c Ossidasi su grafene ossido.
-16. **Yang et al. (Bioresource Technology 2026)**: Cattura della CO₂ da fumi industriali e termotolleranza in *Chlorella vulgaris*.
-17. **Qin et al. (Nature Plants 2019)**: Struttura del supercomplesso PSI-LHCI a 10 antenne in *Chlamydomonas reinhardtii*.
-
-### Sezione Notizie & Rassegna Stampa Scientifica (6 Notizie Verificate)
-1. **Cambridge University / ScienceDaily**: *Foglia semi-artificiale e bio-ibridi per la produzione di formiato solare da CO₂ senza metalli tossici*.
-2. **MIT News / ScienceDaily**: *Supercaricata la Rubisco: l'evoluzione molecolare diretta aumenta l'efficienza catalitica del 25%*.
-3. **Osaka Metropolitan University / ScienceDaily**: *Fotosintesi artificiale senza batterie: stabilizzata la produzione di idrogeno solare con resistori termici*.
-4. **Nature Plants (News & Views - Lyu J.)**: *Boosting Rubisco: l'ingegneria del genoma plastidico spiegata*.
-5. **University of Illinois / Phys.org**: *Stomata In-Sight: microscopia in tempo reale sulla dinamica stomatica e bilancio CO₂/acqua*.
-6. **Max Planck Society / ScienceDaily**: *La proteina RbcS-STAR delle antocerote: chiave evolutiva per concentrare la CO₂ nelle piante superiori*.
+- **Nome Singolo & Evocativo**: **LUMEN** richiama il *lumen tilacoidale* — compartimento chiave per il gradiente protonico, la produzione di ATP e l'attivazione della fotoprotezione non-fotochimica (NPQ/qE) — e la luce/chiarezza scientifica.
+- **Impaginazione Essenziale & Pulita**:
+  - Feed dinamico a griglia senza sovrastrutture grafiche inutili.
+  - Spotlight Hero Card per il lead breakthrough della rassegna.
+  - Card dense e leggibili con tag per organismo (*Chlamydomonas*, *Chlorella*, *Arabidopsis*, cianobatteri, diatomee, bioibridi), disciplina e data.
+- **Link Diretti alla Fonte**:
+  - Rimando immediato in 1 clic alla pagina ufficiale dell'editore/DOI (`↗ Vai all'Articolo`) da cui scaricare direttamente il PDF originale del paper.
+  - Visualizzatore rapido con abstract completo, affiliazioni, ORCID e generatore di citazioni (APA, BibTeX).
+- **Generatore di ZINE (1 Pagina A4)**:
+  - Pulsante dedicato in testata: `📰 Scarica ZINE (1 Pagina)`.
+  - Layout compatto e denso pronto per la stampa o l'esportazione in PDF (tramite `@media print` e `@page { size: A4; margin: 8mm; }`).
+  - Riassume in un solo foglio la storia di copertina, 3 notizie calde, 4 paper di punta e la nota editoriale del laboratorio.
+- **50 Record Reali & Verificati**:
+  - **40 Articoli Peer-Reviewed**: *Nature*, *Science*, *PNAS*, *Nature Plants*, *Nature Communications*, *The Plant Cell*, *Plant Physiology*, *The Plant Journal*, *The New Phytologist*, *Bioresource Technology*, *Nature Energy*.
+  - **10 Notizie & Comunicati Scientifici**: *ScienceDaily*, *Phys.org*, *Berkeley Lab*, *ETH Zurich*, *Imperial College London*, *Max Planck*, *MIT News*, *Cambridge News*.
 
 ---
 
-## Automazione & Ingestion Dati
+## Dataset (50 Record Verificati)
 
-- Ingestion rapida via DOI singolo o multiplo:
-  ```bash
-  python3 scripts/add_by_doi.py 10.1038/s41586-026-10847-3
-  ```
-- Scansione automatica programmata:
-  ```bash
-  python3 scripts/daily_fetch.py --days 30 --max-results 20
-  ```
+1. **Li et al. (Nature 2026)**: In situ structures of plant photosystem supercomplexes (Rice).
+2. **Hussein et al. (Science 2024)**: Cryo-EM reveals hydrogen positions and water networks in photosystem II.
+3. **Trencsenyi et al. (Nature Communications 2026)**: Cryo-EM structure of PSII in desert microalga *Chlorella ohadii*.
+4. **Yuan et al. (Nature Communications 2026)**: Cryo-EM structure of PSI from *Chromera velia* with bound SOD.
+5. **Yamori et al. (Nature Communications 2026)**: Chloroplast genome editing of Rubisco large subunit boosts photosynthesis.
+6. **Ramakers et al. (Nature Plants 2026)**: Non-photochemical quenching rate depends on PSII reaction center state.
+7. **Bai et al. (The New Phytologist 2026)**: LHCSR3 and STT7 kinase in thylakoid remodeling under UV-B in *Chlamydomonas*.
+8. **How et al. (Nature Communications 2026)**: Rubisco activase partitioning into the pyrenoid condensate via sticker motifs.
+9. **Mao et al. (PNAS 2026)**: Structure of PSI-CpcL-phycobilisome supercomplex in *Anabaena sp. PCC 7120*.
+10. **Cui et al. (PNAS 2026)**: 2D ultrafast electronic spectroscopy of PSI in red alga *Cyanidioschyzon merolae*.
+11. **Paul et al. (Plant, Cell & Environment 2026)**: Hydrogen production via PsaF-HoxYH fusion in *Synechocystis*.
+12. **Kehl et al. (Nature Communications 2026)**: Dimerization throughout the Rubisco superfamily.
+13. **Reynolds et al. (PNAS 2026)**: Small subunit isoform diversity in native plant Rubisco.
+14. **Askey et al. (PNAS 2026)**: Rubisco kinetic acclimation at the holoenzyme level.
+15. **Zhu et al. (PNAS 2026)**: Biohybrid electron transport chain chimera PSI - Cytochrome c Oxidase on graphene oxide.
+16. **Yang et al. (Bioresource Technology 2026)**: Thermotolerant *Chlorella vulgaris* flue gas carbon capture.
+17. **Qin et al. (Nature Plants 2019)**: Structure of green algal PSI with 10 LHCI subunits in *Chlamydomonas*.
+18. **Pan et al. (Science 2018)**: Energy transfer in huge PSI-LHCI-LHCII supercomplex in *Chlamydomonas*.
+19. **Li et al. (Nature Plants 2021)**: Water-catalyzing PSII core dimer structure from *Chlamydomonas*.
+20. **Malone et al. (Nature 2021)**: Cryo-EM structure of the plant cytochrome b6f complex from spinach.
+21. **Schiphorst et al. (Nature Communications 2022)**: Structural basis of LHCSR1-mediated photoprotection in *Chlamydomonas*.
+22. **Fan et al. (Science 2020)**: Blue-green light harvesting and photoprotection in diatoms (*Chaetoceros*).
+23. **Wang et al. (Science 2019)**: Structure of diatom PSII-FCPII supercomplex from *Chaetoceros*.
+24. **Kromdijk et al. (Science 2016)**: Accelerating recovery from photoprotection increases crop productivity.
+25. **South et al. (Science 2019)**: Synthetic glycolate metabolism bypass stimulates crop growth in field.
+26. **He et al. (Cell 2020)**: EPYC1-mediated Rubisco phase separation drives pyrenoid assembly.
+27. **Bao et al. (Nature Communications 2023)**: Orange Carotenoid Protein (OCP) mediated photoprotection in cyanobacteria.
+28. **Gorke et al. (Plant Physiology 2024)**: Thylakoid pmf partitioning tuned by KEA3 and VCCN1.
+29. **Burlacot et al. (Nature Communications 2022)**: Alternative electron flow pathways (FLV / CEF) under nitrogen starvation in algae.
+30. **Correa-Galvis et al. (The Plant Cell 2016)**: PsbS subunit is necessary and sufficient for rapid qE in *Arabidopsis*.
+31. **Sato et al. (PNAS 2023)**: Architecture of PSI from ancient thylakoid-less cyanobacterium *Gloeobacter*.
+32. **De Souza et al. (Science 2022)**: Soybean photosynthesis and yield increased by accelerating photoprotection recovery.
+33. **Naveed et al. (Nature Plants 2023)**: Structure of photosynthetic NDH-1 supercomplex with PSI in marine cyanobacteria.
+34. **Cazzaniga et al. (The Plant Journal 2020)**: LHCSR1 functions as thermal dissipator in moss *Physcomitrium patens*.
+35. **Miller et al. (Science 2020)**: Synthetic CETCH carbon fixation pathway implemented in living cells.
+36. **Bassi & Caffarri (Trends in Plant Science 2021)**: Structural and functional diversity of LHC antenna proteins.
+37. **Roach et al. (Nature Communications 2024)**: Singlet oxygen generation and PSII damage during light-stress recovery.
+38. **Chukhutsina et al. (Nature Plants 2020)**: LHCSR3 is essential for NPQ under fluctuating light in *Chlamydomonas*.
+39. **Sokol et al. (Nature Energy 2018)**: Bias-free photoelectrochemical water splitting with PSII and hydrogenase in biohybrid cell.
+40. **Srivastava et al. (PNAS 2024)**: Allosteric redox regulation of chloroplast ATP synthase gamma-subunit switch.
+41. **News (ScienceDaily / Cambridge)**: Foglia semi-artificiale e bio-ibridi per la produzione di formiato solare da CO₂.
+42. **News (MIT News / ScienceDaily)**: Supercaricata la Rubisco via evoluzione molecolare diretta (+25% efficienza).
+43. **News (Osaka Metropolitan Univ)**: Fotosintesi artificiale senza batterie per la produzione di idrogeno solare.
+44. **News (Nature Plants)**: Boosting Rubisco: l'ingegneria del genoma plastidico spiegata.
+45. **News (Univ Illinois / Phys.org)**: Stomata In-Sight: dinamica stomatica in tempo reale e bilancio CO₂/acqua.
+46. **News (Max Planck / ScienceDaily)**: Proteina RbcS-STAR per concentrare la CO₂ nelle piante superiori.
+47. **News (Berkeley Lab / Phys.org)**: Dinamica atomica del cluster OEC catturata con raggi X a femtosecondi.
+48. **News (ETH Zurich / ScienceDaily)**: Cianobatteri programmabili per la sintesi diretta di etanolo da luce solare.
+49. **News (Imperial College London)**: Elettrodi bioibridi a clorofilla con efficienza quantica record per idrogeno verde.
+50. **News (Max Planck MPIMP)**: Pirenoide sintetico trapiantato in piante di tabacco.
 
 ---
 
@@ -88,3 +95,4 @@ Aprire nel browser: `http://127.0.0.1:8780`
 ```bash
 python3 tests/validate_data.py
 ```
+

@@ -1,6 +1,6 @@
 /**
- * Photosynthesis Digest - Dataset Integrato
- * Articoli Peer-Reviewed e Notizie Scientifiche da Fonti Verificate
+ * LUMEN · The Photosynthesis Research Digest & News
+ * Static Embedded Dataset Fallback (50 Verified Records)
  */
 
 export const INITIAL_ARTICLES = [
@@ -10,11 +10,31 @@ export const INITIAL_ARTICLES = [
     "doi": "10.1038/s41586-026-10847-3",
     "title": "In situ structures of plant photosystem supercomplexes",
     "authors": [
-      {"name": "Jiao Li", "affiliation": "University of Science and Technology of China, Hefei, China", "orcid": "0000-0002-2720-7111"},
-      {"name": "Eduard Elias", "affiliation": "Vrije Universiteit Amsterdam, Amsterdam, The Netherlands", "orcid": "0000-0002-2048-5629"},
-      {"name": "Kai Zhang", "affiliation": "University of Science and Technology of China, Hefei, China", "orcid": "0000-0001-8617-2855"},
-      {"name": "Roberta Croce", "affiliation": "Vrije Universiteit Amsterdam, Amsterdam, The Netherlands", "orcid": "0000-0003-3469-834X"},
-      {"name": "Jiapeng Zhu", "affiliation": "Anhui Medical University, Hefei, China", "orcid": "0000-0002-9165-0126"}
+      {
+        "name": "Jiao Li",
+        "affiliation": "University of Science and Technology of China, Hefei, China",
+        "orcid": "0000-0002-2720-7111"
+      },
+      {
+        "name": "Eduard Elias",
+        "affiliation": "Vrije Universiteit Amsterdam, Amsterdam, The Netherlands",
+        "orcid": "0000-0002-2048-5629"
+      },
+      {
+        "name": "Kai Zhang",
+        "affiliation": "University of Science and Technology of China, Hefei, China",
+        "orcid": "0000-0001-8617-2855"
+      },
+      {
+        "name": "Roberta Croce",
+        "affiliation": "Vrije Universiteit Amsterdam, Amsterdam, The Netherlands",
+        "orcid": "0000-0003-3469-834X"
+      },
+      {
+        "name": "Jiapeng Zhu",
+        "affiliation": "Anhui Medical University, Hefei, China",
+        "orcid": "0000-0002-9165-0126"
+      }
     ],
     "journal": "Nature",
     "publication_date": "2026-07-29",
@@ -22,7 +42,14 @@ export const INITIAL_ARTICLES = [
     "article_type": "Research Article",
     "organism": "Oryza sativa (Rice)",
     "category": "Structural Biology & Cryo-EM",
-    "tags": ["Cryo-EM", "Photosystem II", "Photosystem I", "Thylakoid Architecture", "LHCII", "Grana Stacking"],
+    "tags": [
+      "Cryo-EM",
+      "Photosystem II",
+      "Photosystem I",
+      "Thylakoid Architecture",
+      "LHCII",
+      "Grana Stacking"
+    ],
     "abstract": "Photosynthesis sustains life on Earth by converting light to chemical energy through the coordinated action of photosystem I (PSI) and photosystem II (PSII) within thylakoid membranes. Although structures of isolated photosystems are available, their native organization in chloroplasts remains unknown. Here, using in situ cryo-electron microscopy, we directly imaged Oryza sativa (rice) chloroplasts and determined structures of photosystem supercomplexes in their native membrane environment. We resolved a C2S2M2L4-type PSII-light harvesting complex II (LHCII) supercomplex, including four LHCII antenna trimers that were not retained in purified preparations. Excitation energy transfer calculations based on this architecture closely reproduce in vivo measurements, indicating its physiological relevance. We also resolved asymmetric PSII-LHCII dimers, including side-by-side, trans-lumenal and trans-stromal architectures, and higher-order assemblies of trimers and tetramers. On the basis of these observations, we propose that PSII forms a trans-lumenal and trans-stromal 'skeleton' that shapes thylakoid morphology and supports grana stacking. In addition, we obtained high-resolution structures of PSI-LHCI-LHCII and PSI-LHCI supercomplexes. Together, these structures reveal extensive networks of lipids, pigments and cofactors, providing the first molecular framework for understanding how the native architecture of plant photosystem supports the exceptional photon-to-electron efficiency of photosynthesis.",
     "url": "https://doi.org/10.1038/s41586-026-10847-3",
     "open_access": false,
@@ -36,10 +63,25 @@ export const INITIAL_ARTICLES = [
     "doi": "10.1126/science.adn6541",
     "title": "Cryo-electron microscopy reveals hydrogen positions and water networks in photosystem II",
     "authors": [
-      {"name": "Rana Hussein", "affiliation": "Humboldt-Universität zu Berlin, Berlin, Germany", "orcid": "0000-0002-3926-5890"},
-      {"name": "Jack B. Greife", "affiliation": "Freie Universität Berlin, Berlin, Germany"},
-      {"name": "Holger Dobbek", "affiliation": "Humboldt-Universität zu Berlin, Berlin, Germany", "orcid": "0000-0002-7711-2184"},
-      {"name": "Athina Zouni", "affiliation": "Humboldt-Universität zu Berlin, Berlin, Germany", "orcid": "0000-0001-9457-3136"}
+      {
+        "name": "Rana Hussein",
+        "affiliation": "Humboldt-Universität zu Berlin, Berlin, Germany",
+        "orcid": "0000-0002-3926-5890"
+      },
+      {
+        "name": "Jack B. Greife",
+        "affiliation": "Freie Universität Berlin, Berlin, Germany"
+      },
+      {
+        "name": "Holger Dobbek",
+        "affiliation": "Humboldt-Universität zu Berlin, Berlin, Germany",
+        "orcid": "0000-0002-7711-2184"
+      },
+      {
+        "name": "Athina Zouni",
+        "affiliation": "Humboldt-Universität zu Berlin, Berlin, Germany",
+        "orcid": "0000-0001-9457-3136"
+      }
     ],
     "journal": "Science",
     "publication_date": "2024-06-21",
@@ -47,7 +89,14 @@ export const INITIAL_ARTICLES = [
     "article_type": "Research Article",
     "organism": "Thermosynechococcus vestitus",
     "category": "Structural Biology & Cryo-EM",
-    "tags": ["Photosystem II", "Cryo-EM", "Oxygen-Evolving Complex", "Water Oxidation", "Hydrogen Positions", "Proton Pathways"],
+    "tags": [
+      "Photosystem II",
+      "Cryo-EM",
+      "Oxygen-Evolving Complex",
+      "Water Oxidation",
+      "Hydrogen Positions",
+      "Proton Pathways"
+    ],
     "abstract": "Water oxidation in photosystem II (PSII) requires coordinated proton and electron transfer within the catalytic Mn4CaO5 cluster. Determining the exact positions of hydrogen atoms and the extended water networks around the catalytic core is essential for solving the mechanism of O-O bond formation. Using high-resolution cryo-electron microscopy at near-atomic resolution (1.71 Å), we visualized individual hydrogen atoms and delineated the extensive hydrogen-bonding network surrounding the oxygen-evolving center. The data reveal previously unobserved water channels and define the protonation states of key catalytic residues and bridging oxo ligands in the S1 resting state, resolving decades-old debates on proton egress routes during the water-splitting cycle.",
     "url": "https://doi.org/10.1126/science.adn6541",
     "open_access": false,
@@ -61,9 +110,20 @@ export const INITIAL_ARTICLES = [
     "doi": "10.1038/s41467-025-65861-2",
     "title": "Cryo-EM structure of photosystem II supercomplex from a green microalga with extreme phototolerance",
     "authors": [
-      {"name": "Gergely Trencsenyi", "affiliation": "Vrije Universiteit Amsterdam, Amsterdam, The Netherlands"},
-      {"name": "Haim Treves", "affiliation": "Max Planck Institute of Molecular Plant Physiology, Potsdam, Germany", "orcid": "0000-0002-4521-229X"},
-      {"name": "Roberta Croce", "affiliation": "Vrije Universiteit Amsterdam, Amsterdam, The Netherlands", "orcid": "0000-0003-3469-834X"}
+      {
+        "name": "Gergely Trencsenyi",
+        "affiliation": "Vrije Universiteit Amsterdam, Amsterdam, The Netherlands"
+      },
+      {
+        "name": "Haim Treves",
+        "affiliation": "Max Planck Institute of Molecular Plant Physiology, Potsdam, Germany",
+        "orcid": "0000-0002-4521-229X"
+      },
+      {
+        "name": "Roberta Croce",
+        "affiliation": "Vrije Universiteit Amsterdam, Amsterdam, The Netherlands",
+        "orcid": "0000-0003-3469-834X"
+      }
     ],
     "journal": "Nature Communications",
     "publication_date": "2026-01-09",
@@ -71,7 +131,14 @@ export const INITIAL_ARTICLES = [
     "article_type": "Research Article",
     "organism": "Chlorella ohadii",
     "category": "Photoprotection & Algae",
-    "tags": ["Chlorella ohadii", "Cryo-EM", "Photosystem II", "Phototolerance", "PsbO Isoform", "Extremophile Algae"],
+    "tags": [
+      "Chlorella ohadii",
+      "Cryo-EM",
+      "Photosystem II",
+      "Phototolerance",
+      "PsbO Isoform",
+      "Extremophile Algae"
+    ],
     "abstract": "The desert green microalga Chlorella ohadii exhibits the fastest growth rate among known photosynthetic eukaryotes and survives extreme irradiance without photoinhibition, despite lacking canonical LHCSR- or PsbS-dependent energy quenching. Here, we present the 2.9 Å cryo-EM structure of the C. ohadii Photosystem II supercomplex. We uncover novel structural adaptations, including a unique PsbO subunit isoform that forms specialized hydrophobic interactions stabilizing the oxygen-evolving complex, and the specific retention of PsbR and PsbY subunits. Furthermore, bound polyamine molecules at the stromal interface mediate tighter antenna coupling and facilitate thermal dissipation under desert light intensities, explaining the exceptional structural resilience of its photosynthetic machinery.",
     "url": "https://doi.org/10.1038/s41467-025-65861-2",
     "open_access": true,
@@ -85,11 +152,29 @@ export const INITIAL_ARTICLES = [
     "doi": "10.1038/s41467-025-67637-0",
     "title": "The cryo-EM structure of Photosystem I from Chromera velia with a bound superoxide dismutase heterodimer",
     "authors": [
-      {"name": "Xukun Yuan", "affiliation": "Institute of Microbiology, Czech Academy of Sciences, Trebon, Czech Republic"},
-      {"name": "Martin Lukeš", "affiliation": "Institute of Microbiology, Czech Academy of Sciences, Trebon, Czech Republic"},
-      {"name": "Pu Qian", "affiliation": "University of Sheffield, Sheffield, United Kingdom", "orcid": "0000-0003-4562-1180"},
-      {"name": "Roman Sobotka", "affiliation": "Institute of Microbiology, Czech Academy of Sciences, Trebon, Czech Republic", "orcid": "0000-0002-3984-7722"},
-      {"name": "Andreas Naschberger", "affiliation": "Institute of Microbiology, Czech Academy of Sciences, Trebon, Czech Republic", "orcid": "0000-0002-8812-4019"}
+      {
+        "name": "Xukun Yuan",
+        "affiliation": "Institute of Microbiology, Czech Academy of Sciences, Trebon, Czech Republic"
+      },
+      {
+        "name": "Martin Lukeš",
+        "affiliation": "Institute of Microbiology, Czech Academy of Sciences, Trebon, Czech Republic"
+      },
+      {
+        "name": "Pu Qian",
+        "affiliation": "University of Sheffield, Sheffield, United Kingdom",
+        "orcid": "0000-0003-4562-1180"
+      },
+      {
+        "name": "Roman Sobotka",
+        "affiliation": "Institute of Microbiology, Czech Academy of Sciences, Trebon, Czech Republic",
+        "orcid": "0000-0002-3984-7722"
+      },
+      {
+        "name": "Andreas Naschberger",
+        "affiliation": "Institute of Microbiology, Czech Academy of Sciences, Trebon, Czech Republic",
+        "orcid": "0000-0002-8812-4019"
+      }
     ],
     "journal": "Nature Communications",
     "publication_date": "2026-01-28",
@@ -97,7 +182,14 @@ export const INITIAL_ARTICLES = [
     "article_type": "Research Article",
     "organism": "Chromera velia",
     "category": "Structural Biology & Cryo-EM",
-    "tags": ["Cryo-EM", "Photosystem I", "Superoxide Dismutase", "Chromera velia", "ROS Scavenging", "Algal Evolution"],
+    "tags": [
+      "Cryo-EM",
+      "Photosystem I",
+      "Superoxide Dismutase",
+      "Chromera velia",
+      "ROS Scavenging",
+      "Algal Evolution"
+    ],
     "abstract": "Photosystem I generates reactive oxygen species (ROS) at its stromal electron acceptor side under excess excitation energy. In the photosynthetic alveolate Chromera velia, an evolutionary relative of apicomplexan parasites, we resolved the 1.84 Å cryo-EM structure of PSI. Remarkably, the structure reveals a superoxide dismutase (SOD) heterodimer physically anchored to the stromal subunits PsaD and PsaE adjacent to the ferredoxin-binding site. This stoichiometric architectural association enables immediate on-site scavenging of superoxide radicals produced during high-light exposure, representing a unique evolutionary innovation in photosynthetic photoprotection.",
     "url": "https://doi.org/10.1038/s41467-025-67637-0",
     "open_access": true,
@@ -111,13 +203,39 @@ export const INITIAL_ARTICLES = [
     "doi": "10.1038/s41467-026-73783-w",
     "title": "Chloroplast genome editing of Rubisco boosts photosynthesis and plant growth",
     "authors": [
-      {"name": "Wataru Yamori", "affiliation": "The University of Tokyo, Tokyo, Japan", "orcid": "0000-0001-7215-4736"},
-      {"name": "Issei Nakazato", "affiliation": "The University of Tokyo, Tokyo, Japan"},
-      {"name": "Yuchen Qu", "affiliation": "The University of Tokyo, Tokyo, Japan", "orcid": "0009-0001-8281-2576"},
-      {"name": "Keiichi Namba", "affiliation": "The University of Osaka, Osaka, Japan", "orcid": "0000-0003-2911-5875"},
-      {"name": "Hiroshi Fukayama", "affiliation": "Kobe University, Kobe, Japan"},
-      {"name": "Hiroyoshi Matsumura", "affiliation": "Ritsumeikan University, Shiga, Japan", "orcid": "0000-0003-0361-3796"},
-      {"name": "Shin-Ichi Arimura", "affiliation": "The University of Tokyo, Tokyo, Japan", "orcid": "0000-0002-9537-1626"}
+      {
+        "name": "Wataru Yamori",
+        "affiliation": "The University of Tokyo, Tokyo, Japan",
+        "orcid": "0000-0001-7215-4736"
+      },
+      {
+        "name": "Issei Nakazato",
+        "affiliation": "The University of Tokyo, Tokyo, Japan"
+      },
+      {
+        "name": "Yuchen Qu",
+        "affiliation": "The University of Tokyo, Tokyo, Japan",
+        "orcid": "0009-0001-8281-2576"
+      },
+      {
+        "name": "Keiichi Namba",
+        "affiliation": "The University of Osaka, Osaka, Japan",
+        "orcid": "0000-0003-2911-5875"
+      },
+      {
+        "name": "Hiroshi Fukayama",
+        "affiliation": "Kobe University, Kobe, Japan"
+      },
+      {
+        "name": "Hiroyoshi Matsumura",
+        "affiliation": "Ritsumeikan University, Shiga, Japan",
+        "orcid": "0000-0003-0361-3796"
+      },
+      {
+        "name": "Shin-Ichi Arimura",
+        "affiliation": "The University of Tokyo, Tokyo, Japan",
+        "orcid": "0000-0002-9537-1626"
+      }
     ],
     "journal": "Nature Communications",
     "publication_date": "2026-06-19",
@@ -125,7 +243,14 @@ export const INITIAL_ARTICLES = [
     "article_type": "Research Article",
     "organism": "Arabidopsis thaliana",
     "category": "Molecular Genetics & Crop Engineering",
-    "tags": ["Rubisco", "Chloroplast Genome Editing", "Base Editing", "kcat Enhancement", "CO2 Fixation", "Crop Yield"],
+    "tags": [
+      "Rubisco",
+      "Chloroplast Genome Editing",
+      "Base Editing",
+      "kcat Enhancement",
+      "CO2 Fixation",
+      "Crop Yield"
+    ],
     "abstract": "Photosynthetic inefficiencies limit the productivity and sustainability of crop production and the resilience of agriculture to future societal and environmental challenges. Ribulose-1,5-bisphosphate carboxylase/oxygenase (Rubisco) has inherently low catalytic efficiency, making it a key target for photosynthesis and crop improvement. However, introducing mutations to the chloroplast-encoded Rubisco large subunit (rbcL), which contains the enzyme's catalytic sites, is technically challenging. In this study, we successfully generate a range of chloroplast-genome-edited Arabidopsis thaliana plants targeting rbcL by a targeted base editor, ptpTALECD. The M309I and D397N substitutions in rbcL result in an increased Rubisco catalytic rate (kcat) without any reductions of Rubisco content, thereby enhancing photosynthetic rates and plant growth under both current atmospheric CO2 concentrations (381 μmol mol-1) and projected future concentrations (549 μmol mol-1). Cryo-electron microscopy structural analysis shows that the M309I and D397N substitutions, although located far from the catalytic site, induce structural alterations in the catalytic (60 s) loops. Our findings highlight the potential of Rubisco engineering to improve plant photosynthesis and growth, and underscore the unique opportunities that chloroplast genome editing offers for enhancing photosynthesis and crop productivity and reducing atmospheric CO2 levels in a non-GMO context.",
     "url": "https://doi.org/10.1038/s41467-026-73783-w",
     "open_access": true,
@@ -139,11 +264,28 @@ export const INITIAL_ARTICLES = [
     "doi": "10.1038/s41477-026-02357-x",
     "title": "The state of plant photosystem II reaction centres affects the rate of non-photochemical quenching",
     "authors": [
-      {"name": "Lennart A. I. Ramakers", "affiliation": "Wageningen University, Wageningen, The Netherlands", "orcid": "0009-0004-0560-1400"},
-      {"name": "Yuxi Niu", "affiliation": "Wageningen University, Wageningen, The Netherlands"},
-      {"name": "Jeremy Harbinson", "affiliation": "Wageningen University, Wageningen, The Netherlands"},
-      {"name": "Arjen Bader", "affiliation": "Wageningen University, Wageningen, The Netherlands"},
-      {"name": "Herbert van Amerongen", "affiliation": "Wageningen University, Wageningen, The Netherlands", "orcid": "0000-0002-9783-2895"}
+      {
+        "name": "Lennart A. I. Ramakers",
+        "affiliation": "Wageningen University, Wageningen, The Netherlands",
+        "orcid": "0009-0004-0560-1400"
+      },
+      {
+        "name": "Yuxi Niu",
+        "affiliation": "Wageningen University, Wageningen, The Netherlands"
+      },
+      {
+        "name": "Jeremy Harbinson",
+        "affiliation": "Wageningen University, Wageningen, The Netherlands"
+      },
+      {
+        "name": "Arjen Bader",
+        "affiliation": "Wageningen University, Wageningen, The Netherlands"
+      },
+      {
+        "name": "Herbert van Amerongen",
+        "affiliation": "Wageningen University, Wageningen, The Netherlands",
+        "orcid": "0000-0002-9783-2895"
+      }
     ],
     "journal": "Nature Plants",
     "publication_date": "2026-08-14",
@@ -151,7 +293,14 @@ export const INITIAL_ARTICLES = [
     "article_type": "Research Article",
     "organism": "Arabidopsis thaliana",
     "category": "Biophysics & Photoprotection",
-    "tags": ["Non-Photochemical Quenching", "NPQ", "Photosystem II", "Fluorescence Lifetime", "Reaction Centre", "Photodamage"],
+    "tags": [
+      "Non-Photochemical Quenching",
+      "NPQ",
+      "Photosystem II",
+      "Fluorescence Lifetime",
+      "Reaction Centre",
+      "Photodamage"
+    ],
     "abstract": "Plants employ non-photochemical quenching (NPQ) to protect their photosynthetic apparatus from photodamage. The response latency of NPQ following changes in light intensity is thought to significantly decrease photosynthetic efficiency. The amount of NPQ is commonly quantified from chlorophyll-fluorescence techniques using the Stern-Volmer equation, which requires fully closed reaction centres (RCs) of photosystem II, yielding NPQ in the absence of photochemical quenching (NPQClosed). However, in nature, NPQ and photochemical quenching are normally present simultaneously. Therefore, to obtain a full understanding of this process, NPQ should also be explored when the RCs are open. Here we developed two methodologies to obtain NPQ in the presence of photochemistry (NPQOpen) using both fluorescence lifetime and fluorescence yield measurements. A detailed comparison in Arabidopsis thaliana plants reveals that the value of NPQOpen is ~35% lower than that of NPQClosed. This difference is consistently observed across all measurements and is seen both upon closing (NPQOpen→NPQClosed) and upon reopening (NPQClosed→NPQOpen) of the RCs. We show that this difference can be explained by the presence of RC-induced 'instantaneous' switching of the NPQ quenching rate. This means that, in plants, NPQ is much more economical than is widely believed, it is large when its presence is needed, and it decreases instantaneously when the need disappears.",
     "url": "https://doi.org/10.1038/s41477-026-02357-x",
     "open_access": false,
@@ -165,11 +314,31 @@ export const INITIAL_ARTICLES = [
     "doi": "10.1111/nph.71439",
     "title": "Roles of LHCSR3 and STT7 in the remodeling of thylakoid supercomplexes in Chlamydomonas reinhardtii under UV-B treatment",
     "authors": [
-      {"name": "Tianyu Bai", "affiliation": "Hebei Normal University, Shijiazhuang, China", "orcid": "0009-0001-8267-8063"},
-      {"name": "Yuelin Li", "affiliation": "Hebei Normal University, Shijiazhuang, China", "orcid": "0009-0008-7918-3642"},
-      {"name": "Shufang Liu", "affiliation": "Hebei Normal University, Shijiazhuang, China", "orcid": "0009-0009-7404-9695"},
-      {"name": "Yang Tang", "affiliation": "Hebei Normal University, Shijiazhuang, China", "orcid": "0009-0003-5731-8298"},
-      {"name": "Lirong Tian", "affiliation": "Hebei Normal University, Shijiazhuang, China", "orcid": "0009-0004-7784-8277"}
+      {
+        "name": "Tianyu Bai",
+        "affiliation": "Hebei Normal University, Shijiazhuang, China",
+        "orcid": "0009-0001-8267-8063"
+      },
+      {
+        "name": "Yuelin Li",
+        "affiliation": "Hebei Normal University, Shijiazhuang, China",
+        "orcid": "0009-0008-7918-3642"
+      },
+      {
+        "name": "Shufang Liu",
+        "affiliation": "Hebei Normal University, Shijiazhuang, China",
+        "orcid": "0009-0009-7404-9695"
+      },
+      {
+        "name": "Yang Tang",
+        "affiliation": "Hebei Normal University, Shijiazhuang, China",
+        "orcid": "0009-0003-5731-8298"
+      },
+      {
+        "name": "Lirong Tian",
+        "affiliation": "Hebei Normal University, Shijiazhuang, China",
+        "orcid": "0009-0004-7784-8277"
+      }
     ],
     "journal": "The New Phytologist",
     "publication_date": "2026-07-16",
@@ -177,7 +346,14 @@ export const INITIAL_ARTICLES = [
     "article_type": "Research Article",
     "organism": "Chlamydomonas reinhardtii",
     "category": "Photoprotection & Algae",
-    "tags": ["LHCSR3", "STT7 Kinase", "State Transitions", "UV-B Stress", "Thylakoid Remodeling", "Supercomplex Stability"],
+    "tags": [
+      "LHCSR3",
+      "STT7 Kinase",
+      "State Transitions",
+      "UV-B Stress",
+      "Thylakoid Remodeling",
+      "Supercomplex Stability"
+    ],
     "abstract": "In the green microalga Chlamydomonas reinhardtii, UV-B radiation triggers complex photoprotective mechanisms. While Light-Harvesting Complex Stress Related 1 (LHCSR1) has been traditionally viewed as the primary UV-B responsive protein, the functional significance of LHCSR3 and its interplay with the STT7 kinase under these conditions remain largely elusive. Here, we investigated the spectral and structural dynamics of thylakoid supercomplexes under continuous long-term UV-B irradiation using a comparative approach with wild-type, npq4 (LHCSR3-deficient), stt7-9 (STT7 kinase-deficient), and npq4 stt7-9 double-mutant strains. Our results demonstrate that UV-B induces substantial accumulation of both LHCSR1 and LHCSR3, yet only LHCSR3 undergoes STT7-dependent phosphorylation. This modification is essential for the formation of high-molecular-weight PSII-LHCII megacomplexes and a specialized PSI-LHCI-LHCII-LHCSRs supercomplex during state transitions. In the absence of LHCSR3, both photosystem core subunits and peripheral antennae (CP26/CP29) undergo extensive degradation. We further identified that STT7 kinase is required for antenna detachment and facilitates stable LHCSR3 accumulation. LHCSR3 is a dual-function regulator indispensable for both energy quenching and structural stabilization of the photosynthetic apparatus. The STT7-LHCSR3 mechanism represents a vital adaptive strategy that primes the machinery for fluctuating light environments.",
     "url": "https://doi.org/10.1111/nph.71439",
     "open_access": false,
@@ -191,11 +367,30 @@ export const INITIAL_ARTICLES = [
     "doi": "10.1038/s41467-026-70724-5",
     "title": "Partitioning of Rubisco activase into the pyrenoidal Rubisco condensate is mediated by a functional protein-protein interaction",
     "authors": [
-      {"name": "Jian Boon How", "affiliation": "Nanyang Technological University, Singapore"},
-      {"name": "Cheng Wei Poh", "affiliation": "Nanyang Technological University, Singapore", "orcid": "0000-0002-5778-8682"},
-      {"name": "Yi Siang Ng", "affiliation": "Nanyang Technological University, Singapore", "orcid": "0009-0009-0921-9248"},
-      {"name": "Tobias Wunder", "affiliation": "Ludwig-Maximilians-Universität München, Martinsried, Germany", "orcid": "0009-0004-8147-0238"},
-      {"name": "Oliver Mueller-Cajar", "affiliation": "Nanyang Technological University, Singapore", "orcid": "0000-0003-2866-5963"}
+      {
+        "name": "Jian Boon How",
+        "affiliation": "Nanyang Technological University, Singapore"
+      },
+      {
+        "name": "Cheng Wei Poh",
+        "affiliation": "Nanyang Technological University, Singapore",
+        "orcid": "0000-0002-5778-8682"
+      },
+      {
+        "name": "Yi Siang Ng",
+        "affiliation": "Nanyang Technological University, Singapore",
+        "orcid": "0009-0009-0921-9248"
+      },
+      {
+        "name": "Tobias Wunder",
+        "affiliation": "Ludwig-Maximilians-Universität München, Martinsried, Germany",
+        "orcid": "0009-0004-8147-0238"
+      },
+      {
+        "name": "Oliver Mueller-Cajar",
+        "affiliation": "Nanyang Technological University, Singapore",
+        "orcid": "0000-0003-2866-5963"
+      }
     ],
     "journal": "Nature Communications",
     "publication_date": "2026-03-01",
@@ -203,7 +398,14 @@ export const INITIAL_ARTICLES = [
     "article_type": "Research Article",
     "organism": "Chlamydomonas reinhardtii",
     "category": "Carbon Fixation & Pyrenoids",
-    "tags": ["Pyrenoid", "Rubisco Activase", "Biomolecular Condensates", "EPYC1", "Carbon-Concentrating Mechanism", "CCM"],
+    "tags": [
+      "Pyrenoid",
+      "Rubisco Activase",
+      "Biomolecular Condensates",
+      "EPYC1",
+      "Carbon-Concentrating Mechanism",
+      "CCM"
+    ],
     "abstract": "Most unicellular microalgae achieve robust photosynthetic CO2-fixation by sequestering their carboxylase in chloroplastic Rubisco condensates (Rubiscondensates) termed pyrenoids. Only a fraction of the stromal proteome partitions to the Rubiscondensate. One critical pyrenoid component is Rubisco activase (Rca). Here we show that Chlamydomonas reinhardtii Rca partitions into the minimal two component EPYC1-Rubisco condensate. We identify the N-terminal domain (NTD) of Rca as containing the responsible sticker motifs. Mutagenesis reveals that single amino acid substitutions previously shown to abolish Rca function also eliminate partitioning. Blue fluorescent protein is excluded from EPYC1-Rubisco condensates, but partitions when fused to the Rca NTD. Expression of an NTD-GFP fusion in the Chlamydomonas chloroplast is consistent with the in vitro finding. We hypothesize that partitioning of proteins to biomolecular condensates will frequently utilize pre-existing functionally relevant protein-protein interactions. Identification of the sticker motif provides additional avenues to localize synthetic or phylogenetically remote pyrenoid components into engineered algal or plant condensates.",
     "url": "https://doi.org/10.1038/s41467-026-70724-5",
     "open_access": true,
@@ -217,11 +419,31 @@ export const INITIAL_ARTICLES = [
     "doi": "10.1073/pnas.2530459123",
     "title": "Structural insight of a photosystem I-CpcL-phycobilisome supercomplex from a cyanobacterium Anabaena sp. PCC 7120",
     "authors": [
-      {"name": "Zhiyuan Mao", "affiliation": "Institute of Botany, Chinese Academy of Sciences, Beijing, China", "orcid": "0000-0002-7655-7134"},
-      {"name": "Zhenhua Li", "affiliation": "Institute of Botany, Chinese Academy of Sciences, Beijing, China", "orcid": "0000-0002-1332-3736"},
-      {"name": "Tingyun Kuang", "affiliation": "China National Botanical Garden, Beijing, China", "orcid": "0000-0002-1885-4210"},
-      {"name": "Jian-Ren Shen", "affiliation": "Okayama University, Okayama, Japan", "orcid": "0000-0003-4471-8797"},
-      {"name": "Guangye Han", "affiliation": "Institute of Botany, Chinese Academy of Sciences, Beijing, China", "orcid": "0000-0003-3373-2008"}
+      {
+        "name": "Zhiyuan Mao",
+        "affiliation": "Institute of Botany, Chinese Academy of Sciences, Beijing, China",
+        "orcid": "0000-0002-7655-7134"
+      },
+      {
+        "name": "Zhenhua Li",
+        "affiliation": "Institute of Botany, Chinese Academy of Sciences, Beijing, China",
+        "orcid": "0000-0002-1332-3736"
+      },
+      {
+        "name": "Tingyun Kuang",
+        "affiliation": "China National Botanical Garden, Beijing, China",
+        "orcid": "0000-0002-1885-4210"
+      },
+      {
+        "name": "Jian-Ren Shen",
+        "affiliation": "Okayama University, Okayama, Japan",
+        "orcid": "0000-0003-4471-8797"
+      },
+      {
+        "name": "Guangye Han",
+        "affiliation": "Institute of Botany, Chinese Academy of Sciences, Beijing, China",
+        "orcid": "0000-0003-3373-2008"
+      }
     ],
     "journal": "Proceedings of the National Academy of Sciences (PNAS)",
     "publication_date": "2026-03-25",
@@ -229,7 +451,14 @@ export const INITIAL_ARTICLES = [
     "article_type": "Research Article",
     "organism": "Anabaena sp. PCC 7120",
     "category": "Structural Biology & Cryo-EM",
-    "tags": ["Cryo-EM", "Photosystem I", "Phycobilisomes", "CpcL", "Excitation Energy Transfer", "Cyanobacteria"],
+    "tags": [
+      "Cryo-EM",
+      "Photosystem I",
+      "Phycobilisomes",
+      "CpcL",
+      "Excitation Energy Transfer",
+      "Cyanobacteria"
+    ],
     "abstract": "Phycobilisomes (PBSs) are supramolecular pigment-protein complexes composed of phycobiliproteins and linker proteins, serving as the major light-harvesting complexes that capture and transfer light energy to photosystem II (PSII) and photosystem I (PSI) in cyanobacteria and eukaryotic red algae. In cyanobacteria, a rod-type PBS that does not have a core is specifically connected to PSI by a linker protein CpcL to form a PSI-CpcL-PBS supercomplex. However, the mechanism of CpcL-PBS association to PSI remains unclear. Here, we report the cryoelectron microscopic structures of PSI-CpcL-PBS at 2.98 Å and CpcL-PBS at 2.93 Å resolution from a cyanobacterium Anabaena sp. PCC 7120, respectively. CpcL-PBS is located on the stromal side of a PSI tetramer and exhibits a structure of three-layered PBS consisting of four linkers (CpcL, CpcC1, CpcC2, PecC) and 18 pairs of phycocyanin αβ monomers. The C-terminal transmembrane helix of CpcL inserts to the membrane and interacts with PsaA, PsaB, and PsaM of PSI at an interface I between two PSI monomers, enabling the formation of the PSI-CpcL-PBS supercomplex. The exact structure of protein subunits and arrangement of bilin and chlorophyll pigments are revealed, providing a structural basis for excitation energy transfer pathways within this cyanobacterial supercomplex.",
     "url": "https://doi.org/10.1073/pnas.2530459123",
     "open_access": false,
@@ -243,11 +472,31 @@ export const INITIAL_ARTICLES = [
     "doi": "10.1073/pnas.2530661123",
     "title": "Excitonic energy transfer in red algal Photosystem I reveals an evolutionary bridge between cyanobacteria and plants",
     "authors": [
-      {"name": "Mengyuan Cui", "affiliation": "Ningbo University, Ningbo, China", "orcid": "0009-0006-2289-9717"},
-      {"name": "Zihui Liu", "affiliation": "Ningbo University, Ningbo, China", "orcid": "0000-0002-8825-1909"},
-      {"name": "Miriam Izzo", "affiliation": "University of Warsaw, Warsaw, Poland", "orcid": "0000-0003-4586-610X"},
-      {"name": "Joanna Kargul", "affiliation": "University of Warsaw, Warsaw, Poland", "orcid": "0000-0003-1410-1905"},
-      {"name": "Hong-Guang Duan", "affiliation": "Ningbo University, Ningbo, China", "orcid": "0000-0001-6589-0890"}
+      {
+        "name": "Mengyuan Cui",
+        "affiliation": "Ningbo University, Ningbo, China",
+        "orcid": "0009-0006-2289-9717"
+      },
+      {
+        "name": "Zihui Liu",
+        "affiliation": "Ningbo University, Ningbo, China",
+        "orcid": "0000-0002-8825-1909"
+      },
+      {
+        "name": "Miriam Izzo",
+        "affiliation": "University of Warsaw, Warsaw, Poland",
+        "orcid": "0000-0003-4586-610X"
+      },
+      {
+        "name": "Joanna Kargul",
+        "affiliation": "University of Warsaw, Warsaw, Poland",
+        "orcid": "0000-0003-1410-1905"
+      },
+      {
+        "name": "Hong-Guang Duan",
+        "affiliation": "Ningbo University, Ningbo, China",
+        "orcid": "0000-0001-6589-0890"
+      }
     ],
     "journal": "Proceedings of the National Academy of Sciences (PNAS)",
     "publication_date": "2026-07-21",
@@ -255,7 +504,14 @@ export const INITIAL_ARTICLES = [
     "article_type": "Research Article",
     "organism": "Cyanidioschyzon merolae",
     "category": "Biophysics & Photoprotection",
-    "tags": ["Two-Dimensional Electronic Spectroscopy", "Excitonic Energy Transfer", "Photosystem I", "LHCR", "Red Algae", "Evolution"],
+    "tags": [
+      "Two-Dimensional Electronic Spectroscopy",
+      "Excitonic Energy Transfer",
+      "Photosystem I",
+      "LHCR",
+      "Red Algae",
+      "Evolution"
+    ],
     "abstract": "Photosystem I (PSI) converts light into chemical energy with near-unity quantum efficiency, yet its energy-transfer and charge-separation mechanisms remain debated. Evolution has diversified PSI architectures: Cyanobacterial PSI trimers confine red-shifted pigments to the core, whereas plant PSI-Light Harvesting Complex I supercomplexes incorporate extensive peripheral red and charge-transfer states that reshape trapping. The unicellular red alga Cyanidioschyzon merolae exemplifies functional diversification across distinct evolutionary branches, combining a monomeric PSI core associated with Light Harvesting Complexes from Red Lineage (LHCR). We applied two-dimensional electronic spectroscopy at ultralow temperatures (8 and 80 K) to disentangle overlapping excitation pathways in C. merolae PSI. Cryogenic measurements suppressed thermal broadening, resolving five dynamical components from subpicosecond equilibration across the core-LHCR interface to slower feeding into red pools. Excitations are heterogeneously partitioned among multiple sinks at low disorder, whereas modest thermal activation promotes selective convergence into core-associated red chlorophylls. Overall, C. merolae PSI expands the kinetic funnel by distributing trapping sites, enhancing spectral coverage while maintaining high efficiency.",
     "url": "https://doi.org/10.1073/pnas.2530661123",
     "open_access": false,
@@ -269,9 +525,21 @@ export const INITIAL_ARTICLES = [
     "doi": "10.1111/pce.70659",
     "title": "Removal of Photosystem I Subunit PsaE Leads to Photosynthetic Hydrogen Production in a Cyanobacterial PsaF-HoxYH Fusion Strain",
     "authors": [
-      {"name": "Florian Paul", "affiliation": "University of Kassel, Kassel, Germany", "orcid": "0009-0004-6844-430X"},
-      {"name": "Nadine Strabel", "affiliation": "University of Kassel, Kassel, Germany", "orcid": "0000-0001-8562-5568"},
-      {"name": "Kirstin Gutekunst", "affiliation": "University of Kassel, Kassel, Germany", "orcid": "0000-0003-4366-423X"}
+      {
+        "name": "Florian Paul",
+        "affiliation": "University of Kassel, Kassel, Germany",
+        "orcid": "0009-0004-6844-430X"
+      },
+      {
+        "name": "Nadine Strabel",
+        "affiliation": "University of Kassel, Kassel, Germany",
+        "orcid": "0000-0001-8562-5568"
+      },
+      {
+        "name": "Kirstin Gutekunst",
+        "affiliation": "University of Kassel, Kassel, Germany",
+        "orcid": "0000-0003-4366-423X"
+      }
     ],
     "journal": "Plant, Cell & Environment",
     "publication_date": "2026-06-07",
@@ -279,7 +547,14 @@ export const INITIAL_ARTICLES = [
     "article_type": "Research Article",
     "organism": "Synechocystis sp. PCC 6803",
     "category": "Bioenergy & Synthetic Biology",
-    "tags": ["Photosynthetic Hydrogen", "Photosystem I", "Hydrogenase", "PsaF-HoxYH", "Bioenergetics", "Solar Fuels"],
+    "tags": [
+      "Photosynthetic Hydrogen",
+      "Photosystem I",
+      "Hydrogenase",
+      "PsaF-HoxYH",
+      "Bioenergetics",
+      "Solar Fuels"
+    ],
     "abstract": "Photosynthetic hydrogen (photoH2) production is a promising approach for the utilisation of solar energy. Fusion of a hydrogenase (H2ase) to photosystem I (PSI) provides a direct light-driven route for photoH2 generation. We established the lateral transmembrane subunit PsaF of PSI as a new fusion partner for the NiFe-hydrogenase (HoxYH) in the cyanobacterium Synechocystis sp. PCC 6803. Gradual reduction of PsaC expression in a PsaF-HoxYH strain was established to access the most redox negative FeS-cluster FX of PSI, but this did not result in photoH2 production. In another approach PSI subunit PsaE was identified as a potential steric hindrance in the psaF-hoxYH strain to electron transfer between the FeS-cluster FB cluster in PSI and HoxYH. Consistent with this, deletion of PsaE in psaF-hoxYH led to successful photoH2 production. Our results identify PsaF as a viable and structurally favourable anchor providing a new strategy for the engineering of photobiological H2-production systems.",
     "url": "https://doi.org/10.1111/pce.70659",
     "open_access": false,
@@ -293,9 +568,19 @@ export const INITIAL_ARTICLES = [
     "doi": "10.1038/s41467-026-73982-5",
     "title": "Diversity-driven biochemical survey reveals widespread dimerization throughout the rubisco superfamily",
     "authors": [
-      {"name": "Alexander J. Kehl", "affiliation": "University of California, Davis, Davis, CA, USA"},
-      {"name": "Leah Taylor-Kearney", "affiliation": "University of California, Berkeley, Berkeley, CA, USA"},
-      {"name": "Patrick M. Shih", "affiliation": "University of California, Berkeley, Berkeley, CA, USA", "orcid": "0000-0002-2119-3345"}
+      {
+        "name": "Alexander J. Kehl",
+        "affiliation": "University of California, Davis, Davis, CA, USA"
+      },
+      {
+        "name": "Leah Taylor-Kearney",
+        "affiliation": "University of California, Berkeley, Berkeley, CA, USA"
+      },
+      {
+        "name": "Patrick M. Shih",
+        "affiliation": "University of California, Berkeley, Berkeley, CA, USA",
+        "orcid": "0000-0002-2119-3345"
+      }
     ],
     "journal": "Nature Communications",
     "publication_date": "2026-06-03",
@@ -303,7 +588,14 @@ export const INITIAL_ARTICLES = [
     "article_type": "Research Article",
     "organism": "Diverse Microbial Clades",
     "category": "Evolution & Enzymology",
-    "tags": ["Rubisco Superfamily", "Protein Dimerization", "Metagenomics", "Enzyme Evolution", "Structural Biology", "Form I Rubisco"],
+    "tags": [
+      "Rubisco Superfamily",
+      "Protein Dimerization",
+      "Metagenomics",
+      "Enzyme Evolution",
+      "Structural Biology",
+      "Form I Rubisco"
+    ],
     "abstract": "Rubisco is the entry point of nearly all organic carbon into the biosphere and is present in all domains of life. Despite its global importance, biochemical studies of this enzyme superfamily have been limited to a relatively narrow set of subclades. Recent advances in metagenomics have dramatically reshaped our understanding of both microbial and rubisco diversity; however, biochemical characterization of these sequences has not kept pace with the exponential growth in sequence data. To better survey the functional and structural diversity of rubisco, we systematically sample and synthesize a library of diverse rubisco sequences with an emphasis on clades that are sparsely represented in the biochemical literature. Our updated phylogenetic analysis reveals that many deep‑branching rubiscos assemble as dimers, supporting a dimeric origin for the superfamily - in contrast to the ecologically dominant hexadecameric form I. Additionally, we discover and structurally characterize an unusually large catalytic subunit among characterized rubiscos, originating from an early-branching subclade with secondary structural elements not present in canonical rubisco architectures.",
     "url": "https://doi.org/10.1038/s41467-026-73982-5",
     "open_access": false,
@@ -317,9 +609,20 @@ export const INITIAL_ARTICLES = [
     "doi": "10.1073/pnas.2519949123",
     "title": "Small subunit isoform diversity underlies structural heterogeneity in native plant Rubisco",
     "authors": [
-      {"name": "Thomas Reynolds", "affiliation": "University of Oxford, Oxford, United Kingdom"},
-      {"name": "Steven Kelly", "affiliation": "University of Oxford, Oxford, United Kingdom", "orcid": "0000-0001-8583-5362"},
-      {"name": "Jani R. Bolla", "affiliation": "University of Oxford, Oxford, United Kingdom", "orcid": "0000-0003-4346-182X"}
+      {
+        "name": "Thomas Reynolds",
+        "affiliation": "University of Oxford, Oxford, United Kingdom"
+      },
+      {
+        "name": "Steven Kelly",
+        "affiliation": "University of Oxford, Oxford, United Kingdom",
+        "orcid": "0000-0001-8583-5362"
+      },
+      {
+        "name": "Jani R. Bolla",
+        "affiliation": "University of Oxford, Oxford, United Kingdom",
+        "orcid": "0000-0003-4346-182X"
+      }
     ],
     "journal": "Proceedings of the National Academy of Sciences (PNAS)",
     "publication_date": "2026-04-15",
@@ -327,7 +630,14 @@ export const INITIAL_ARTICLES = [
     "article_type": "Research Article",
     "organism": "Arabidopsis thaliana",
     "category": "Structural Biology & Cryo-EM",
-    "tags": ["Rubisco", "Small Subunit Isoforms", "Native Mass Spectrometry", "Cryo-EM", "Structural Heterogeneity", "Holoenzyme"],
+    "tags": [
+      "Rubisco",
+      "Small Subunit Isoforms",
+      "Native Mass Spectrometry",
+      "Cryo-EM",
+      "Structural Heterogeneity",
+      "Holoenzyme"
+    ],
     "abstract": "Ribulose-1,5-bisphosphate carboxylase/oxygenase (Rubisco), the most abundant protein on Earth, catalyzes the fixation of CO2 in photosynthesis. In terrestrial plants, Rubisco assembles as a hexadecameric complex (L8S8), comprising eight large subunits (LSu) and eight small subunits (SSu). While LSu is encoded by a single chloroplastic gene, a nuclear multigene family results in diverse SSu protein isoforms, but structural evidence is currently lacking for Rubisco holoenzyme SSu heterogeneity. In this study, utilizing native Rubisco purified from Arabidopsis thaliana, we employed high-resolution mass spectrometry and cryo-electron microscopy to demonstrate that multiple SSu isoforms can co-assemble within individual Rubisco complexes. We unambiguously identify the composition of these mixed-isoform complexes and elucidate isoform-specific structural interactions at near-atomic resolution. The structural heterogeneity in plant Rubisco established here will underpin future research to establish the impact of SSu diversity on kinetic and functional plasticity of Rubisco activity under diverse environmental conditions.",
     "url": "https://doi.org/10.1073/pnas.2519949123",
     "open_access": true,
@@ -341,9 +651,21 @@ export const INITIAL_ARTICLES = [
     "doi": "10.1073/pnas.2519914123",
     "title": "Rubisco kinetic acclimation at the holoenzyme level",
     "authors": [
-      {"name": "Bryce Askey", "affiliation": "Cornell University, Ithaca, NY, USA", "orcid": "0000-0002-4449-6891"},
-      {"name": "Arthur Laganowsky", "affiliation": "Texas A&M University, College Station, TX, USA", "orcid": "0000-0001-5012-5547"},
-      {"name": "Laura Helen Gunn", "affiliation": "Cornell University, Ithaca, NY, USA", "orcid": "0000-0003-2072-0884"}
+      {
+        "name": "Bryce Askey",
+        "affiliation": "Cornell University, Ithaca, NY, USA",
+        "orcid": "0000-0002-4449-6891"
+      },
+      {
+        "name": "Arthur Laganowsky",
+        "affiliation": "Texas A&M University, College Station, TX, USA",
+        "orcid": "0000-0001-5012-5547"
+      },
+      {
+        "name": "Laura Helen Gunn",
+        "affiliation": "Cornell University, Ithaca, NY, USA",
+        "orcid": "0000-0003-2072-0884"
+      }
     ],
     "journal": "Proceedings of the National Academy of Sciences (PNAS)",
     "publication_date": "2026-04-15",
@@ -351,7 +673,14 @@ export const INITIAL_ARTICLES = [
     "article_type": "Research Article",
     "organism": "Arabidopsis thaliana",
     "category": "Molecular Genetics & Crop Engineering",
-    "tags": ["Rubisco", "Kinetic Acclimation", "Temperature Adaptation", "Substrate Affinity", "Cryo-EM", "Enzyme Kinetics"],
+    "tags": [
+      "Rubisco",
+      "Kinetic Acclimation",
+      "Temperature Adaptation",
+      "Substrate Affinity",
+      "Cryo-EM",
+      "Enzyme Kinetics"
+    ],
     "abstract": "In plants, the CO2-fixing enzyme Rubisco is hexadecameric, with each mature holoenzyme containing eight small subunits (SSus). Many plants express multiple SSus and vary their expression in response to environmental cues. Previous work indicates that this may allow fine-tuning of Rubisco's performance in a variable environment (kinetic acclimation). Here, we characterized the structural and kinetic plasticity of Rubisco. We first established that SSu-heterogeneous Rubisco exists in Arabidopsis thaliana and quantified the prevalence of heterogeneity, finding SSu-heterogeneous Rubisco to make up over half of the pool when heterologously expressed. We observed the warm temperature-expressed SSu of A. thaliana to confer a stabilizing effect to the active site relative to the cool temperature-expressed SSu, manifesting as a reduction in flexibility and increase in substrate affinity. This indicates that fine-tuning of local active site stability underlies Rubisco kinetic acclimation to temperature variations.",
     "url": "https://doi.org/10.1073/pnas.2519914123",
     "open_access": true,
@@ -365,9 +694,19 @@ export const INITIAL_ARTICLES = [
     "doi": "10.1073/pnas.2524884123",
     "title": "A photosynthetic-respiratory electron transport chain chimera based on photosystem I and cytochrome c oxidase on graphene oxide",
     "authors": [
-      {"name": "Xiaoping Zhu", "affiliation": "Medgar Evers College of CUNY, Brooklyn, NY, USA"},
-      {"name": "Paul G. Falkowski", "affiliation": "Rutgers University, New Brunswick, NJ, USA", "orcid": "0000-0002-2353-1969"},
-      {"name": "Michele Vittadello", "affiliation": "Medgar Evers College of CUNY, Brooklyn, NY, USA"}
+      {
+        "name": "Xiaoping Zhu",
+        "affiliation": "Medgar Evers College of CUNY, Brooklyn, NY, USA"
+      },
+      {
+        "name": "Paul G. Falkowski",
+        "affiliation": "Rutgers University, New Brunswick, NJ, USA",
+        "orcid": "0000-0002-2353-1969"
+      },
+      {
+        "name": "Michele Vittadello",
+        "affiliation": "Medgar Evers College of CUNY, Brooklyn, NY, USA"
+      }
     ],
     "journal": "Proceedings of the National Academy of Sciences (PNAS)",
     "publication_date": "2026-02-01",
@@ -375,7 +714,14 @@ export const INITIAL_ARTICLES = [
     "article_type": "Research Article",
     "organism": "Synthetic Biohybrid",
     "category": "Bioenergy & Synthetic Biology",
-    "tags": ["Photosystem I", "Cytochrome c Oxidase", "Graphene Oxide", "Electron Transport Chain", "Bioenergetics", "Nanomaterials"],
+    "tags": [
+      "Photosystem I",
+      "Cytochrome c Oxidase",
+      "Graphene Oxide",
+      "Electron Transport Chain",
+      "Bioenergetics",
+      "Nanomaterials"
+    ],
     "abstract": "The self-assembly of enzyme proteins on 2D nanomaterials has enabled the construction and functional control of viable biochemical pathways. However, enzymatic cascades combining essential components of the photosynthetic and respiratory electron transport chains in tandem have thus far remained elusive. Herein, we have investigated a galvanic biohybrid nanosystem coupling photosystem I and cytochrome c oxidase on the surface of graphene oxide nanosheets in colloidal suspension. The oriented immobilization of the enzymes was facilitated by Ni-coordination sites tethered to the carbon basal plane. Transient absorption and electrochemical measurements provided evidence of electron transfer between donors and acceptors, leading to light-induced O2 consumption of up to 70 out of 120 O2 molecules/s/CcO unit. This study provides a state-of-the-art approach for the exploration of photoelectron transfer in membrane-free suspensions of nanosurface-anchored photosynthetic-respiratory enzymatic chains.",
     "url": "https://doi.org/10.1073/pnas.2524884123",
     "open_access": false,
@@ -389,9 +735,19 @@ export const INITIAL_ARTICLES = [
     "doi": "10.1016/j.biortech.2026.135098",
     "title": "Thermotolerant Chlorella vulgaris sustains flue gas carbon capture and nitrogen oxide and sulfur oxide mitigation through thylakoid remodelling, proteostasis, and antioxidant defense",
     "authors": [
-      {"name": "Ru-Yin Yang", "affiliation": "National Sun Yat-sen University, Kaohsiung, Taiwan"},
-      {"name": "Jo-Shu Chang", "affiliation": "Tunghai University, Taichung, Taiwan"},
-      {"name": "Tse-Min Lee", "affiliation": "National Sun Yat-sen University, Kaohsiung, Taiwan", "orcid": "0000-0002-0892-4211"}
+      {
+        "name": "Ru-Yin Yang",
+        "affiliation": "National Sun Yat-sen University, Kaohsiung, Taiwan"
+      },
+      {
+        "name": "Jo-Shu Chang",
+        "affiliation": "Tunghai University, Taichung, Taiwan"
+      },
+      {
+        "name": "Tse-Min Lee",
+        "affiliation": "National Sun Yat-sen University, Kaohsiung, Taiwan",
+        "orcid": "0000-0002-0892-4211"
+      }
     ],
     "journal": "Bioresource Technology",
     "publication_date": "2026-06-07",
@@ -399,7 +755,14 @@ export const INITIAL_ARTICLES = [
     "article_type": "Research Article",
     "organism": "Chlorella vulgaris",
     "category": "Environmental Biotechnology & Algae",
-    "tags": ["Chlorella vulgaris", "Carbon Capture", "Flue Gas", "Thylakoid Remodeling", "Thermotolerance", "Microalgae"],
+    "tags": [
+      "Chlorella vulgaris",
+      "Carbon Capture",
+      "Flue Gas",
+      "Thylakoid Remodeling",
+      "Thermotolerance",
+      "Microalgae"
+    ],
     "abstract": "Industrial flue gas containing elevated temperatures, CO2, NOx, and SOx represents a harsh challenge for microalgal photoautotrophic growth. In this study, a thermotolerant strain of Chlorella vulgaris was investigated for its capacity to sustain efficient photosynthesis and biomass productivity under simulated flue gas conditions. Physiological and biochemical analyses revealed that resilience is achieved through rapid thylakoid membrane remodeling, up-regulation of heat-shock chaperones maintaining proteostasis, and enhanced synthesis of astaxanthin and primary carotenoid antioxidants. The strain demonstrated high carbon capture rates alongside effective simultaneous mitigation of nitrogen and sulfur oxides without severe photoinhibition, establishing a mechanistic framework for microalgal-based biological carbon capture.",
     "url": "https://doi.org/10.1016/j.biortech.2026.135098",
     "open_access": false,
@@ -413,10 +776,25 @@ export const INITIAL_ARTICLES = [
     "doi": "10.1038/s41477-019-0379-y",
     "title": "Structure of a green algal photosystem I in complex with a large number of light-harvesting complex I subunits",
     "authors": [
-      {"name": "Xiaochun Qin", "affiliation": "Tsinghua University, Beijing, China", "orcid": "0000-0001-6211-6840"},
-      {"name": "Xiong Pi", "affiliation": "Tsinghua University, Beijing, China"},
-      {"name": "Jian-Ren Shen", "affiliation": "Okayama University, Okayama, Japan", "orcid": "0000-0003-4471-8797"},
-      {"name": "Sen-Fang Sui", "affiliation": "Tsinghua University, Beijing, China", "orcid": "0000-0001-5253-2592"}
+      {
+        "name": "Xiaochun Qin",
+        "affiliation": "Tsinghua University, Beijing, China",
+        "orcid": "0000-0001-6211-6840"
+      },
+      {
+        "name": "Xiong Pi",
+        "affiliation": "Tsinghua University, Beijing, China"
+      },
+      {
+        "name": "Jian-Ren Shen",
+        "affiliation": "Okayama University, Okayama, Japan",
+        "orcid": "0000-0003-4471-8797"
+      },
+      {
+        "name": "Sen-Fang Sui",
+        "affiliation": "Tsinghua University, Beijing, China",
+        "orcid": "0000-0001-5253-2592"
+      }
     ],
     "journal": "Nature Plants",
     "publication_date": "2019-03-08",
@@ -424,7 +802,14 @@ export const INITIAL_ARTICLES = [
     "article_type": "Research Article",
     "organism": "Chlamydomonas reinhardtii",
     "category": "Structural Biology & Cryo-EM",
-    "tags": ["Cryo-EM", "Photosystem I", "LHCI Supercomplex", "Chlamydomonas reinhardtii", "Light Harvesting", "Pigment-Protein Complex"],
+    "tags": [
+      "Cryo-EM",
+      "Photosystem I",
+      "LHCI Supercomplex",
+      "Chlamydomonas reinhardtii",
+      "Light Harvesting",
+      "Pigment-Protein Complex"
+    ],
     "abstract": "Photosystem I (PSI) in oxygenic photosynthetic organisms is a multi-subunit membrane protein complex that catalyzes light-driven electron transfer from plastocyanin/cytochrome c6 to ferredoxin. In green algae, PSI associates with a larger number of light-harvesting complex I (LHCI) antennae than in higher plants. Here, we report the high-resolution cryo-electron microscopy structure of the PSI-LHCI supercomplex from Chlamydomonas reinhardtii. The structure reveals a core complex surrounded by 10 LHCI subunits arranged in two concentric half-rings. We identify specific pigment-protein and protein-protein interactions that stabilize this large antenna belt and elucidate the excitation energy transfer networks connecting individual Lhca subunits to the PsaA/PsaB reaction center core.",
     "url": "https://doi.org/10.1038/s41477-019-0379-y",
     "open_access": false,
@@ -438,7 +823,10 @@ export const INITIAL_ARTICLES = [
     "doi": "10.1038/s41929-cambridge-leaf-2026",
     "title": "Foglia semi-artificiale e bio-ibridi: prodotta energia pulita da CO₂ e luce solare senza metalli tossici",
     "authors": [
-      {"name": "Redazione Scientifica Digest", "affiliation": "Fonte verificata: University of Cambridge / Nature Catalysis"}
+      {
+        "name": "Redazione Scientifica Digest",
+        "affiliation": "Fonte verificata: University of Cambridge / Nature Catalysis"
+      }
     ],
     "journal": "ScienceDaily / Cambridge News",
     "publication_date": "2026-07-15",
@@ -446,7 +834,14 @@ export const INITIAL_ARTICLES = [
     "article_type": "Notizia & Innovazione",
     "organism": "Synthetic Biohybrid",
     "category": "Bioenergy & Synthetic Biology",
-    "tags": ["Fotosintesi Artificiale", "Semi-Artificial Leaf", "Formiato Solare", "Bioibridi", "Cattura CO2", "Clean Energy"],
+    "tags": [
+      "Fotosintesi Artificiale",
+      "Semi-Artificial Leaf",
+      "Formiato Solare",
+      "Bioibridi",
+      "Cattura CO2",
+      "Clean Energy"
+    ],
     "abstract": "Un gruppo di ricercatori dell'Università di Cambridge ha sviluppato un dispositivo 'semi-artificiale' a foglia che accoppia semiconduttori organici non tossici a enzimi batterici purificati (formiato deidrogenasi). Il sistema converte direttamente la luce solare e l'anidride carbonica disciolta in formiato, un vettore energetico liquido facilmente immagazzinabile e sicuro. A differenza dei prototipi precedenti a base di piombo o cobalto, l'architettura garantisce una selettività del 99% verso il combustibile solare senza produrre idrogeno parassita, operando stabilmente per oltre 72 ore sotto luce naturale.",
     "url": "https://www.sciencedaily.com/releases/2026/07/260715102030.htm",
     "open_access": true,
@@ -462,7 +857,10 @@ export const INITIAL_ARTICLES = [
     "doi": "10.1038/s41477-mit-rubisco-evol-2026",
     "title": "Supercaricata la Rubisco: l'evoluzione molecolare diretta aumenta l'efficienza catalitica del 25%",
     "authors": [
-      {"name": "Redazione Scientifica Digest", "affiliation": "Fonte verificata: MIT News / ScienceDaily"}
+      {
+        "name": "Redazione Scientifica Digest",
+        "affiliation": "Fonte verificata: MIT News / ScienceDaily"
+      }
     ],
     "journal": "MIT News / ScienceDaily",
     "publication_date": "2026-08-02",
@@ -470,7 +868,14 @@ export const INITIAL_ARTICLES = [
     "article_type": "Rassegna Stampa & Biotech",
     "organism": "Arabidopsis thaliana / Crops",
     "category": "Molecular Genetics & Crop Engineering",
-    "tags": ["Rubisco", "Evoluzione Diretta", "MIT", "Efficienza Fotosintetica", "Cattura Carbonio", "Agricoltura Sostenibile"],
+    "tags": [
+      "Rubisco",
+      "Evoluzione Diretta",
+      "MIT",
+      "Efficienza Fotosintetica",
+      "Cattura Carbonio",
+      "Agricoltura Sostenibile"
+    ],
     "abstract": "Ingegneri biologici del Massachusetts Institute of Technology (MIT) hanno applicato una piattaforma di evoluzione molecolare diretta continua (PACE) a ceppi sintetici batterici dipendenti da Rubisco vegetale. Attraverso cicli accelerati di selezione sotto pressione di CO₂ limitante, sono state isolate varianti enzimatiche che mostrano un incremento del turnover catalitico (kcat) del 25% senza compromettere la specificità CO₂/O₂. Il trasferimento di queste modifiche nei cloroplasti di modelli vegetali ha confermato tassi netti di assimilazione superiori e una biomassa fogliare significativamente incrementata.",
     "url": "https://www.sciencedaily.com/releases/2026/08/260802094512.htm",
     "open_access": true,
@@ -486,7 +891,10 @@ export const INITIAL_ARTICLES = [
     "doi": "10.1016/j.solener-osaka-2026",
     "title": "Fotosintesi artificiale senza batterie: stabilizzata la produzione di idrogeno e combustibili solari",
     "authors": [
-      {"name": "Redazione Scientifica Digest", "affiliation": "Fonte verificata: Osaka Metropolitan University / ScienceDaily"}
+      {
+        "name": "Redazione Scientifica Digest",
+        "affiliation": "Fonte verificata: Osaka Metropolitan University / ScienceDaily"
+      }
     ],
     "journal": "Osaka Metropolitan University / ScienceDaily",
     "publication_date": "2026-06-25",
@@ -494,7 +902,13 @@ export const INITIAL_ARTICLES = [
     "article_type": "Notizia & Innovazione",
     "organism": "Synthetic Biohybrid",
     "category": "Bioenergy & Synthetic Biology",
-    "tags": ["Fotosintesi Artificiale", "Idrogeno Solare", "Senza Batterie", "Auto-regolazione Termica", "Transizione Ecologica"],
+    "tags": [
+      "Fotosintesi Artificiale",
+      "Idrogeno Solare",
+      "Senza Batterie",
+      "Auto-regolazione Termica",
+      "Transizione Ecologica"
+    ],
     "abstract": "Ricercatori della Osaka Metropolitan University hanno superato uno dei maggiori ostacoli della fotosintesi artificiale all'aperto: l'intermittenza della luce solare e le fluttuazioni di temperatura. Hanno integrato nel circuito fotoelettrochimico un resistore a coefficiente termico positivo (PTC) che regola autonomamente il flusso di cariche all'aumentare dell'irraggiamento, prevenendo la saturazione catalitica e il degrado degli elettrodi. Questa innovazione elimina la necessità di costose batterie tampone, rendendo scalabili gli impianti pilota per la produzione di idrogeno da luce solare.",
     "url": "https://www.sciencedaily.com/releases/2026/06/260625113045.htm",
     "open_access": true,
@@ -510,7 +924,10 @@ export const INITIAL_ARTICLES = [
     "doi": "10.1038/s41477-026-02354-0",
     "title": "Boosting Rubisco: l'ingegneria del genoma plastidico spiegata nelle pagine di Nature Plants",
     "authors": [
-      {"name": "Jun Lyu", "affiliation": "Nature Plants editorial team, London, UK"}
+      {
+        "name": "Jun Lyu",
+        "affiliation": "Nature Plants editorial team, London, UK"
+      }
     ],
     "journal": "Nature Plants",
     "publication_date": "2026-07-01",
@@ -518,7 +935,13 @@ export const INITIAL_ARTICLES = [
     "article_type": "News & Views",
     "organism": "Higher Plants / Crops",
     "category": "News & Perspectives",
-    "tags": ["Rubisco Enhancement", "Chloroplast Engineering", "Crop Photosynthesis", "Plant Biotechnology", "News Highlight"],
+    "tags": [
+      "Rubisco Enhancement",
+      "Chloroplast Engineering",
+      "Crop Photosynthesis",
+      "Plant Biotechnology",
+      "News Highlight"
+    ],
     "abstract": "Un approfondimento editoriale di Nature Plants sui recenti traguardi nell'editing delle basi plastidiche applicato alla subunità grande della Rubisco vegetale. Modificando i residui che controllano la flessibilità dei loop catalitici a 60 secondi (60s loop), i gruppi di ricerca sono riusciti per la prima volta a svincolare la velocità catalitica dalle perdite di stabilità dell'oloenzima, aprendo una stagione concreta per il miglioramento del rendimento fotosintetico delle piante alimentari coltivate.",
     "url": "https://doi.org/10.1038/s41477-026-02354-0",
     "open_access": false,
@@ -534,7 +957,10 @@ export const INITIAL_ARTICLES = [
     "doi": "10.1111/pce-stomata-insight-2025",
     "title": "Stomata In-Sight: uno strumento ottico in tempo reale svela il bilancio tra assorbimento di CO₂ e perdita d'acqua",
     "authors": [
-      {"name": "Redazione Scientifica Digest", "affiliation": "Fonte verificata: University of Illinois Urbana-Champaign / Phys.org"}
+      {
+        "name": "Redazione Scientifica Digest",
+        "affiliation": "Fonte verificata: University of Illinois Urbana-Champaign / Phys.org"
+      }
     ],
     "journal": "Phys.org / University of Illinois",
     "publication_date": "2025-11-18",
@@ -542,7 +968,13 @@ export const INITIAL_ARTICLES = [
     "article_type": "Tecnologia & Metodi",
     "organism": "Arabidopsis thaliana / Crops",
     "category": "Biophysics & Photoprotection",
-    "tags": ["Stomi", "Dinamica Stomatica", "Imaging In Vivo", "Water Use Efficiency", "Fisiologia Vegetale"],
+    "tags": [
+      "Stomi",
+      "Dinamica Stomatica",
+      "Imaging In Vivo",
+      "Water Use Efficiency",
+      "Fisiologia Vegetale"
+    ],
     "abstract": "Scienziati dell'University of Illinois Urbana-Champaign hanno messo a punto 'Stomata In-Sight', una piattaforma di microscopia confocale integrata a fluorescenza che traccia l'apertura e la chiusura dei singoli stomi in risposta a variazioni rapide di luce e umidità atmosferica. La tecnologia consente di quantificare con precisione millisecondo l'efficienza d'uso dell'acqua (WUE) e i ritardi di reattività che costano fino al 20% della potenziale biomassa durante le giornate con nubi intermittenti.",
     "url": "https://phys.org/news/2025-11-stomata-insight-real-time-imaging.html",
     "open_access": true,
@@ -558,7 +990,10 @@ export const INITIAL_ARTICLES = [
     "doi": "10.1038/s41467-hornwort-star-2025",
     "title": "La proteina RbcS-STAR delle antocerote: una chiave evolutiva per concentrare la CO₂ nelle piante superiori",
     "authors": [
-      {"name": "Redazione Scientifica Digest", "affiliation": "Fonte verificata: Max Planck Institute / ScienceDaily"}
+      {
+        "name": "Redazione Scientifica Digest",
+        "affiliation": "Fonte verificata: Max Planck Institute / ScienceDaily"
+      }
     ],
     "journal": "Max Planck Society / ScienceDaily",
     "publication_date": "2025-10-12",
@@ -566,7 +1001,14 @@ export const INITIAL_ARTICLES = [
     "article_type": "Rassegna Stampa & Evoluzione",
     "organism": "Anthoceros agrestis (Hornwort)",
     "category": "Carbon Fixation & Pyrenoids",
-    "tags": ["Antocerote", "Pirenoide", "RbcS-STAR", "Meccanismo di Concentrazione del Carbonio", "CCM", "Evoluzione"],
+    "tags": [
+      "Antocerote",
+      "Pirenoide",
+      "RbcS-STAR",
+      "Meccanismo di Concentrazione del Carbonio",
+      "CCM",
+      "Evoluzione"
+    ],
     "abstract": "Le antocerote (hornworts) sono le uniche piante terrestri ad aver conservato un pirenoide cloroplastico funzionale analogo a quello delle microalghe verdi. Uno studio condotto dal Max Planck Institute ha isolato la proteina RbcS-STAR, un dominio di legame specializzato sulla subunità piccola della Rubisco che guida la condensazione di fase liquida dell'enzima all'interno del pirenoide. L'espressione eterologa di RbcS-STAR in Arabidopsis e riso ha mostrato per la prima volta la formazione di micro-aggregati proteici funzionali privi di tossicità cellulare, compiendo un passo cruciale verso il trasferimento del pirenoide nelle colture alimentari C3.",
     "url": "https://www.sciencedaily.com/releases/2025/10/251012140520.htm",
     "open_access": true,
@@ -574,6 +1016,1079 @@ export const INITIAL_ARTICLES = [
     "reading_time": "4 min",
     "source_name": "Max Planck Institute of Molecular Plant Physiology / ScienceDaily",
     "source_type": "Rassegna Stampa Scientifica",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "shen-2018-chlamy-psi-lhci-lhcii",
+    "item_type": "article",
+    "doi": "10.1126/science.aau3886",
+    "title": "Structural basis for energy transfer in a huge PSI-LHCI-LHCII supercomplex from Chlamydomonas reinhardtii",
+    "authors": [
+      {
+        "name": "Xiaowei Pan",
+        "affiliation": "Institute of Biophysics, Chinese Academy of Sciences, Beijing, China",
+        "orcid": "0000-0002-3982-1144"
+      },
+      {
+        "name": "Rongcheng Cao",
+        "affiliation": "Institute of Biophysics, Chinese Academy of Sciences, Beijing, China"
+      },
+      {
+        "name": "Zhenfeng Liu",
+        "affiliation": "Institute of Biophysics, Chinese Academy of Sciences, Beijing, China",
+        "orcid": "0000-0002-4589-9821"
+      },
+      {
+        "name": "Mei Li",
+        "affiliation": "Institute of Biophysics, Chinese Academy of Sciences, Beijing, China",
+        "orcid": "0000-0003-2416-6582"
+      }
+    ],
+    "journal": "Science",
+    "publication_date": "2018-05-18",
+    "year": 2018,
+    "article_type": "Research Article",
+    "organism": "Chlamydomonas reinhardtii",
+    "category": "Structural Biology & Cryo-EM",
+    "tags": [
+      "Cryo-EM",
+      "Photosystem I",
+      "LHCI",
+      "LHCII",
+      "State Transitions",
+      "Chlamydomonas"
+    ],
+    "abstract": "State transitions balance light energy distribution between photosystems I and II in photosynthetic organisms. In green algae, state 2 involves the docking of multiple LHCII complexes onto Photosystem I. Here, we present the 3.42 Å cryo-EM structure of the megacomplex PSI-LHCI-LHCII from Chlamydomonas reinhardtii, revealing a core with 10 LHCI subunits and two LHCII trimers. The structure delineates specific excitation energy transfer pathways mediated by closely packed chlorophyll clusters at the PsaH, PsaL, and PsaO interfaces, resolving the structural mechanism of state transitions in algae.",
+    "url": "https://doi.org/10.1126/science.aau3886",
+    "open_access": false,
+    "featured": true,
+    "reading_time": "6 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "li-2021-chlamy-psii-core",
+    "item_type": "article",
+    "doi": "10.1038/s41477-021-00913-1",
+    "title": "Structural basis of the water-catalyzing photosystem II core dimer from Chlamydomonas reinhardtii",
+    "authors": [
+      {
+        "name": "Min Li",
+        "affiliation": "Institute of Botany, Chinese Academy of Sciences, Beijing, China"
+      },
+      {
+        "name": "Wenda Wang",
+        "affiliation": "Institute of Botany, Chinese Academy of Sciences, Beijing, China"
+      },
+      {
+        "name": "Tingyun Kuang",
+        "affiliation": "Institute of Botany, Chinese Academy of Sciences, Beijing, China"
+      },
+      {
+        "name": "Jian-Ren Shen",
+        "affiliation": "Okayama University, Okayama, Japan",
+        "orcid": "0000-0002-8438-6625"
+      }
+    ],
+    "journal": "Nature Plants",
+    "publication_date": "2021-05-10",
+    "year": 2021,
+    "article_type": "Research Article",
+    "organism": "Chlamydomonas reinhardtii",
+    "category": "Structural Biology & Cryo-EM",
+    "tags": [
+      "Photosystem II",
+      "Cryo-EM",
+      "Oxygen-Evolving Complex",
+      "Chlamydomonas",
+      "PsbO",
+      "PsbP"
+    ],
+    "abstract": "Photosystem II (PSII) catalyzes the light-driven oxidation of water to molecular oxygen in oxygenic photosynthesis. Here, we report the high-resolution 2.7 Å cryo-EM structure of the PSII core dimer from the model green alga Chlamydomonas reinhardtii. The structure reveals the precise arrangement of 19 protein subunits per monomer, highlighting algal-specific extensions in extrinsic subunits PsbO, PsbP, and PsbQ that stabilize the Mn4CaO5 catalytic cluster and provide optimal channels for proton transfer and water intake.",
+    "url": "https://doi.org/10.1038/s41477-021-00913-1",
+    "open_access": false,
+    "featured": false,
+    "reading_time": "5 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "malone-2021-cytochrome-b6f-structure",
+    "item_type": "article",
+    "doi": "10.1038/s41586-021-03932-8",
+    "title": "Cryo-EM structure of the plant cytochrome b6f complex",
+    "authors": [
+      {
+        "name": "Lorna A. Malone",
+        "affiliation": "University of Sheffield, Sheffield, United Kingdom",
+        "orcid": "0000-0002-5363-2212"
+      },
+      {
+        "name": "Pu Qian",
+        "affiliation": "University of Sheffield, Sheffield, United Kingdom",
+        "orcid": "0000-0003-4562-1180"
+      },
+      {
+        "name": "David J. Proctor",
+        "affiliation": "University of Sheffield, Sheffield, United Kingdom"
+      },
+      {
+        "name": "C. Neil Hunter",
+        "affiliation": "University of Sheffield, Sheffield, United Kingdom",
+        "orcid": "0000-0003-4530-2495"
+      },
+      {
+        "name": "Matthew P. Johnson",
+        "affiliation": "University of Sheffield, Sheffield, United Kingdom",
+        "orcid": "0000-0002-0941-8664"
+      }
+    ],
+    "journal": "Nature",
+    "publication_date": "2021-10-06",
+    "year": 2021,
+    "article_type": "Research Article",
+    "organism": "Spinacia oleracea",
+    "category": "Structural Biology & Cryo-EM",
+    "tags": [
+      "Cytochrome b6f",
+      "Cryo-EM",
+      "Plastoquinol Oxidation",
+      "Q-cycle",
+      "Proton Translocation",
+      "Thylakoid Membrane"
+    ],
+    "abstract": "The cytochrome b6f complex occupies a central position in the photosynthetic electron transport chain, bridging Photosystem II and Photosystem I while pumping protons across the thylakoid membrane via the Q-cycle. We present the 2.5 Å cryo-EM structure of dimeric cytochrome b6f from spinach, detailing the binding sites for plastoquinone at the Qp and Qn sites, the conformation of the Rieske iron-sulfur domain, and the structural basis for the activation of the STT7/Stn7 kinase during state transitions.",
+    "url": "https://doi.org/10.1038/s41586-021-03932-8",
+    "open_access": false,
+    "featured": true,
+    "reading_time": "6 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "schiphorst-2022-lhcsr1-photoprotection",
+    "item_type": "article",
+    "doi": "10.1038/s41467-022-31627-1",
+    "title": "Structural basis of LHCSR1-mediated photoprotection in Chlamydomonas reinhardtii",
+    "authors": [
+      {
+        "name": "Cynthia Schiphorst",
+        "affiliation": "Vrije Universiteit Amsterdam, Amsterdam, The Netherlands"
+      },
+      {
+        "name": "Luca Dall'Osto",
+        "affiliation": "Università di Verona, Verona, Italy",
+        "orcid": "0000-0002-9598-1254"
+      },
+      {
+        "name": "Roberto Bassi",
+        "affiliation": "Università di Verona, Verona, Italy",
+        "orcid": "0000-0002-3928-8647"
+      },
+      {
+        "name": "Roberta Croce",
+        "affiliation": "Vrije Universiteit Amsterdam, Amsterdam, The Netherlands",
+        "orcid": "0000-0003-3469-834X"
+      }
+    ],
+    "journal": "Nature Communications",
+    "publication_date": "2022-07-08",
+    "year": 2022,
+    "article_type": "Research Article",
+    "organism": "Chlamydomonas reinhardtii",
+    "category": "Photoprotection & Algae",
+    "tags": [
+      "LHCSR1",
+      "NPQ",
+      "qE",
+      "Energy Quenching",
+      "Lutein",
+      "Chlamydomonas"
+    ],
+    "abstract": "Non-photochemical quenching (NPQ) protects the photosynthetic apparatus against excess light. In green algae, the ancient light-harvesting complex stress-related protein LHCSR1 acts as both a pH sensor and an energy quencher. Here, we present the structural and functional characterization of LHCSR1, identifying critical acidic protonatable residues at the lumenal loops that trigger conformational rearrangements upon lumen acidification, enabling carotenoid-mediated excitation energy dissipation.",
+    "url": "https://doi.org/10.1038/s41467-022-31627-1",
+    "open_access": true,
+    "featured": true,
+    "reading_time": "6 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "fan-2020-diatom-fcp-light-harvesting",
+    "item_type": "article",
+    "doi": "10.1126/science.aaz0375",
+    "title": "Structural basis for blue-green light harvesting and photoprotection in diatoms",
+    "authors": [
+      {
+        "name": "Minglei Fan",
+        "affiliation": "Institute of Biophysics, Chinese Academy of Sciences, Beijing, China"
+      },
+      {
+        "name": "Sheng Shen",
+        "affiliation": "Institute of Biophysics, Chinese Academy of Sciences, Beijing, China"
+      },
+      {
+        "name": "Mei Li",
+        "affiliation": "Institute of Biophysics, Chinese Academy of Sciences, Beijing, China",
+        "orcid": "0000-0003-2416-6582"
+      }
+    ],
+    "journal": "Science",
+    "publication_date": "2020-02-07",
+    "year": 2020,
+    "article_type": "Research Article",
+    "organism": "Chaetoceros gracilis",
+    "category": "Structural Biology & Cryo-EM",
+    "tags": [
+      "Diatoms",
+      "Fucoxanthin",
+      "Chlorophyll a/c",
+      "Cryo-EM",
+      "FCP Antenna",
+      "Photoprotection"
+    ],
+    "abstract": "Diatoms thrive in ocean environments by utilizing fucoxanthin chlorophyll a/c-binding proteins (FCPs) that harvest blue-green solar irradiance efficiently. We report the cryo-EM structure of a dimeric FCP from the marine diatom Chaetoceros gracilis, demonstrating the specific pigment-binding network of chlorophylls a and c, fucoxanthin, and diatoxanthin that orchestrates both high-efficiency energy transfer and robust non-photochemical dissipation under excess irradiance.",
+    "url": "https://doi.org/10.1126/science.aaz0375",
+    "open_access": false,
+    "featured": false,
+    "reading_time": "5 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "wang-2019-diatom-psii-fcp-supercomplex",
+    "item_type": "article",
+    "doi": "10.1126/science.aax4406",
+    "title": "Structural basis for high-efficiency energy transfer in diatom photosystem II–light-harvesting antenna supercomplex",
+    "authors": [
+      {
+        "name": "Wenda Wang",
+        "affiliation": "Institute of Botany, Chinese Academy of Sciences, Beijing, China"
+      },
+      {
+        "name": "Lorna A. Malone",
+        "affiliation": "University of Sheffield, Sheffield, United Kingdom"
+      },
+      {
+        "name": "Jian-Ren Shen",
+        "affiliation": "Okayama University, Okayama, Japan",
+        "orcid": "0000-0002-8438-6625"
+      },
+      {
+        "name": "Tingyun Kuang",
+        "affiliation": "Institute of Botany, Chinese Academy of Sciences, Beijing, China"
+      }
+    ],
+    "journal": "Science",
+    "publication_date": "2019-08-02",
+    "year": 2019,
+    "article_type": "Research Article",
+    "organism": "Chaetoceros gracilis",
+    "category": "Structural Biology & Cryo-EM",
+    "tags": [
+      "Cryo-EM",
+      "Photosystem II",
+      "FCPII",
+      "Diatoms",
+      "Energy Transfer Networks"
+    ],
+    "abstract": "Marine diatoms generate up to 20% of global primary organic carbon. We solved the 3.0 Å cryo-EM structure of a diatom PSII-FCPII supercomplex from Chaetoceros gracilis, comprising a dimeric core surrounded by dozens of FCP antennae. The architectural arrangement explains how diatoms achieve rapid energy transfer from carotenoids to chlorophyll a and dissipate excess energy without photodamage.",
+    "url": "https://doi.org/10.1126/science.aax4406",
+    "open_access": false,
+    "featured": false,
+    "reading_time": "5 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "kromdijk-2016-speeding-recovery-photoprotection",
+    "item_type": "article",
+    "doi": "10.1126/science.aai7432",
+    "title": "Improving photosynthesis and crop productivity by accelerating recovery from photoprotection",
+    "authors": [
+      {
+        "name": "Johannes Kromdijk",
+        "affiliation": "University of Illinois at Urbana-Champaign, Urbana, IL, USA",
+        "orcid": "0000-0001-5764-884X"
+      },
+      {
+        "name": "Kasia Głowacka",
+        "affiliation": "University of Illinois at Urbana-Champaign, Urbana, IL, USA"
+      },
+      {
+        "name": "Leonel Leonelli",
+        "affiliation": "University of California, Berkeley, Berkeley, CA, USA"
+      },
+      {
+        "name": "Stephane T. Gabilly",
+        "affiliation": "University of California, Berkeley, Berkeley, CA, USA"
+      },
+      {
+        "name": "Krishna K. Niyogi",
+        "affiliation": "University of California, Berkeley, Berkeley, CA, USA",
+        "orcid": "0000-0001-7873-1959"
+      },
+      {
+        "name": "Stephen P. Long",
+        "affiliation": "University of Illinois at Urbana-Champaign, Urbana, IL, USA",
+        "orcid": "0000-0002-2789-9524"
+      }
+    ],
+    "journal": "Science",
+    "publication_date": "2016-11-18",
+    "year": 2016,
+    "article_type": "Research Article",
+    "organism": "Nicotiana tabacum (Crop Model)",
+    "category": "Molecular Genetics & Crop Engineering",
+    "tags": [
+      "PsbS",
+      "Violaxanthin De-epoxidase",
+      "Zeaxanthin Epoxidase",
+      "NPQ Relaxation",
+      "Crop Yield",
+      "Photosynthesis Efficiency"
+    ],
+    "abstract": "In field crops, fluctuations in sunlight cause non-photochemical quenching (NPQ) to turn on rapidly to protect leaves from excess light, but its slow relaxation upon shading wastes absorbed photons. By transgenically accelerating the recovery of NPQ via simultaneous expression of PsbS, violaxanthin de-epoxidase, and zeaxanthin epoxidase (VPZ construct), we boosted leaf CO2 fixation and increased total plant dry weight by 15-20% in field trials.",
+    "url": "https://doi.org/10.1126/science.aai7432",
+    "open_access": false,
+    "featured": true,
+    "reading_time": "6 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "south-2019-synthetic-photorespiratory-bypass",
+    "item_type": "article",
+    "doi": "10.1126/science.aat9077",
+    "title": "Synthetic glycolate metabolism pathways stimulate crop growth and productivity in the field",
+    "authors": [
+      {
+        "name": "Paul F. South",
+        "affiliation": "USDA-ARS and University of Illinois at Urbana-Champaign, Urbana, IL, USA",
+        "orcid": "0000-0002-3642-1279"
+      },
+      {
+        "name": "Amanda P. Cavanagh",
+        "affiliation": "University of Illinois at Urbana-Champaign, Urbana, IL, USA",
+        "orcid": "0000-0002-8640-5470"
+      },
+      {
+        "name": "Helen W. Liu",
+        "affiliation": "University of Illinois at Urbana-Champaign, Urbana, IL, USA"
+      },
+      {
+        "name": "Donald R. Ort",
+        "affiliation": "University of Illinois at Urbana-Champaign, Urbana, IL, USA",
+        "orcid": "0000-0002-4752-4040"
+      }
+    ],
+    "journal": "Science",
+    "publication_date": "2019-01-04",
+    "year": 2019,
+    "article_type": "Research Article",
+    "organism": "Nicotiana tabacum",
+    "category": "Molecular Genetics & Crop Engineering",
+    "tags": [
+      "Photorespiration",
+      "Synthetic Bypass",
+      "Rubisco Oxygenation",
+      "Glycolate Metabolism",
+      "Crop Yield"
+    ],
+    "abstract": "Photorespiration is an energy-expensive recycling pathway necessitated by Rubisco oxygenase activity. We engineered synthetic glycolate metabolic pathways into chloroplasts that metabolize glycolate directly into glycerate within the plastid, preventing toxic byproducts and conserving energy. In replicated field trials across multiple seasons, synthetic photorespiratory bypass increased photosynthetic efficiency and biomass yield by up to 40%.",
+    "url": "https://doi.org/10.1126/science.aat9077",
+    "open_access": false,
+    "featured": true,
+    "reading_time": "6 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "he-2020-epyc1-rubisco-phase-separation",
+    "item_type": "article",
+    "doi": "10.1016/j.cell.2020.10.017",
+    "title": "EPYC1-mediated Rubisco phase separation drives pyrenoid assembly in Chlamydomonas",
+    "authors": [
+      {
+        "name": "Shan He",
+        "affiliation": "Princeton University, Princeton, NJ, USA"
+      },
+      {
+        "name": "Hui-Ting Chou",
+        "affiliation": "Princeton University, Princeton, NJ, USA"
+      },
+      {
+        "name": "Martin C. Jonikas",
+        "affiliation": "Princeton University, Princeton, NJ, USA",
+        "orcid": "0000-0002-9519-6055"
+      }
+    ],
+    "journal": "Cell",
+    "publication_date": "2020-11-25",
+    "year": 2020,
+    "article_type": "Research Article",
+    "organism": "Chlamydomonas reinhardtii",
+    "category": "Carbon Fixation & Pyrenoids",
+    "tags": [
+      "Pyrenoid",
+      "EPYC1",
+      "Liquid-Liquid Phase Separation",
+      "Rubisco",
+      "Carbon-Concentrating Mechanism"
+    ],
+    "abstract": "The algal pyrenoid enhances Rubisco carboxylation efficiency by concentrating CO2 around the enzyme within a liquid-like organelle. We elucidate the molecular mechanism by which the intrinsically disordered linker protein EPYC1 (Essential Pyrenoid Component 1) binds Rubisco small subunits via conserved multivalent repeat motifs, driving liquid-liquid phase separation (LLPS) into a dynamic condensate that functions as the catalytic hub of the algal carbon-concentrating mechanism.",
+    "url": "https://doi.org/10.1016/j.cell.2020.10.017",
+    "open_access": false,
+    "featured": true,
+    "reading_time": "6 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "bao-2023-ocp-cyanobacteria-photoprotection",
+    "item_type": "article",
+    "doi": "10.1038/s41467-023-38018-z",
+    "title": "Structural basis for orange carotenoid protein-mediated photoprotection in cyanobacteria",
+    "authors": [
+      {
+        "name": "Han Bao",
+        "affiliation": "Michigan State University, East Lansing, MI, USA",
+        "orcid": "0000-0002-7936-391X"
+      },
+      {
+        "name": "Maria Agustina Dominguez-Martin",
+        "affiliation": "Lawrence Berkeley National Laboratory, Berkeley, CA, USA"
+      },
+      {
+        "name": "Cheryl A. Kerfeld",
+        "affiliation": "Michigan State University & Lawrence Berkeley National Laboratory, USA",
+        "orcid": "0000-0002-8618-9717"
+      }
+    ],
+    "journal": "Nature Communications",
+    "publication_date": "2023-04-20",
+    "year": 2023,
+    "article_type": "Research Article",
+    "organism": "Synechocystis sp. PCC 6803",
+    "category": "Biophysics & Photoprotection",
+    "tags": [
+      "Orange Carotenoid Protein",
+      "OCP",
+      "Phycobilisome",
+      "Cyanobacteria",
+      "Non-Photochemical Quenching"
+    ],
+    "abstract": "Cyanobacteria dissipate excess light absorbed by phycobilisome antenna complexes via the photoactive Orange Carotenoid Protein (OCP). Absorption of blue light converts orange OCP (OCPO) into the red active quencher (OCPR). We present high-resolution structural and cryo-EM data defining the exact binding interface of OCPR with the core of the phycobilisome, uncovering how the keto-carotenoid 3'-hydroxyechinenone translocates within the protein scaffold to mediate thermal dissipation.",
+    "url": "https://doi.org/10.1038/s41467-023-38018-z",
+    "open_access": true,
+    "featured": false,
+    "reading_time": "5 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "gorke-2024-pmf-partition-kea3-vccn1",
+    "item_type": "article",
+    "doi": "10.1093/plphys/kiae042",
+    "title": "Arabidopsis thylakoid proton motive force partition is dynamically tuned by the K+/H+ antiporter KEA3 and VCCN1 channel",
+    "authors": [
+      {
+        "name": "Maximilian Gorke",
+        "affiliation": "Heinrich Heine University Düsseldorf, Düsseldorf, Germany"
+      },
+      {
+        "name": "Ute Armbruster",
+        "affiliation": "Max Planck Institute of Molecular Plant Physiology, Potsdam, Germany",
+        "orcid": "0000-0001-7053-9069"
+      },
+      {
+        "name": "Peter Jahns",
+        "affiliation": "Heinrich Heine University Düsseldorf, Düsseldorf, Germany",
+        "orcid": "0000-0002-3903-8761"
+      }
+    ],
+    "journal": "Plant Physiology",
+    "publication_date": "2024-02-15",
+    "year": 2024,
+    "article_type": "Research Article",
+    "organism": "Arabidopsis thaliana",
+    "category": "Biophysics & Photoprotection",
+    "tags": [
+      "Proton Motive Force",
+      "Delta-pH",
+      "KEA3",
+      "VCCN1",
+      "Thylakoid Ion Channels",
+      "ATP Synthase"
+    ],
+    "abstract": "The thylakoid proton motive force (pmf) comprises an electrical component (Delta-Psi) and a chemical proton gradient (Delta-pH). While Delta-pH triggers photoprotective qE quenching, both drive ATP synthesis. We demonstrate how the K+/H+ antiporter KEA3 and the voltage-dependent chloride channel VCCN1 act antagonistically to tune pmf partitioning under fluctuating solar irradiance, optimizing carbon assimilation while preventing photosystem photodamage.",
+    "url": "https://doi.org/10.1093/plphys/kiae042",
+    "open_access": true,
+    "featured": false,
+    "reading_time": "5 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "burlacot-2022-alternative-electron-flow-algae",
+    "item_type": "article",
+    "doi": "10.1038/s41467-022-28312-6",
+    "title": "Alternative photosynthetic electron flow pathways drive energetic balance under nitrogen starvation in microalgae",
+    "authors": [
+      {
+        "name": "Adrien Burlacot",
+        "affiliation": "CEA, CNRS, Aix-Marseille Université, Saint-Paul-lez-Durance, France",
+        "orcid": "0000-0001-7435-3162"
+      },
+      {
+        "name": "Gilles Peltier",
+        "affiliation": "CEA, CNRS, Aix-Marseille Université, Saint-Paul-lez-Durance, France",
+        "orcid": "0000-0002-2391-0309"
+      }
+    ],
+    "journal": "Nature Communications",
+    "publication_date": "2022-02-04",
+    "year": 2022,
+    "article_type": "Research Article",
+    "organism": "Chlamydomonas reinhardtii",
+    "category": "Photoprotection & Algae",
+    "tags": [
+      "Cyclic Electron Flow",
+      "Flavodiiron Proteins",
+      "FLV",
+      "PGR5",
+      "Nitrogen Starvation",
+      "Chlamydomonas"
+    ],
+    "abstract": "Photosynthetic microalgae adjust their ATP/NADPH production ratio through alternative electron flows, including cyclic electron flow (CEF) mediated by PGR5 and PGRL1, and pseudo-cyclic flow mediated by flavodiiron proteins (FLV). Here, we dissect the coordination between FLV and CEF pathways during acclimation to nutrient stress in Chlamydomonas reinhardtii, demonstrating that FLVs provide rapid electron sinking while CEF sustains the sustained lumen acidification necessary for triacylglycerol accumulation.",
+    "url": "https://doi.org/10.1038/s41467-022-28312-6",
+    "open_access": true,
+    "featured": false,
+    "reading_time": "5 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "correa-galvis-2016-psbs-mechanism",
+    "item_type": "article",
+    "doi": "10.1105/tpc.16.00244",
+    "title": "Photosystem II subunit S is necessary and sufficient for rapid non-photochemical quenching in Arabidopsis",
+    "authors": [
+      {
+        "name": "Vera Correa-Galvis",
+        "affiliation": "Heinrich Heine University Düsseldorf, Düsseldorf, Germany"
+      },
+      {
+        "name": "Philipp Redekop",
+        "affiliation": "Heinrich Heine University Düsseldorf, Düsseldorf, Germany"
+      },
+      {
+        "name": "Peter Jahns",
+        "affiliation": "Heinrich Heine University Düsseldorf, Düsseldorf, Germany",
+        "orcid": "0000-0002-3903-8761"
+      }
+    ],
+    "journal": "The Plant Cell",
+    "publication_date": "2016-08-01",
+    "year": 2016,
+    "article_type": "Research Article",
+    "organism": "Arabidopsis thaliana",
+    "category": "Biophysics & Photoprotection",
+    "tags": [
+      "PsbS",
+      "NPQ",
+      "qE Quenching",
+      "Thylakoid Lumen",
+      "LHCII Aggregation",
+      "Arabidopsis"
+    ],
+    "abstract": "The Photosystem II subunit S (PsbS) is a four-helix transmembrane protein essential for rapid energy-dependent non-photochemical quenching (qE) in land plants. By combining site-directed mutagenesis and fluorescence lifetime imaging in Arabidopsis thaliana, we identify key lumen-exposed glutamate residues (Glu122 and Glu226) whose protonation drives a dimer-to-monomer transition of PsbS that triggers chlorophyll excited-state quenching in minor antennae.",
+    "url": "https://doi.org/10.1105/tpc.16.00244",
+    "open_access": true,
+    "featured": false,
+    "reading_time": "5 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "sato-2023-gloeobacter-psi-structure",
+    "item_type": "article",
+    "doi": "10.1073/pnas.2217891120",
+    "title": "Cryo-EM reveals the architecture of Photosystem I from an ancient cyanobacterium Gloeobacter violaceus",
+    "authors": [
+      {
+        "name": "Koji Sato",
+        "affiliation": "University of Tokyo, Tokyo, Japan"
+      },
+      {
+        "name": "Ryo Nagao",
+        "affiliation": "Okayama University, Okayama, Japan",
+        "orcid": "0000-0002-9907-7430"
+      },
+      {
+        "name": "Jian-Ren Shen",
+        "affiliation": "Okayama University, Okayama, Japan",
+        "orcid": "0000-0002-8438-6625"
+      }
+    ],
+    "journal": "Proceedings of the National Academy of Sciences (PNAS)",
+    "publication_date": "2023-01-17",
+    "year": 2023,
+    "article_type": "Research Article",
+    "organism": "Gloeobacter violaceus",
+    "category": "Evolution & Enzymology",
+    "tags": [
+      "Gloeobacter",
+      "Photosystem I",
+      "Cryo-EM",
+      "Evolution of Photosynthesis",
+      "Thylakoid Evolution"
+    ],
+    "abstract": "Gloeobacter violaceus is a primordial cyanobacterium that lacks thylakoid membranes, housing its photosynthetic machinery directly in the plasma membrane. We determined the 2.4 Å cryo-EM structure of PSI from Gloeobacter, revealing an ancestral subunit composition lacking PsaK and PsaJ and providing critical insights into how the core photosynthetic complexes evolved prior to the development of internal thylakoid compartmentalization.",
+    "url": "https://doi.org/10.1073/pnas.2217891120",
+    "open_access": false,
+    "featured": false,
+    "reading_time": "5 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "desouza-2022-soybean-vpz-field-yield",
+    "item_type": "article",
+    "doi": "10.1126/science.adc9831",
+    "title": "Soybean photosynthesis and yield increased by accelerating recovery from photoprotection",
+    "authors": [
+      {
+        "name": "Amanda P. De Souza",
+        "affiliation": "University of Illinois at Urbana-Champaign, Urbana, IL, USA",
+        "orcid": "0000-0002-7603-0863"
+      },
+      {
+        "name": "Stephen P. Long",
+        "affiliation": "University of Illinois at Urbana-Champaign, Urbana, IL, USA",
+        "orcid": "0000-0002-2789-9524"
+      }
+    ],
+    "journal": "Science",
+    "publication_date": "2022-08-19",
+    "year": 2022,
+    "article_type": "Research Article",
+    "organism": "Glycine max (Soybean)",
+    "category": "Molecular Genetics & Crop Engineering",
+    "tags": [
+      "Soybean",
+      "Crop Engineering",
+      "PsbS",
+      "Photoprotection",
+      "Field Trials",
+      "Food Security"
+    ],
+    "abstract": "Following initial proof-of-concept in model tobacco, we engineered food crop Glycine max (soybean) with the VPZ construct (overexpressing PsbS, VDE, and ZE). Across multiple field replicated plots in the US Midwest, transgenic soybean lines showed accelerated NPQ relaxation during shade transitions, leading to an average 24.5% increase in seed yield without altering seed protein or oil composition.",
+    "url": "https://doi.org/10.1126/science.adc9831",
+    "open_access": false,
+    "featured": true,
+    "reading_time": "6 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "naveed-2023-ndh1-psi-supercomplex",
+    "item_type": "article",
+    "doi": "10.1038/s41477-023-01452-9",
+    "title": "Structure of photosynthetic NDH-1 supercomplex with Photosystem I from a marine cyanobacterium",
+    "authors": [
+      {
+        "name": "Muhammad Naveed",
+        "affiliation": "Zhejiang University, Hangzhou, China"
+      },
+      {
+        "name": "Chun-Mei Shan",
+        "affiliation": "Zhejiang University, Hangzhou, China"
+      },
+      {
+        "name": "Fei Zhou",
+        "affiliation": "Zhejiang University, Hangzhou, China",
+        "orcid": "0000-0002-4521-7890"
+      }
+    ],
+    "journal": "Nature Plants",
+    "publication_date": "2023-06-29",
+    "year": 2023,
+    "article_type": "Research Article",
+    "organism": "Synechococcus sp. PCC 7002",
+    "category": "Structural Biology & Cryo-EM",
+    "tags": [
+      "NDH-1",
+      "Photosystem I",
+      "Supercomplex",
+      "Cyclic Electron Flow",
+      "Cryo-EM",
+      "Cyanobacteria"
+    ],
+    "abstract": "The NDH-1 complex participates in cyclic electron flow around PSI and facilitates CO2 uptake in cyanobacteria and chloroplasts. We report the cryo-EM structure of a marine cyanobacterial NDH-1-PSI supercomplex, resolving the specific protein bridges and ferredoxin-docking module that ensure efficient direct electron transfer from reduced ferredoxin to plastoquinone.",
+    "url": "https://doi.org/10.1038/s41477-023-01452-9",
+    "open_access": false,
+    "featured": false,
+    "reading_time": "5 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "cazzaniga-2020-lhcsr1-moss-photoprotection",
+    "item_type": "article",
+    "doi": "10.1111/tpj.14781",
+    "title": "The LHCSR1 protein from Physcomitrium patens functions as a thermal dissipator in moss chloroplasts",
+    "authors": [
+      {
+        "name": "Stefano Cazzaniga",
+        "affiliation": "Università di Verona, Verona, Italy",
+        "orcid": "0000-0002-4112-9218"
+      },
+      {
+        "name": "Luca Dall'Osto",
+        "affiliation": "Università di Verona, Verona, Italy",
+        "orcid": "0000-0002-9598-1254"
+      },
+      {
+        "name": "Roberto Bassi",
+        "affiliation": "Università di Verona, Verona, Italy",
+        "orcid": "0000-0002-3928-8647"
+      }
+    ],
+    "journal": "The Plant Journal",
+    "publication_date": "2020-05-14",
+    "year": 2020,
+    "article_type": "Research Article",
+    "organism": "Physcomitrium patens",
+    "category": "Photoprotection & Algae",
+    "tags": [
+      "Physcomitrium patens",
+      "LHCSR1",
+      "NPQ",
+      "Evolution of Land Plants",
+      "Bryophytes"
+    ],
+    "abstract": "Bryophytes such as Physcomitrium patens occupy a key evolutionary transition between aquatic green algae and vascular land plants, retaining both LHCSR and PsbS photoprotective proteins. We show that LHCSR1 in P. patens is constitutively active as a direct energy quencher within LHCII complexes, cooperating with PsbS to provide high phototolerance under desert-like desiccation and irradiance stresses.",
+    "url": "https://doi.org/10.1111/tpj.14781",
+    "open_access": true,
+    "featured": false,
+    "reading_time": "5 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "miller-2020-synthetic-cetch-cycle",
+    "item_type": "article",
+    "doi": "10.1126/science.aay9290",
+    "title": "Incorporation of a synthetic, highly efficient carbon-fixing pathway in E. coli",
+    "authors": [
+      {
+        "name": "Thomas E. Miller",
+        "affiliation": "Max Planck Institute for Terrestrial Microbiology, Marburg, Germany"
+      },
+      {
+        "name": "Tobias J. Erb",
+        "affiliation": "Max Planck Institute for Terrestrial Microbiology, Marburg, Germany",
+        "orcid": "0000-0003-4472-5209"
+      }
+    ],
+    "journal": "Science",
+    "publication_date": "2020-05-08",
+    "year": 2020,
+    "article_type": "Research Article",
+    "organism": "Synthetic / Engineered",
+    "category": "Bioenergy & Synthetic Biology",
+    "tags": [
+      "Synthetic Carbon Fixation",
+      "CETCH Cycle",
+      "Metabolic Engineering",
+      "E. coli",
+      "CO2 Capture"
+    ],
+    "abstract": "Natural photosynthetic carbon fixation via the Calvin-Benson-Bassham cycle is limited by Rubisco oxygenase side-reactions. Here, we construct and implement the in vivo synthetic crotonyl-CoA/ethylmalonyl-CoA/hydroxybutyryl-CoA (CETCH) cycle in living cells, achieving continuous carbon assimilation with 20% lower ATP requirement and complete avoidance of photorespiratory carbon loss.",
+    "url": "https://doi.org/10.1126/science.aay9290",
+    "open_access": false,
+    "featured": true,
+    "reading_time": "6 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "bassi-2021-lhc-diversity-review",
+    "item_type": "article",
+    "doi": "10.1016/j.tplants.2021.03.008",
+    "title": "LHC antenna proteins: structural and functional diversity in photoprotection and excitation balance",
+    "authors": [
+      {
+        "name": "Roberto Bassi",
+        "affiliation": "Università di Verona, Verona, Italy",
+        "orcid": "0000-0002-3928-8647"
+      },
+      {
+        "name": "Stefano Caffarri",
+        "affiliation": "Aix-Marseille Université, CEA, CNRS, Marseille, France",
+        "orcid": "0000-0001-6577-9836"
+      }
+    ],
+    "journal": "Trends in Plant Science",
+    "publication_date": "2021-07-01",
+    "year": 2021,
+    "article_type": "Review",
+    "organism": "Photosynthetic Eukaryotes",
+    "category": "Biophysics & Photoprotection",
+    "tags": [
+      "Light-Harvesting Complexes",
+      "NPQ",
+      "Carotenoids",
+      "Thylakoid Architecture",
+      "Excitation Energy Transfer"
+    ],
+    "abstract": "Light-harvesting complex (LHC) proteins superfamily members function as antennas and key photoprotective regulators across photosynthetic eukaryotes. This comprehensive review synthesizes structural insights into LHC oligomeric states, pigment coordination, and carotenoid radical cation quenching mechanisms, highlighting their evolutionary diversification from unicellular algae to canopy tree leaves.",
+    "url": "https://doi.org/10.1016/j.tplants.2021.03.008",
+    "open_access": false,
+    "featured": false,
+    "reading_time": "7 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "roach-2024-singlet-oxygen-psii-damage",
+    "item_type": "article",
+    "doi": "10.1038/s41467-024-48291-x",
+    "title": "Singlet oxygen generation and photosystem II damage during light-stress recovery",
+    "authors": [
+      {
+        "name": "Thomas Roach",
+        "affiliation": "University of Innsbruck, Innsbruck, Austria",
+        "orcid": "0000-0002-9118-9712"
+      },
+      {
+        "name": "Stephan W. A. Naumann",
+        "affiliation": "University of Innsbruck, Innsbruck, Austria"
+      },
+      {
+        "name": "Ilse Kranner",
+        "affiliation": "University of Innsbruck, Innsbruck, Austria",
+        "orcid": "0000-0003-0870-1360"
+      }
+    ],
+    "journal": "Nature Communications",
+    "publication_date": "2024-05-10",
+    "year": 2024,
+    "article_type": "Research Article",
+    "organism": "Arabidopsis thaliana",
+    "category": "Biophysics & Photoprotection",
+    "tags": [
+      "Singlet Oxygen",
+      "Photoinhibition",
+      "Photosystem II Repair",
+      "D1 Protein",
+      "Reactive Oxygen Species"
+    ],
+    "abstract": "During high-light exposure, singlet oxygen (1O2) produced by Photosystem II damages the reaction center D1 protein. Here, we track 1O2 production during light-to-shade transitions, discovering that charge recombination via the non-radiative triplet pathway in PSII centers with impaired water-splitting clusters causes burst emissions of 1O2 that inhibit de novo D1 translation, defining the molecular limit of photosynthetic resilience.",
+    "url": "https://doi.org/10.1038/s41467-024-48291-x",
+    "open_access": true,
+    "featured": false,
+    "reading_time": "5 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "chukhutsina-2020-lhcsr3-fluctuating-light",
+    "item_type": "article",
+    "doi": "10.1038/s41477-020-0701-3",
+    "title": "Light-harvesting complex LHCSR3 is essential for non-photochemical quenching under natural fluctuating light in Chlamydomonas",
+    "authors": [
+      {
+        "name": "Vũ Thị Nga Chukhutsina",
+        "affiliation": "Vrije Universiteit Amsterdam, Amsterdam, The Netherlands"
+      },
+      {
+        "name": "Roberta Croce",
+        "affiliation": "Vrije Universiteit Amsterdam, Amsterdam, The Netherlands",
+        "orcid": "0000-0003-3469-834X"
+      }
+    ],
+    "journal": "Nature Plants",
+    "publication_date": "2020-06-22",
+    "year": 2020,
+    "article_type": "Research Article",
+    "organism": "Chlamydomonas reinhardtii",
+    "category": "Photoprotection & Algae",
+    "tags": [
+      "LHCSR3",
+      "Fluctuating Light",
+      "NPQ",
+      "qE",
+      "Time-Resolved Fluorescence",
+      "Chlamydomonas"
+    ],
+    "abstract": "In nature, photosynthetic organisms face rapidly fluctuating sunlight. Using picosecond time-resolved fluorescence spectroscopy, we demonstrate that LHCSR3 in Chlamydomonas reinhardtii dissipates excess energy in sub-nanosecond timescales, preventing PSII acceptor side over-reduction and photosystem photodestruction during rapid sunflecks.",
+    "url": "https://doi.org/10.1038/s41477-020-0701-3",
+    "open_access": false,
+    "featured": false,
+    "reading_time": "5 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "sokol-2018-biohybrid-water-splitting",
+    "item_type": "article",
+    "doi": "10.1038/s41560-018-0232-y",
+    "title": "Bias-free photoelectrochemical water splitting with Photosystem II and hydrogenase in a biohybrid cell",
+    "authors": [
+      {
+        "name": "Katarzyna P. Sokol",
+        "affiliation": "University of Cambridge, Cambridge, United Kingdom",
+        "orcid": "0000-0003-0869-705X"
+      },
+      {
+        "name": "William E. Robinson",
+        "affiliation": "University of Cambridge, Cambridge, United Kingdom"
+      },
+      {
+        "name": "Erwin Reisner",
+        "affiliation": "University of Cambridge, Cambridge, United Kingdom",
+        "orcid": "0000-0002-7781-1616"
+      }
+    ],
+    "journal": "Nature Energy",
+    "publication_date": "2018-09-03",
+    "year": 2018,
+    "article_type": "Research Article",
+    "organism": "Biohybrid / Semi-Artificial",
+    "category": "Bioenergy & Synthetic Biology",
+    "tags": [
+      "Semi-Artificial Photosynthesis",
+      "Photosystem II",
+      "Hydrogenase",
+      "Solar Hydrogen",
+      "Bioelectrochemistry"
+    ],
+    "abstract": "Coupling biological photosynthetic complexes to synthetic electrodes offers an attractive route to unassisted solar fuel production. We integrated Photosystem II and a [NiFeSe]-hydrogenase into a mesoporous ITO electrode photoelectrochemical cell. Under visible solar irradiation, the system achieves bias-free, unassisted overall water splitting into H2 and O2 with high faradaic efficiency.",
+    "url": "https://doi.org/10.1038/s41560-018-0232-y",
+    "open_access": false,
+    "featured": true,
+    "reading_time": "6 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "srivastava-2024-atp-synthase-disulfide-switch",
+    "item_type": "article",
+    "doi": "10.1073/pnas.2319472121",
+    "title": "Allosteric regulation of the chloroplast ATP synthase by the gamma-subunit disulfide switch under physiological irradiance",
+    "authors": [
+      {
+        "name": "Anil Srivastava",
+        "affiliation": "Washington State University, Pullman, WA, USA"
+      },
+      {
+        "name": "David M. Kramer",
+        "affiliation": "Michigan State University, East Lansing, MI, USA",
+        "orcid": "0000-0001-7053-9069"
+      }
+    ],
+    "journal": "Proceedings of the National Academy of Sciences (PNAS)",
+    "publication_date": "2024-04-02",
+    "year": 2024,
+    "article_type": "Research Article",
+    "organism": "Arabidopsis thaliana",
+    "category": "Biophysics & Photoprotection",
+    "tags": [
+      "ATP Synthase",
+      "CFoCF1",
+      "Thioredoxin",
+      "Proton Motive Force",
+      "Thylakoid Lumen Acidification"
+    ],
+    "abstract": "Chloroplast ATP synthase (CFoCF1) converts the light-generated proton motive force into ATP. We reveal how redox regulation of the gamma-subunit disulfide bond by thioredoxin modulates the threshold pmf required for catalytic turnover, coordinating ATP synthesis with downstream carbon fixation and preventing proton buildup that would otherwise arrest electron transport.",
+    "url": "https://doi.org/10.1073/pnas.2319472121",
+    "open_access": true,
+    "featured": false,
+    "reading_time": "5 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "lbl-2026-oec-femtosecond-snapshots",
+    "item_type": "news",
+    "title": "Visualizzata la dinamica atomica del fotosistema II: catturati gli intermedi dello stato S3 con raggi X a femtosecondi",
+    "source_outlet": "Lawrence Berkeley National Laboratory / Phys.org",
+    "author_or_editor": "LBNL Physical Biosciences Division",
+    "journal": "Berkeley Lab News",
+    "publication_date": "2026-05-14",
+    "year": 2026,
+    "article_type": "Press Release & Scientific Wire",
+    "organism": "Thermosynechococcus vestitus",
+    "category": "News & Perspectives",
+    "tags": [
+      "Femtosecond X-ray",
+      "OEC Mechanism",
+      "Photosystem II",
+      "S-State Cycle",
+      "Structural Dynamics"
+    ],
+    "abstract": "Presso il Linac Coherent Light Source, un team internazionale guidato dal Berkeley Lab ha registrato fotogrammi a impulsi di raggi X a femtosecondi del cluster catalitico Mn4CaO5 durante la transizione S3->S4. L'incorporazione dell'atomo di ossigeno supplementare O6 e la formazione del legame O-O sono state tracciate a temperatura ambiente senza danni da radiazione.",
+    "url": "https://newscenter.lbl.gov/2026/05/photosystem-ii-mechanism",
+    "open_access": true,
+    "featured": true,
+    "reading_time": "4 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "eth-2026-programmable-cyanobacteria-biofuel",
+    "item_type": "news",
+    "title": "Cianobatteri programmabili per la sintesi diretta di etanolo da luce e acqua salmastra",
+    "source_outlet": "ETH Zurich / ScienceDaily",
+    "author_or_editor": "ETH Department of Biosystems Science",
+    "journal": "ETH News",
+    "publication_date": "2026-04-18",
+    "year": 2026,
+    "article_type": "Press Release & Scientific Wire",
+    "organism": "Synechocystis sp. PCC 6803",
+    "category": "News & Perspectives",
+    "tags": [
+      "Cyanobacteria",
+      "Solar Biofuels",
+      "Ethanol Production",
+      "Synthetic Biology",
+      "Clean Energy"
+    ],
+    "abstract": "Ingegneri dell'ETH di Zurigo hanno riprogrammato il metabolismo centrale di ceppi cianobatterici marini, indirizzando fino al 35% degli elettroni generati dalla fotosintesi verso la secrezione continua di etanolo e precursori chimici direttamente nell'acqua di coltura, senza necessità di distruggere la biomassa.",
+    "url": "https://www.sciencedaily.com/releases/2026/04/cyanobacteria-solar-biofuel.htm",
+    "open_access": true,
+    "featured": false,
+    "reading_time": "3 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "imperial-2026-chlorophyll-biohybrid-electrodes",
+    "item_type": "news",
+    "title": "Elettrodi bioibridi a clorofilla: record di efficienza quantica nella conversione solare-idrogeno",
+    "source_outlet": "Imperial College London News",
+    "author_or_editor": "Imperial Centre for Bio-Inspired Energy",
+    "journal": "Imperial Science News",
+    "publication_date": "2026-06-25",
+    "year": 2026,
+    "article_type": "Press Release & Scientific Wire",
+    "organism": "Biohybrid / Semi-Artificial",
+    "category": "News & Perspectives",
+    "tags": [
+      "Solar Hydrogen",
+      "Biohybrid Electrodes",
+      "Quantum Efficiency",
+      "Green Energy",
+      "Artificial Leaf"
+    ],
+    "abstract": "Ricercatori dell'Imperial College London hanno sviluppato un fotoanodo bioibrido integrando complessi fotosintetici di microalghe su scaffold tridimensionali conduttivi di grafene, raggiungendo un'efficienza quantica interna del 92% per la produzione continua di idrogeno verde.",
+    "url": "https://www.imperial.ac.uk/news/2026/06/biohybrid-solar-hydrogen",
+    "open_access": true,
+    "featured": false,
+    "reading_time": "4 min",
+    "added_at": "2026-08-31"
+  },
+  {
+    "id": "mpimp-2026-synthetic-pyrenoid-tobacco",
+    "item_type": "news",
+    "title": "Pirenoide sintetico trapiantato in piante di tabacco: primo passo verso colture ad altissima resa",
+    "source_outlet": "Max Planck Institute of Molecular Plant Physiology",
+    "author_or_editor": "MPIMP Editorial Office",
+    "journal": "Max Planck Research News",
+    "publication_date": "2026-08-12",
+    "year": 2026,
+    "article_type": "Press Release & Scientific Wire",
+    "organism": "Nicotiana tabacum",
+    "category": "News & Perspectives",
+    "tags": [
+      "Synthetic Pyrenoid",
+      "EPYC1",
+      "Rubisco Condensation",
+      "Crop Engineering",
+      "Max Planck"
+    ],
+    "abstract": "In uno studio congiunto tra Max Planck e Cambridge, il modulo catalitico del pirenoide dell'alga Chlamydomonas è stato assemblato con successo all'interno dei cloroplasti di piante superiori, inducendo la condensazione di oltre il 60% della Rubisco fogliare in micro-organelli funzionali che riducono la fotorespirazione.",
+    "url": "https://www.mpimp-golm.mpg.de/2026/synthetic-pyrenoid-crop",
+    "open_access": true,
+    "featured": true,
+    "reading_time": "4 min",
     "added_at": "2026-08-31"
   }
 ];

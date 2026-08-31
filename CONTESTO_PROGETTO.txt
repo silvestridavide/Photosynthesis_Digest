@@ -1,44 +1,48 @@
 PROGETTO
-- Nome: Photosynthesis Digest · Rivista Scientifica & News (Magazine Layout).
-- Scopo: Fornire una rivista scientifica online quotidiana con impaginazione chiara, tranquilla ed elegante con accenti verde petrolio, per monitorare gli ultimi articoli peer-reviewed e le notizie scientifiche verificate sulla fotosintesi in qualsiasi organismo (piante superiori, Chlamydomonas, Chlorella, cianobatteri, alghe rosse, diatomee o sistemi sintetici).
+- Nome: LUMEN · Rivista Scientifica sulla Fotosintesi & Zine Generator.
+- Scopo: Fornire una rassegna scientifica e research feed essenziale, elegante e pratico per monitorare gli ultimi articoli peer-reviewed e le notizie scientifiche verificate sulla fotosintesi in qualsiasi organismo (piante superiori, Chlamydomonas, Chlorella, cianobatteri, alghe rosse, diatomee o sistemi sintetici).
 - Destinatario: Ricercatori del Laboratorio di Fotosintesi & Bioenergetica.
 
 PERCORSO CANONICO
 - Cartella canonica: LAVORO/TOOLS/Photosynthesis_Digest.
-- Predecessore: Nessuno.
+- Predecessore: Photosynthesis Digest.
 - Repository GitHub: https://github.com/silvestridavide/Photosynthesis_Digest.git (branch main).
 
 INPUT E OUTPUT
 - Input: 
   - File dati JSON (assets/data/articles.json) e modulo JS (assets/js/articles-data.js).
-  - Ingestion via DOI singolo o multiplo tramite script Python (scripts/add_by_doi.py).
-  - Ingestion automatica programmata (scripts/daily_fetch.py).
-  - Inserimento manuale rapido nel browser con persistenza locale (localStorage).
+  - 50 record censiti e verificati (40 articoli peer-reviewed + 10 notizie e rassegne scientifiche).
+  - Ingestion da CLI tramite script Python (scripts/add_by_doi.py e scripts/daily_fetch.py).
 - Output:
-  - Layout a Rivista (Magazine Layout):
-    * Copertina & Lead Story Spread con introduzione drop-cap e punti chiave (Key Takeaways).
-    * Focus della Settimana & Editor's Choice (griglia a 2 colonne).
-    * Sezione Notizie, Flash & Rassegna Stampa Scientifica con badge per fonti verificate (ScienceDaily, Phys.org, Nature Plants, MIT, Max Planck, Cambridge).
-    * Archivio Ricerca Peer-Reviewed con card dense e bordature verde petrolio.
-    * Nota Editoriale & Citazione dell'Edizione.
-  - Viste a Tab: Edizione Rivista, Articoli Scientifici, Notizie & Rassegna Stampa, I Miei Salvati.
-  - Modal di lettura universale con abstract/estratto integrale, affiliazioni, ORCID e generatore di citazioni (APA, BibTeX, RIS).
-  - Esportazione istantanea del dataset in formato JSON, BibTeX (.bib) e CSV.
+  - Feed editoriale semplificato e pulito:
+    * Spotlight Hero Card per il lead breakthrough della rassegna con punti chiave.
+    * Griglia a card dense e coerenti con rimando diretto alla fonte ufficiale/editore (DOI).
+    * Switcher a tab snello: Tutti (50), Articoli (40), Notizie (10), I Miei Salvati.
+    * Filtri rapidi per disciplina, organismo e ordinamento con ricerca istantanea full-text.
+  - Generatore di ZINE (1 Pagina A4):
+    * Modale di anteprima e motore di stampa/esportazione PDF (`window.print()`).
+    * Impaginazione su singola pagina A4 (@page { size: A4 portrait; margin: 8mm; }) con storia di copertina, flash news, paper di punta e nota editoriale.
+  - Modal di lettura essenziale con abstract integrale, affiliazioni, ORCID e generatore di citazioni (APA, BibTeX).
 
 DATI E REGOLE
 - Nessuna allucinazione: solo dati fattuali verificati (titoli, autori, affiliazioni, riviste, date di pubblicazione, DOI, abstract integrali e comunicati ufficiali).
-- Fonti ammesse: CrossRef, Europe PMC, PubMed Central e riviste peer-reviewed internazionali (Nature, Science, PNAS, Nature Plants, Nature Communications, The New Phytologist, Plant Cell & Environment, Bioresource Technology, ecc.) e testate scientifiche accreditate per le notizie.
-- Record censiti attuali: 23 (17 articoli scientifici peer-reviewed + 6 notizie scientifiche verificate).
+- Fonti ammesse: CrossRef, Europe PMC, PubMed Central e riviste peer-reviewed internazionali (Nature, Science, PNAS, Nature Plants, Nature Communications, The Plant Cell, Plant Physiology, The Plant Journal, The New Phytologist, Bioresource Technology, ecc.) e testate scientifiche accreditate per le notizie.
+- Record censiti attuali: 50 (40 articoli scientifici peer-reviewed + 10 notizie scientifiche verificate).
 
 DESIGN & PALETTE
-- Atmosfera: Chiara, riposante, tranquilla e accademica.
-- Palette: Sfondo sereno (#f8faf9, #ffffff, #f0fbf9), accenti Verde Petrolio / Deep Teal (#0a3d42, #0c4a4f, #0d9488, #ccf0eb), bordi sottili (#e3ecea).
-- Tipografia: Serif di prestigio (Lora, Cinzel), testo nitido (Inter), codice/dati (JetBrains Mono).
+- Atmosfera: Chiara, minimalista, riposante, elegante e accademica.
+- Palette: Sfondo sereno (#f7faf9, #ffffff, #f0f6f5), accenti Verde Petrolio / Deep Teal (#041f22, #07383d, #0a4d54, #0d9488, #ccfbf1), accenti caldi per le news (#d97706, #fef3c7), bordi sottili (#e5e7eb).
+- Tipografia: Serif di prestigio (Cinzel, Lora), testo nitido (Inter), codice/dati (JetBrains Mono).
 
 VERIFICA
-- Test di validazione sintattica e strutturale: `python3 tests/validate_data.py` (valida schemi, date, campi obbligatori, assenza duplicati).
+- Test di validazione sintattica e strutturale: `python3 tests/validate_data.py` (valida schemi, date, campi obbligatori, assenza duplicati per tutti i 50 record).
 - Test di esecuzione locale HTTP: `python3 -m http.server 8780 --bind 127.0.0.1`.
-- Verifica caricamento layout a rivista, switcher a tab (Rivista, Articoli, News, Salvati), ricerca full-text, filtri per area ed organismo, modal di lettura con citazioni, salvataggio segnalibri e drawer DOI.
+- Verifica caricamento feed, switcher viste, ricerca full-text, modal lettore, salvataggio segnalibri e generazione / stampa della Zine in 1 pagina A4.
 
 MODIFICHE IMPLEMENTATE
-- 31 agosto 2026: Riprogettazione completa in stile rivista online (Magazine Layout) con palette chiara e tranquilla, accenti verde petrolio, integrazione dei recenti articoli dalla letteratura (Science 2024, Chlorella ohadii Nat Commun 2026, Chromera velia Nat Commun 2026, ecc.) e nuova sezione Notizie & Rassegna Stampa Scientifica da fonti verificate.
+- 31 agosto 2026: Riprogettazione completa:
+  1. Adozione del nuovo nome accattivante LUMEN (richiamo al lumen tilacoidale e alla luce).
+  2. Espansione a 50 articoli e news reali e verificate con DOI e abstract integrali.
+  3. Semplificazione radicale dell'impaginazione in un feed a griglia pulito ed essenziale.
+  4. Rimozione dei moduli di upload, drawer di ingestion e download grezzo a favore del link diretto all'editore/DOI.
+  5. Introduzione del generatore di ZINE stampabile su un singolo foglio A4 con le notizie calde e i paper principali.

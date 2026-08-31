@@ -1,16 +1,16 @@
 /**
- * Photosynthesis Digest · Application Controller & Magazine Engine
+ * LUMEN · Application Controller & Scientific Zine Engine
  * Architecture: Vanilla ES Module (Zero Build Step, Local-First)
  */
 
 import { INITIAL_ARTICLES } from './articles-data.js';
 
-class PhotosynthesisMagazineApp {
+class LumenApp {
   constructor() {
     this.items = [];
     this.savedIds = new Set();
     this.activeItem = null;
-    this.activeView = 'magazine'; // 'magazine' | 'articles' | 'news' | 'saved'
+    this.activeView = 'all'; // 'all' | 'articles' | 'news' | 'saved'
     this.citationFormat = 'apa';
 
     this.filters = {
@@ -27,32 +27,31 @@ class PhotosynthesisMagazineApp {
     this.loadSavedState();
     await this.loadDataset();
     this.bindDOM();
-    this.renderCategoryPills();
+    this.renderCategoryChips();
     this.applyFiltersAndRender();
   }
 
   loadSavedState() {
     try {
-      const stored = localStorage.getItem('photosynthesis_saved_ids');
+      const stored = localStorage.getItem('lumen_saved_ids') || localStorage.getItem('photosynthesis_saved_ids');
       if (stored) {
         this.savedIds = new Set(JSON.parse(stored));
       }
     } catch (e) {
-      console.warn('Accesso al localStorage non disponibile:', e);
+      console.warn('LocalStorage non disponibile:', e);
     }
   }
 
   saveSavedState() {
     try {
-      localStorage.setItem('photosynthesis_saved_ids', JSON.stringify(Array.from(this.savedIds)));
+      localStorage.setItem('lumen_saved_ids', JSON.stringify(Array.from(this.savedIds)));
       this.updateSavedCountDisplay();
     } catch (e) {
-      console.warn('Errore salvataggio localStorage:', e);
+      console.warn('Errore salvataggio bookmark:', e);
     }
   }
 
   async loadDataset() {
-    // 1. Fetch from assets/data/articles.json
     try {
       const res = await fetch('assets/data/articles.json', { cache: 'no-cache' });
       if (res.ok) {
@@ -62,30 +61,11 @@ class PhotosynthesisMagazineApp {
         }
       }
     } catch (e) {
-      console.info('Caricamento fallback tramite modulo JS INITIAL_ARTICLES');
+      console.info('Caricamento fallback tramite INITIAL_ARTICLES');
     }
 
-    // Fallback to embedded module data if fetch fails (e.g., direct file://)
     if (!this.items || this.items.length === 0) {
       this.items = [...INITIAL_ARTICLES];
-    }
-
-    // Merge any locally added custom items
-    try {
-      const localCustom = localStorage.getItem('photosynthesis_custom_articles');
-      if (localCustom) {
-        const customList = JSON.parse(localCustom);
-        if (Array.isArray(customList)) {
-          customList.forEach(customItem => {
-            const exists = this.items.some(it => (it.doi && customItem.doi && it.doi.toLowerCase() === customItem.doi.toLowerCase()) || it.id === customItem.id);
-            if (!exists) {
-              this.items.unshift(customItem);
-            }
-          });
-        }
-      }
-    } catch (e) {
-      console.warn('Errore lettura custom articles:', e);
     }
 
     this.updateMetrics();
@@ -95,20 +75,22 @@ class PhotosynthesisMagazineApp {
     const articles = this.items.filter(it => it.item_type === 'article' || !it.item_type);
     const news = this.items.filter(it => it.item_type === 'news');
 
+    const totalEl = document.getElementById('tab-all-count');
     const papersEl = document.getElementById('metric-papers');
     const newsEl = document.getElementById('metric-news');
-    const journalsEl = document.getElementById('metric-journals');
+    const sourcesEl = document.getElementById('metric-sources');
     const tabArtCountEl = document.getElementById('tab-articles-count');
     const tabNewsCountEl = document.getElementById('tab-news-count');
 
+    if (totalEl) totalEl.textContent = this.items.length;
     if (papersEl) papersEl.textContent = articles.length;
     if (newsEl) newsEl.textContent = news.length;
     if (tabArtCountEl) tabArtCountEl.textContent = articles.length;
     if (tabNewsCountEl) tabNewsCountEl.textContent = news.length;
 
-    if (journalsEl) {
-      const journals = new Set(this.items.map(it => it.journal).filter(Boolean));
-      journalsEl.textContent = journals.size;
+    if (sourcesEl) {
+      const sources = new Set(this.items.map(it => it.journal || it.source_outlet).filter(Boolean));
+      sourcesEl.textContent = sources.size;
     }
 
     this.updateSavedCountDisplay();
@@ -120,15 +102,15 @@ class PhotosynthesisMagazineApp {
   }
 
   bindDOM() {
-    // View Switcher Tabs
-    document.querySelectorAll('.tab-btn').forEach(btn => {
+    // Navigation Tabs
+    document.querySelectorAll('.tab-pill').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const view = e.currentTarget.dataset.view;
         this.setActiveView(view);
       });
     });
 
-    // Search input & clear
+    // Search Input
     const searchInput = document.getElementById('search-input');
     const searchClear = document.getElementById('search-clear');
 
@@ -146,13 +128,7 @@ class PhotosynthesisMagazineApp {
       searchInput?.focus();
     });
 
-    // Filters Dropdown
-    document.getElementById('filter-category')?.addEventListener('change', (e) => {
-      this.filters.category = e.target.value;
-      this.updateActiveCategoryPills();
-      this.applyFiltersAndRender();
-    });
-
+    // Filter Selects
     document.getElementById('filter-organism')?.addEventListener('change', (e) => {
       this.filters.organism = e.target.value;
       this.applyFiltersAndRender();
@@ -164,7 +140,7 @@ class PhotosynthesisMagazineApp {
     });
 
     // Reset Buttons
-    const resetFilters = () => {
+    const resetAllFilters = () => {
       this.filters = {
         search: '',
         category: 'ALL',
@@ -173,22 +149,20 @@ class PhotosynthesisMagazineApp {
       };
       if (searchInput) searchInput.value = '';
       searchClear?.classList.add('hidden');
-      
-      const catSel = document.getElementById('filter-category');
-      if (catSel) catSel.value = 'ALL';
+
       const orgSel = document.getElementById('filter-organism');
       if (orgSel) orgSel.value = 'ALL';
       const sortSel = document.getElementById('sort-order');
       if (sortSel) sortSel.value = 'date-desc';
 
-      this.setActiveView('magazine');
-      this.updateActiveCategoryPills();
+      this.setActiveView('all');
+      this.updateActiveCategoryChips();
       this.applyFiltersAndRender();
     };
 
-    document.getElementById('btn-reset-filters')?.addEventListener('click', resetFilters);
-    document.getElementById('btn-banner-reset')?.addEventListener('click', resetFilters);
-    document.getElementById('btn-empty-reset')?.addEventListener('click', resetFilters);
+    document.getElementById('btn-reset-filters')?.addEventListener('click', resetAllFilters);
+    document.getElementById('btn-banner-reset')?.addEventListener('click', resetAllFilters);
+    document.getElementById('btn-empty-reset')?.addEventListener('click', resetAllFilters);
 
     // Modal Close
     document.getElementById('modal-close')?.addEventListener('click', () => this.closeModal());
@@ -196,7 +170,7 @@ class PhotosynthesisMagazineApp {
       if (e.target.id === 'article-modal') this.closeModal();
     });
 
-    // Citation Format Switchers
+    // Citation Format Buttons in Modal
     document.querySelectorAll('.btn-fmt').forEach(btn => {
       btn.addEventListener('click', (e) => {
         document.querySelectorAll('.btn-fmt').forEach(b => b.classList.remove('active'));
@@ -206,14 +180,14 @@ class PhotosynthesisMagazineApp {
       });
     });
 
-    // Copy DOI
+    // Copy DOI in Modal
     document.getElementById('btn-copy-doi')?.addEventListener('click', () => {
       if (this.activeItem?.doi) {
         this.copyToClipboard(this.activeItem.doi, 'DOI copiato negli appunti!');
       }
     });
 
-    // Bookmark from Modal
+    // Bookmark in Modal
     document.getElementById('modal-btn-bookmark')?.addEventListener('click', () => {
       if (this.activeItem) {
         this.toggleBookmark(this.activeItem.id);
@@ -221,111 +195,77 @@ class PhotosynthesisMagazineApp {
       }
     });
 
-    // DOI Drawer
-    const drawer = document.getElementById('doi-drawer');
-    document.getElementById('btn-open-doi-drawer')?.addEventListener('click', () => {
-      drawer?.classList.remove('hidden');
-    });
-    document.getElementById('drawer-close')?.addEventListener('click', () => {
-      drawer?.classList.add('hidden');
-    });
-    drawer?.addEventListener('click', (e) => {
-      if (e.target.id === 'doi-drawer') drawer.classList.add('hidden');
+    // ZINE Modal Triggers
+    const openZine = () => this.openZineModal();
+    document.getElementById('btn-open-zine')?.addEventListener('click', openZine);
+    document.getElementById('btn-footer-zine')?.addEventListener('click', openZine);
+
+    document.getElementById('zine-modal-close')?.addEventListener('click', () => this.closeZineModal());
+    document.getElementById('zine-modal')?.addEventListener('click', (e) => {
+      if (e.target.id === 'zine-modal') this.closeZineModal();
     });
 
-    // CLI Copy buttons
-    document.querySelectorAll('.btn-copy-cli').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const code = e.currentTarget.dataset.code;
-        if (code) this.copyToClipboard(code, 'Comando copiato negli appunti!');
-      });
+    // ZINE Print Button
+    document.getElementById('btn-print-zine')?.addEventListener('click', () => {
+      window.print();
     });
 
-    // In-browser DOI fetcher
-    document.getElementById('btn-fetch-doi-client')?.addEventListener('click', () => {
-      this.handleClientDoiFetch();
+    // ZINE Copy Text Button
+    document.getElementById('btn-copy-zine-text')?.addEventListener('click', () => {
+      this.copyZineText();
     });
 
-    // Export Modal
-    const exportModal = document.getElementById('export-modal');
-    document.getElementById('btn-export-data')?.addEventListener('click', () => {
-      const countLabel = document.getElementById('export-count-label');
-      const filtered = this.getFilteredItems();
-      if (countLabel) countLabel.textContent = filtered.length;
-      exportModal?.classList.remove('hidden');
-    });
-    document.getElementById('export-modal-close')?.addEventListener('click', () => {
-      exportModal?.classList.add('hidden');
-    });
-    exportModal?.addEventListener('click', (e) => {
-      if (e.target.id === 'export-modal') exportModal.classList.add('hidden');
-    });
-
-    document.querySelectorAll('.export-card-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const type = e.currentTarget.dataset.type;
-        this.handleExport(type);
-        exportModal?.classList.add('hidden');
-      });
-    });
-
-    // ESC Key listener
+    // ESC key listener
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         this.closeModal();
-        drawer?.classList.add('hidden');
-        exportModal?.classList.add('hidden');
+        this.closeZineModal();
       }
     });
   }
 
   setActiveView(view) {
     this.activeView = view;
-    document.querySelectorAll('.tab-btn').forEach(btn => {
+    document.querySelectorAll('.tab-pill').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.view === view);
     });
     this.applyFiltersAndRender();
   }
 
-  renderCategoryPills() {
+  renderCategoryChips() {
     const container = document.getElementById('quick-category-pills');
     if (!container) return;
 
     const categories = [
+      { id: 'ALL', label: 'Tutti i Temi' },
       { id: 'Structural Biology & Cryo-EM', label: 'Cryo-EM & Strutture' },
       { id: 'Molecular Genetics & Crop Engineering', label: 'Genetica & Rubisco' },
       { id: 'Biophysics & Photoprotection', label: 'NPQ & Biofisica' },
       { id: 'Photoprotection & Algae', label: 'Alghe & LHCSR' },
       { id: 'Carbon Fixation & Pyrenoids', label: 'Pirenoide & CCM' },
-      { id: 'Bioenergy & Synthetic Biology', label: 'Bioenergia & Solare' }
+      { id: 'Bioenergy & Synthetic Biology', label: 'Bioenergia & Solare' },
+      { id: 'News & Perspectives', label: 'News & Divulgazione' }
     ];
 
     container.innerHTML = categories.map(cat => `
-      <button class="pill-quick" data-cat="${cat.id}">
+      <button class="chip-quick ${cat.id === this.filters.category ? 'active' : ''}" data-cat="${cat.id}">
         ${cat.label}
       </button>
     `).join('');
 
-    container.querySelectorAll('.pill-quick').forEach(pill => {
-      pill.addEventListener('click', (e) => {
+    container.querySelectorAll('.chip-quick').forEach(chip => {
+      chip.addEventListener('click', (e) => {
         const cat = e.currentTarget.dataset.cat;
-        const select = document.getElementById('filter-category');
-        if (this.filters.category === cat) {
-          this.filters.category = 'ALL';
-          if (select) select.value = 'ALL';
-        } else {
-          this.filters.category = cat;
-          if (select) select.value = cat;
-        }
-        this.updateActiveCategoryPills();
+        this.filters.category = cat;
+        this.updateActiveCategoryChips();
         this.applyFiltersAndRender();
       });
     });
   }
 
-  updateActiveCategoryPills() {
-    document.querySelectorAll('.pill-quick').forEach(pill => {
-      pill.classList.toggle('active', pill.dataset.cat === this.filters.category);
+  updateActiveCategoryChips() {
+    document.querySelectorAll('.chip-quick').forEach(chip => {
+      chip.classList.toggle('active', chip.dataset.cat === this.filters.category);
     });
   }
 
@@ -348,711 +288,587 @@ class PhotosynthesisMagazineApp {
       // Organism filter
       if (this.filters.organism !== 'ALL') {
         const itemOrg = (item.organism || '').toLowerCase();
-        const targetOrg = this.filters.organism.toLowerCase();
-        if (!itemOrg.includes(targetOrg)) return false;
+        const filterOrg = this.filters.organism.toLowerCase();
+        if (!itemOrg.includes(filterOrg)) return false;
       }
 
-      // Search Query
+      // Search filter
       if (this.filters.search) {
-        const q = this.filters.search;
-        const titleMatch = (item.title || '').toLowerCase().includes(q);
-        const authorMatch = (item.authors || []).some(a => (a.name || '').toLowerCase().includes(q) || (a.affiliation || '').toLowerCase().includes(q));
-        const journalMatch = (item.journal || '').toLowerCase().includes(q);
-        const doiMatch = (item.doi || '').toLowerCase().includes(q);
-        const abstractMatch = (item.abstract || '').toLowerCase().includes(q);
-        const tagMatch = (item.tags || []).some(t => t.toLowerCase().includes(q));
-        const orgMatch = (item.organism || '').toLowerCase().includes(q);
-        const sourceMatch = (item.source_name || '').toLowerCase().includes(q);
+        const query = this.filters.search;
+        const matchTitle = (item.title || '').toLowerCase().includes(query);
+        const matchAbstract = (item.abstract || '').toLowerCase().includes(query);
+        const matchJournal = (item.journal || item.source_outlet || '').toLowerCase().includes(query);
+        const matchDoi = (item.doi || '').toLowerCase().includes(query);
+        const matchOrganism = (item.organism || '').toLowerCase().includes(query);
+        const matchCategory = (item.category || '').toLowerCase().includes(query);
+        const matchTags = (item.tags || []).some(t => t.toLowerCase().includes(query));
+        const matchAuthors = Array.isArray(item.authors) && item.authors.some(a => (a.name || '').toLowerCase().includes(query));
 
-        if (!titleMatch && !authorMatch && !journalMatch && !doiMatch && !abstractMatch && !tagMatch && !orgMatch && !sourceMatch) {
+        if (!matchTitle && !matchAbstract && !matchJournal && !matchDoi && !matchOrganism && !matchCategory && !matchTags && !matchAuthors) {
           return false;
         }
       }
 
       return true;
-    }).sort((a, b) => {
-      if (this.filters.sort === 'date-desc') {
-        return (b.publication_date || '').localeCompare(a.publication_date || '');
-      }
-      if (this.filters.sort === 'date-asc') {
-        return (a.publication_date || '').localeCompare(b.publication_date || '');
-      }
-      if (this.filters.sort === 'title-asc') {
+    });
+  }
+
+  getSortedItems(items) {
+    const list = [...items];
+    const sort = this.filters.sort;
+
+    list.sort((a, b) => {
+      if (sort === 'date-desc') {
+        return new Date(b.publication_date || 0) - new Date(a.publication_date || 0);
+      } else if (sort === 'date-asc') {
+        return new Date(a.publication_date || 0) - new Date(b.publication_date || 0);
+      } else if (sort === 'journal-asc') {
+        const jA = (a.journal || a.source_outlet || '').toLowerCase();
+        const jB = (b.journal || b.source_outlet || '').toLowerCase();
+        return jA.localeCompare(jB);
+      } else if (sort === 'title-asc') {
         return (a.title || '').localeCompare(b.title || '');
-      }
-      if (this.filters.sort === 'journal-asc') {
-        return (a.journal || '').localeCompare(b.journal || '');
       }
       return 0;
     });
+
+    return list;
   }
 
   applyFiltersAndRender() {
     const filtered = this.getFilteredItems();
-    const isFilteredOrSpecialView = Boolean(
-      this.filters.search ||
-      this.filters.category !== 'ALL' ||
-      this.filters.organism !== 'ALL' ||
-      this.activeView !== 'magazine'
-    );
+    const sorted = this.getSortedItems(filtered);
+
+    // Filter status banner
+    const isFiltered = this.filters.search || this.filters.category !== 'ALL' || this.filters.organism !== 'ALL' || this.activeView !== 'all';
+    const statusBanner = document.getElementById('filter-status-banner');
+    const filterCountEl = document.getElementById('filter-active-count');
+    
+    if (statusBanner && filterCountEl) {
+      if (isFiltered) {
+        statusBanner.classList.remove('hidden');
+        filterCountEl.textContent = sorted.length;
+      } else {
+        statusBanner.classList.add('hidden');
+      }
+    }
 
     const emptyState = document.getElementById('empty-state');
-    const magazineMainView = document.getElementById('magazine-main-view');
-    const flatResultsView = document.getElementById('flat-results-view');
-    const filterStatusBanner = document.getElementById('filter-status-banner');
-    const filterActiveCount = document.getElementById('filter-active-count');
+    const spotlightContainer = document.getElementById('hero-spotlight-container');
+    const feedContainer = document.getElementById('feed-cards-container');
 
-    if (filtered.length === 0) {
+    if (sorted.length === 0) {
       emptyState?.classList.remove('hidden');
-      magazineMainView?.classList.add('hidden');
-      flatResultsView?.classList.add('hidden');
-      if (filterStatusBanner) filterStatusBanner.classList.add('hidden');
+      if (spotlightContainer) spotlightContainer.innerHTML = '';
+      if (feedContainer) feedContainer.innerHTML = '';
       return;
     }
 
     emptyState?.classList.add('hidden');
 
-    if (isFilteredOrSpecialView) {
-      // Show Flat / Filtered Cards View
-      magazineMainView?.classList.add('hidden');
-      flatResultsView?.classList.remove('hidden');
-
-      if (filterStatusBanner && filterActiveCount) {
-        filterStatusBanner.classList.remove('hidden');
-        filterActiveCount.textContent = filtered.length;
-      }
-
-      this.renderFlatGrid(filtered);
+    // Hero spotlight (shown only on 'all' view when not searching/filtering specific categories)
+    let displayItems = sorted;
+    if (!isFiltered && spotlightContainer) {
+      const heroItem = sorted.find(it => it.featured && (it.item_type === 'article' || !it.item_type)) || sorted[0];
+      this.renderHeroSpotlight(heroItem, spotlightContainer);
+      displayItems = sorted.filter(it => it.id !== heroItem.id);
     } else {
-      // Show Complete Magazine Editorial Layout
-      magazineMainView?.classList.remove('hidden');
-      flatResultsView?.classList.add('hidden');
-      filterStatusBanner?.classList.add('hidden');
+      if (spotlightContainer) spotlightContainer.innerHTML = '';
+    }
 
-      this.renderMagazineLayout(filtered);
+    // Render feed cards
+    if (feedContainer) {
+      feedContainer.innerHTML = displayItems.map(item => this.createCardHTML(item)).join('');
+      this.bindCardEvents(feedContainer);
     }
   }
 
-  renderMagazineLayout(items) {
-    const articles = items.filter(it => it.item_type === 'article' || !it.item_type);
-    const news = items.filter(it => it.item_type === 'news');
-
-    // 1. Cover Story Spread: Li et al. (Nature 2026) or first featured article
-    const coverStory = articles.find(a => a.featured) || articles[0];
-    this.renderCoverStory(coverStory);
-
-    // 2. Editorial Secondary Highlights: 2 standout pieces (Hussein et al. Science 2024 & Chlorella ohadii Nat Commun 2026)
-    const secondaryHighlights = articles.filter(a => a.id !== coverStory?.id && a.featured).slice(0, 2);
-    this.renderEditorialHighlights(secondaryHighlights);
-
-    // 3. News Wire Section
-    this.renderNewsSection(news);
-
-    // 4. Research Archive Section (the remaining peer-reviewed articles)
-    const researchPapers = articles.filter(a => a.id !== coverStory?.id);
-    this.renderResearchSection(researchPapers);
-  }
-
-  renderCoverStory(item) {
-    const container = document.getElementById('cover-feature-container');
-    if (!container || !item) {
-      if (container) container.innerHTML = '';
-      return;
-    }
-
+  renderHeroSpotlight(item, container) {
+    if (!item) return;
     const isSaved = this.savedIds.has(item.id);
-    const authorsFormatted = this.formatAuthorsShort(item.authors);
+    const authorsText = Array.isArray(item.authors) 
+      ? item.authors.map(a => a.name).join(', ')
+      : (item.author_or_editor || item.source_outlet || '');
 
     container.innerHTML = `
-      <article class="cover-card" id="cover-${item.id}">
-        
-        <div class="cover-left-panel">
-          <div class="cover-badge-row">
-            <span class="cover-flag">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              In Copertina · Scelta Editoriale
-            </span>
-            <span class="badge badge-journal">${this.escapeHtml(item.journal)}</span>
-            <span class="badge badge-date">${this.escapeHtml(item.publication_date || item.year)}</span>
+      <div class="hero-spotlight-card">
+        <div class="hero-kicker-row">
+          <div class="hero-badge-group">
+            <span class="hero-lead-label">Lead Breakthrough · In Evidenza</span>
+            <span class="badge badge-journal">${this.escapeHTML(item.journal || item.source_outlet || '')}</span>
             ${item.open_access ? '<span class="badge badge-oa">Open Access</span>' : ''}
-            <span class="badge badge-organism">${this.escapeHtml(item.organism || '')}</span>
           </div>
+          <span class="hero-meta-date">${item.publication_date || ''}</span>
+        </div>
 
-          <h2 class="cover-title" data-id="${item.id}">
-            ${this.escapeHtml(item.title)}
-          </h2>
+        <h2 class="hero-title" data-id="${item.id}">${this.escapeHTML(item.title)}</h2>
+        
+        <p class="hero-authors"><strong>Autori:</strong> ${this.escapeHTML(authorsText)}</p>
+        <p class="hero-abstract">${this.escapeHTML(item.abstract)}</p>
 
-          <div class="cover-authors-line">
-            <span>Autori:</span>
-            <strong>${this.escapeHtml(authorsFormatted)}</strong>
-          </div>
-
-          <p class="cover-excerpt">
-            ${this.escapeHtml(item.abstract || '')}
-          </p>
-
-          <div class="cover-left-footer">
-            <button class="btn btn-petrol btn-open-modal" data-id="${item.id}">
-              <span>Leggi Scheda &amp; Abstract</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </button>
-            <button class="btn btn-petrol-ghost btn-bookmark ${isSaved ? 'active' : ''}" data-id="${item.id}" title="${isSaved ? 'Rimuovi dai salvati' : 'Salva nei preferiti'}">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-              <span>${isSaved ? 'Salvato' : 'Salva'}</span>
-            </button>
-            <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="btn btn-petrol-ghost" title="Apri sul sito dell'editore">
-              <span>Sito Editore</span>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg>
+        <div class="hero-actions-row">
+          <div class="hero-left-actions">
+            <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="btn btn-emerald" title="Apri articolo originale su sito dell'editore">
+              <span>Apri Articolo Ufficiale (${this.escapeHTML(item.journal || 'DOI')})</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg>
             </a>
+            <button class="btn btn-outline btn-hero-details" data-id="${item.id}">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <span>Dettagli &amp; Citazione</span>
+            </button>
           </div>
+
+          <button class="btn-icon-bookmark ${isSaved ? 'bookmarked' : ''}" data-id="${item.id}" title="${isSaved ? 'Rimuovi dai preferiti' : 'Salva nei preferiti'}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </button>
         </div>
-
-        <div class="cover-right-panel">
-          <div>
-            <div class="takeaway-header">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
-              Punti Chiave della Scoperta
-            </div>
-            <ul class="takeaway-list">
-              <li>Risoluzione in situ della struttura nativa C2S2M2L4 di PSII-LHCII all'interno dei tilacoidi di riso (<em>Oryza sativa</em>).</li>
-              <li>Identificazione di 4 trimeri d'antenna LHCII addizionali non conservati nelle purificazioni convenzionali in vitro.</li>
-              <li>Evidenza del ruolo di PSII come 'scheletro strutturale' trans-lumenale e trans-stromale per l'impilamento dei grana.</li>
-              <li>Comprensione molecolare dell'altissima efficienza fotone-elettrone della fotosintesi vegetale.</li>
-            </ul>
-          </div>
-
-          <div class="cover-right-meta">
-            <div><strong>Categoria:</strong> ${this.escapeHtml(item.category)}</div>
-            <div><strong>DOI:</strong> <code>${this.escapeHtml(item.doi)}</code></div>
-            <div><strong>Tempo di lettura:</strong> ${item.reading_time || '6 min'}</div>
-          </div>
-        </div>
-
-      </article>
-    `;
-
-    // Event listeners
-    container.querySelector('.cover-title')?.addEventListener('click', () => this.openModal(item.id));
-    container.querySelector('.btn-open-modal')?.addEventListener('click', () => this.openModal(item.id));
-    container.querySelector('.btn-bookmark')?.addEventListener('click', () => this.toggleBookmark(item.id));
-  }
-
-  renderEditorialHighlights(highlights) {
-    const container = document.getElementById('editorial-highlights-container');
-    if (!container) return;
-
-    if (!highlights || highlights.length === 0) {
-      container.innerHTML = '';
-      return;
-    }
-
-    container.innerHTML = `
-      <div class="highlights-grid">
-        ${highlights.map(item => {
-          const isSaved = this.savedIds.has(item.id);
-          const authorsShort = this.formatAuthorsShort(item.authors);
-          return `
-            <article class="highlight-sub-card" id="highlight-${item.id}">
-              <div>
-                <div class="card-top-meta">
-                  <span class="badge badge-journal">${this.escapeHtml(item.journal)}</span>
-                  <span class="badge badge-date">${this.escapeHtml(item.publication_date || item.year)}</span>
-                  <span class="badge badge-organism">${this.escapeHtml(item.organism || '')}</span>
-                </div>
-                <h3 class="highlight-sub-title" data-id="${item.id}">
-                  ${this.escapeHtml(item.title)}
-                </h3>
-                <div class="highlight-sub-authors">${this.escapeHtml(authorsShort)}</div>
-                <p class="highlight-sub-abstract">${this.escapeHtml(item.abstract || '')}</p>
-              </div>
-
-              <div class="highlight-sub-footer">
-                <button class="btn btn-petrol-soft btn-open-modal" data-id="${item.id}">
-                  Leggi Scheda
-                </button>
-                <div class="paper-actions-right">
-                  <button class="btn-bookmark ${isSaved ? 'active' : ''}" data-id="${item.id}" title="${isSaved ? 'Rimuovi dai salvati' : 'Salva nei preferiti'}">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-                  </button>
-                  <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="btn-ext-link" title="Sito ufficiale">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg>
-                  </a>
-                </div>
-              </div>
-            </article>
-          `;
-        }).join('')}
       </div>
     `;
 
-    container.querySelectorAll('.highlight-sub-title').forEach(el => {
-      el.addEventListener('click', (e) => this.openModal(e.currentTarget.dataset.id));
-    });
-    container.querySelectorAll('.btn-open-modal').forEach(el => {
-      el.addEventListener('click', (e) => this.openModal(e.currentTarget.dataset.id));
-    });
-    container.querySelectorAll('.btn-bookmark').forEach(el => {
-      el.addEventListener('click', (e) => this.toggleBookmark(e.currentTarget.dataset.id));
+    container.querySelector('.hero-title')?.addEventListener('click', () => this.openModal(item));
+    container.querySelector('.btn-hero-details')?.addEventListener('click', () => this.openModal(item));
+    container.querySelector('.btn-icon-bookmark')?.addEventListener('click', (e) => {
+      this.toggleBookmark(item.id);
+      e.currentTarget.classList.toggle('bookmarked', this.savedIds.has(item.id));
+      e.currentTarget.querySelector('svg').setAttribute('fill', this.savedIds.has(item.id) ? 'currentColor' : 'none');
     });
   }
 
-  renderNewsSection(newsItems) {
-    const container = document.getElementById('news-cards-container');
-    if (!container) return;
-
-    if (!newsItems || newsItems.length === 0) {
-      container.innerHTML = '<p class="empty-subtext">Nessuna notizia disponibile al momento.</p>';
-      return;
-    }
-
-    container.innerHTML = newsItems.map(item => {
-      const isSaved = this.savedIds.has(item.id);
-      return `
-        <article class="news-card" id="news-${item.id}">
-          <div>
-            <div class="news-card-badge-row">
-              <span class="news-source-tag">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                ${this.escapeHtml(item.source_name || item.journal)}
-              </span>
-              <span class="badge badge-date">${this.escapeHtml(item.publication_date)}</span>
-            </div>
-
-            <h3 class="news-card-title" data-id="${item.id}">
-              ${this.escapeHtml(item.title)}
-            </h3>
-
-            <p class="news-card-desc">
-              ${this.escapeHtml(item.abstract || '')}
-            </p>
-
-            <div class="news-card-tags">
-              ${(item.tags || []).slice(0, 3).map(tag => `<span class="badge badge-tag">${this.escapeHtml(tag)}</span>`).join('')}
-            </div>
-          </div>
-
-          <div class="news-card-footer">
-            <button class="btn btn-petrol-soft btn-open-modal" data-id="${item.id}">
-              Leggi Notizia
-            </button>
-            <div class="paper-actions-right">
-              <button class="btn-bookmark ${isSaved ? 'active' : ''}" data-id="${item.id}" title="${isSaved ? 'Rimuovi dai salvati' : 'Salva tra i preferiti'}">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-              </button>
-              <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="btn-ext-link" title="Apri fonte verificata">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg>
-              </a>
-            </div>
-          </div>
-        </article>
-      `;
-    }).join('');
-
-    container.querySelectorAll('.news-card-title').forEach(el => {
-      el.addEventListener('click', (e) => this.openModal(e.currentTarget.dataset.id));
-    });
-    container.querySelectorAll('.btn-open-modal').forEach(el => {
-      el.addEventListener('click', (e) => this.openModal(e.currentTarget.dataset.id));
-    });
-    container.querySelectorAll('.btn-bookmark').forEach(el => {
-      el.addEventListener('click', (e) => this.toggleBookmark(e.currentTarget.dataset.id));
-    });
-  }
-
-  renderResearchSection(papers) {
-    const container = document.getElementById('research-cards-container');
-    const countTag = document.getElementById('research-count-tag');
-    if (countTag) countTag.textContent = `${papers.length} pubblicazioni censite`;
-
-    if (!container) return;
-
-    if (!papers || papers.length === 0) {
-      container.innerHTML = '<p class="empty-subtext">Nessun articolo trovato.</p>';
-      return;
-    }
-
-    container.innerHTML = papers.map(item => this.buildCardHtml(item)).join('');
-    this.bindCardEvents(container);
-  }
-
-  renderFlatGrid(items) {
-    const container = document.getElementById('flat-cards-container');
-    if (!container) return;
-
-    container.innerHTML = items.map(item => this.buildCardHtml(item)).join('');
-    this.bindCardEvents(container);
-  }
-
-  buildCardHtml(item) {
-    const isSaved = this.savedIds.has(item.id);
+  createCardHTML(item) {
     const isNews = item.item_type === 'news';
-    const authorsFormatted = isNews ? (item.source_name || item.journal) : this.formatAuthorsShort(item.authors);
+    const isSaved = this.savedIds.has(item.id);
+    const journalName = item.journal || item.source_outlet || (isNews ? 'News' : 'Journal');
+
+    let authorsPreview = '';
+    if (Array.isArray(item.authors) && item.authors.length > 0) {
+      if (item.authors.length === 1) {
+        authorsPreview = item.authors[0].name;
+      } else if (item.authors.length === 2) {
+        authorsPreview = `${item.authors[0].name} & ${item.authors[1].name}`;
+      } else {
+        authorsPreview = `${item.authors[0].name} et al.`;
+      }
+    } else {
+      authorsPreview = item.author_or_editor || item.source_outlet || '';
+    }
 
     return `
-      <article class="paper-card ${isNews ? 'card-news-style' : ''}" id="card-${item.id}">
-        <div>
-          <div class="paper-meta-top">
-            <div class="paper-badges-left">
-              <span class="badge ${isNews ? 'badge-type' : 'badge-journal'}">${this.escapeHtml(item.journal)}</span>
-              <span class="badge badge-date">${this.escapeHtml(item.publication_date || item.year)}</span>
-              ${item.open_access ? '<span class="badge badge-oa">OA</span>' : ''}
-            </div>
-            <button class="btn-bookmark ${isSaved ? 'active' : ''}" data-id="${item.id}" title="${isSaved ? 'Rimuovi dai salvati' : 'Salva nei preferiti'}">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+      <article class="article-card ${isNews ? 'card-news' : 'card-paper'}" data-id="${item.id}">
+        
+        <header class="card-header-meta">
+          <div class="card-badges-wrap">
+            <span class="badge ${isNews ? 'badge-news-item' : 'badge-paper'}">${isNews ? 'News' : 'Articolo'}</span>
+            <span class="badge badge-journal">${this.escapeHTML(journalName)}</span>
+            ${item.open_access ? '<span class="badge badge-oa">OA</span>' : ''}
+          </div>
+          <time class="card-date" datetime="${item.publication_date || ''}">${item.publication_date || ''}</time>
+        </header>
+
+        <h3 class="card-title" data-id="${item.id}" title="${this.escapeHTML(item.title)}">
+          ${this.escapeHTML(item.title)}
+        </h3>
+
+        <div class="card-authors">
+          ${this.escapeHTML(authorsPreview)}
+        </div>
+
+        <p class="card-abstract-preview">
+          ${this.escapeHTML(item.abstract)}
+        </p>
+
+        <div class="card-tags-row">
+          ${item.organism ? `<span class="tag-organism">${this.escapeHTML(item.organism)}</span>` : ''}
+          <span class="tag-topic">${this.escapeHTML(item.category || '')}</span>
+        </div>
+
+        <footer class="card-footer-actions">
+          <div class="card-links-left">
+            <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="btn-direct-link" title="Apri articolo originale su sito editore / DOI">
+              <span>↗ Vai all'Articolo</span>
+            </a>
+            <button class="btn btn-outline-sm btn-card-details" data-id="${item.id}">
+              <span>Dettagli</span>
             </button>
           </div>
 
-          <div class="paper-authors" title="${this.escapeHtml(authorsFormatted)}">
-            ${this.escapeHtml(authorsFormatted)}
-          </div>
-
-          <h3 class="paper-title" data-id="${item.id}">
-            ${this.escapeHtml(item.title)}
-          </h3>
-
-          <p class="paper-abstract">
-            ${this.escapeHtml(item.abstract || '')}
-          </p>
-
-          <div class="paper-tags">
-            ${item.organism ? `<span class="badge badge-organism">${this.escapeHtml(item.organism)}</span>` : ''}
-            <span class="badge badge-category">${this.escapeHtml(item.category)}</span>
-          </div>
-        </div>
-
-        <div class="paper-footer">
-          <button class="btn btn-petrol-soft btn-open-modal" data-id="${item.id}">
-            ${isNews ? 'Leggi Notizia' : 'Leggi Scheda'}
+          <button class="btn-icon-bookmark ${isSaved ? 'bookmarked' : ''}" data-id="${item.id}" title="${isSaved ? 'Rimuovi dai preferiti' : 'Salva nei preferiti'}">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
           </button>
-          <div class="paper-actions-right">
-            <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="btn-ext-link" title="Apri link editore">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg>
-            </a>
-          </div>
-        </div>
+        </footer>
+
       </article>
     `;
   }
 
   bindCardEvents(container) {
-    container.querySelectorAll('.paper-title').forEach(el => {
-      el.addEventListener('click', (e) => this.openModal(e.currentTarget.dataset.id));
+    // Title clicks open modal
+    container.querySelectorAll('.card-title').forEach(el => {
+      el.addEventListener('click', (e) => {
+        const id = e.currentTarget.dataset.id;
+        const item = this.items.find(it => it.id === id);
+        if (item) this.openModal(item);
+      });
     });
-    container.querySelectorAll('.btn-open-modal').forEach(el => {
-      el.addEventListener('click', (e) => this.openModal(e.currentTarget.dataset.id));
+
+    // Details button clicks open modal
+    container.querySelectorAll('.btn-card-details').forEach(el => {
+      el.addEventListener('click', (e) => {
+        const id = e.currentTarget.dataset.id;
+        const item = this.items.find(it => it.id === id);
+        if (item) this.openModal(item);
+      });
     });
-    container.querySelectorAll('.btn-bookmark').forEach(el => {
-      el.addEventListener('click', (e) => this.toggleBookmark(e.currentTarget.dataset.id));
+
+    // Bookmark toggle clicks
+    container.querySelectorAll('.btn-icon-bookmark').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const id = e.currentTarget.dataset.id;
+        this.toggleBookmark(id);
+        const isSaved = this.savedIds.has(id);
+        e.currentTarget.classList.toggle('bookmarked', isSaved);
+        e.currentTarget.querySelector('svg').setAttribute('fill', isSaved ? 'currentColor' : 'none');
+      });
     });
-  }
-
-  openModal(id) {
-    const item = this.items.find(it => it.id === id);
-    if (!item) return;
-
-    this.activeItem = item;
-    const modal = document.getElementById('article-modal');
-    if (!modal) return;
-
-    // Header Badges
-    const journalEl = document.getElementById('modal-journal');
-    const dateEl = document.getElementById('modal-date');
-    const typeEl = document.getElementById('modal-type');
-    const oaEl = document.getElementById('modal-oa');
-
-    if (journalEl) journalEl.textContent = item.journal;
-    if (dateEl) dateEl.textContent = item.publication_date || item.year;
-    if (typeEl) typeEl.textContent = item.article_type || (item.item_type === 'news' ? 'Notizia Scientifica' : 'Research Article');
-    if (oaEl) oaEl.classList.toggle('hidden', !item.open_access);
-
-    // Title
-    const titleEl = document.getElementById('modal-title');
-    if (titleEl) titleEl.textContent = item.title;
-
-    // Authors / Source
-    const kickerEl = document.getElementById('modal-authors-kicker');
-    const authorsContainer = document.getElementById('modal-authors');
-    if (item.item_type === 'news') {
-      if (kickerEl) kickerEl.textContent = 'FONTE VERIFICATA & TESTATA';
-      if (authorsContainer) {
-        authorsContainer.innerHTML = `
-          <div><strong>Testata:</strong> ${this.escapeHtml(item.journal)}</div>
-          <div><strong>Ente/Editore:</strong> ${this.escapeHtml(item.source_name || (item.authors?.[0]?.affiliation) || 'Laboratorio / Agenzia Stampa')}</div>
-          ${item.authors?.[0]?.name ? `<div><strong>Redazione:</strong> ${this.escapeHtml(item.authors[0].name)}</div>` : ''}
-        `;
-      }
-    } else {
-      if (kickerEl) kickerEl.textContent = 'AUTORI & AFFILIAZIONI';
-      if (authorsContainer) {
-        authorsContainer.innerHTML = (item.authors || []).map(a => `
-          <div class="author-chip">
-            <strong>${this.escapeHtml(a.name || '')}</strong>
-            ${a.affiliation ? `<div class="author-affil">${this.escapeHtml(a.affiliation)}</div>` : ''}
-            ${a.orcid ? `<div class="author-affil">ORCID: <code>${this.escapeHtml(a.orcid)}</code></div>` : ''}
-          </div>
-        `).join('');
-      }
-    }
-
-    // Tags
-    const tagsContainer = document.getElementById('modal-tags');
-    if (tagsContainer) {
-      const tagsHtml = [];
-      if (item.organism) tagsHtml.push(`<span class="badge badge-organism">${this.escapeHtml(item.organism)}</span>`);
-      if (item.category) tagsHtml.push(`<span class="badge badge-category">${this.escapeHtml(item.category)}</span>`);
-      (item.tags || []).forEach(t => tagsHtml.push(`<span class="badge badge-tag">${this.escapeHtml(t)}</span>`));
-      tagsContainer.innerHTML = tagsHtml.join('');
-    }
-
-    // Abstract / Body
-    const abstractKicker = document.getElementById('modal-body-kicker');
-    if (abstractKicker) abstractKicker.textContent = item.item_type === 'news' ? 'TESTO & ESTRATTO INTEGRALE' : 'ABSTRACT UFFICIALE';
-    const abstractContainer = document.getElementById('modal-abstract');
-    if (abstractContainer) abstractContainer.textContent = item.abstract || '';
-
-    // Citations box (visible only for articles)
-    const citationBox = document.getElementById('modal-citation-section');
-    if (citationBox) {
-      citationBox.classList.toggle('hidden', item.item_type === 'news');
-      this.updateModalCitationText();
-    }
-
-    // DOI bar & links
-    const doiContainer = document.getElementById('modal-doi-container');
-    const doiVal = document.getElementById('modal-doi');
-    if (doiContainer && doiVal) {
-      if (item.doi) {
-        doiContainer.classList.remove('hidden');
-        doiVal.textContent = item.doi;
-      } else {
-        doiContainer.classList.add('hidden');
-      }
-    }
-
-    const extLink = document.getElementById('modal-link-external');
-    const extLabel = document.getElementById('modal-external-label');
-    if (extLink) {
-      extLink.href = item.url || '#';
-      if (extLabel) extLabel.textContent = item.item_type === 'news' ? 'Apri Fonte Verificata' : 'Vai all\'Editore Ufficiale';
-    }
-
-    this.updateModalBookmarkState();
-    modal.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-  }
-
-  closeModal() {
-    const modal = document.getElementById('article-modal');
-    modal?.classList.add('hidden');
-    document.body.style.overflow = '';
-  }
-
-  updateModalCitationText() {
-    const box = document.getElementById('modal-citation-text');
-    if (!box || !this.activeItem) return;
-
-    const item = this.activeItem;
-    if (this.citationFormat === 'apa') {
-      const authorsStr = (item.authors || []).map(a => a.name).join(', ');
-      box.textContent = `${authorsStr} (${item.year || 2026}). ${item.title}. ${item.journal}. https://doi.org/${item.doi}`;
-    } else if (this.citationFormat === 'bibtex') {
-      const firstAuthor = item.authors?.[0]?.name?.split(' ')?.pop()?.toLowerCase() || 'author';
-      const year = item.year || 2026;
-      box.textContent = `@article{${firstAuthor}${year},\n  title={${item.title}},\n  author={${(item.authors || []).map(a => a.name).join(' and ')}},\n  journal={${item.journal}},\n  year={${year}},\n  doi={${item.doi}},\n  url={${item.url}}\n}`;
-    } else if (this.citationFormat === 'ris') {
-      let ris = `TY  - JOUR\nTI  - ${item.title}\n`;
-      (item.authors || []).forEach(a => { ris += `AU  - ${a.name}\n`; });
-      ris += `JO  - ${item.journal}\nPY  - ${item.year || 2026}\nDO  - ${item.doi}\nUR  - ${item.url}\nER  - `;
-      box.textContent = ris;
-    }
-  }
-
-  updateModalBookmarkState() {
-    if (!this.activeItem) return;
-    const isSaved = this.savedIds.has(this.activeItem.id);
-    const btn = document.getElementById('modal-btn-bookmark');
-    const lbl = document.getElementById('modal-bookmark-label');
-    if (btn) btn.classList.toggle('active', isSaved);
-    if (lbl) lbl.textContent = isSaved ? 'Salvato tra i preferiti' : 'Salva nei preferiti';
   }
 
   toggleBookmark(id) {
     if (this.savedIds.has(id)) {
       this.savedIds.delete(id);
-      this.showToast('Elemento rimosso dai preferiti');
+      this.showToast('Articolo rimosso dai preferiti');
     } else {
       this.savedIds.add(id);
-      this.showToast('Elemento aggiunto ai preferiti');
+      this.showToast('Articolo aggiunto ai preferiti ⭐');
     }
     this.saveSavedState();
-    this.applyFiltersAndRender();
-  }
-
-  handleExport(type) {
-    const itemsToExport = this.getFilteredItems();
-    if (itemsToExport.length === 0) {
-      this.showToast('Nessun elemento da esportare');
-      return;
-    }
-
-    let content = '';
-    let mimeType = 'text/plain';
-    let filename = `photosynthesis_digest_export_${Date.now()}`;
-
-    if (type === 'json') {
-      content = JSON.stringify(itemsToExport, null, 2);
-      mimeType = 'application/json';
-      filename += '.json';
-    } else if (type === 'bibtex') {
-      content = itemsToExport.filter(it => it.item_type !== 'news').map(it => {
-        const firstAuthor = it.authors?.[0]?.name?.split(' ')?.pop()?.toLowerCase() || 'author';
-        const year = it.year || 2026;
-        return `@article{${firstAuthor}${year},\n  title={${it.title}},\n  author={${(it.authors || []).map(a => a.name).join(' and ')}},\n  journal={${it.journal}},\n  year={${year}},\n  doi={${it.doi}},\n  url={${it.url}}\n}\n`;
-      }).join('\n');
-      mimeType = 'application/x-bibtex';
-      filename += '.bib';
-    } else if (type === 'csv') {
-      const headers = ['ID', 'Tipo', 'Titolo', 'Autori/Fonte', 'Rivista', 'Data', 'Organismo', 'Categoria', 'DOI', 'URL'];
-      const rows = itemsToExport.map(it => [
-        it.id,
-        it.item_type || 'article',
-        `"${(it.title || '').replace(/"/g, '""')}"`,
-        `"${(it.item_type === 'news' ? it.source_name : (it.authors || []).map(a => a.name).join('; ')).replace(/"/g, '""')}"`,
-        `"${(it.journal || '').replace(/"/g, '""')}"`,
-        it.publication_date || '',
-        `"${(it.organism || '').replace(/"/g, '""')}"`,
-        `"${(it.category || '').replace(/"/g, '""')}"`,
-        it.doi || '',
-        it.url || ''
-      ].join(','));
-      content = [headers.join(','), ...rows].join('\n');
-      mimeType = 'text/csv';
-      filename += '.csv';
-    }
-
-    const blob = new Blob([content], { type: mimeType });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-
-    this.showToast(`Esportati ${itemsToExport.length} elementi in formato ${type.toUpperCase()}`);
-  }
-
-  async handleClientDoiFetch() {
-    const input = document.getElementById('input-manual-doi');
-    const status = document.getElementById('doi-fetch-status');
-    if (!input || !status) return;
-
-    let raw = input.value.trim();
-    if (!raw) {
-      status.className = 'doi-status';
-      status.textContent = 'Inserisci un DOI valido o link doi.org.';
-      status.classList.remove('hidden');
-      return;
-    }
-
-    const cleanDoi = raw.replace(/^https?:\/\/doi\.org\//i, '').trim();
-    status.className = 'doi-status';
-    status.textContent = `Interrogazione in corso per DOI: ${cleanDoi}...`;
-    status.classList.remove('hidden');
-
-    try {
-      const res = await fetch(`https://api.crossref.org/works/${encodeURIComponent(cleanDoi)}`);
-      if (!res.ok) throw new Error(`CrossRef API error (${res.status})`);
-
-      const json = await res.json();
-      const msg = json.message;
-
-      const title = Array.isArray(msg.title) ? msg.title[0] : (msg.title || 'Articolo scientifico');
-      const authors = (msg.author || []).map(a => ({
-        name: `${a.given || ''} ${a.family || ''}`.trim() || 'Ricercatore',
-        affiliation: a.affiliation?.[0]?.name || '',
-        orcid: a.ORCID || ''
-      }));
-      const journal = Array.isArray(msg['container-title']) ? msg['container-title'][0] : (msg['container-title'] || 'Rivista Scientifica');
-      const dateParts = msg.published?.['date-parts']?.[0] || msg['published-online']?.['date-parts']?.[0] || [2026, 8, 31];
-      const pubDate = `${dateParts[0]}-${String(dateParts[1] || 1).padStart(2, '0')}-${String(dateParts[2] || 1).padStart(2, '0')}`;
-      const abstract = msg.abstract ? msg.abstract.replace(/<[^>]+>/g, '') : 'Abstract non disponibile direttamente tramite CrossRef.';
-
-      const newArticle = {
-        id: `manual-${Date.now()}`,
-        item_type: 'article',
-        doi: cleanDoi,
-        title: title,
-        authors: authors.length > 0 ? authors : [{ name: 'Autori dell\'articolo' }],
-        journal: journal,
-        publication_date: pubDate,
-        year: dateParts[0],
-        article_type: msg.type || 'Journal Article',
-        organism: 'Organismo da specificare',
-        category: 'Structural Biology & Cryo-EM',
-        tags: ['Fotosintesi', 'Letteratura'],
-        abstract: abstract,
-        url: `https://doi.org/${cleanDoi}`,
-        open_access: false,
-        featured: false,
-        reading_time: '5 min',
-        added_at: new Date().toISOString().split('T')[0]
-      };
-
-      // Store in localStorage custom items
-      let custom = [];
-      try {
-        const stored = localStorage.getItem('photosynthesis_custom_articles');
-        if (stored) custom = JSON.parse(stored);
-      } catch (e) {}
-      custom.unshift(newArticle);
-      localStorage.setItem('photosynthesis_custom_articles', JSON.stringify(custom));
-
-      this.items.unshift(newArticle);
-      this.updateMetrics();
+    if (this.activeView === 'saved') {
       this.applyFiltersAndRender();
-
-      status.textContent = `Articolo aggiunto con successo: "${title.slice(0, 50)}..."`;
-      input.value = '';
-      this.showToast('Articolo aggiunto al catalogo');
-    } catch (err) {
-      status.textContent = `Errore nel recupero DOI: ${err.message}. Puoi inserirlo manualmente con scripts/add_by_doi.py.`;
     }
   }
 
-  copyToClipboard(text, message) {
-    navigator.clipboard.writeText(text).then(() => {
-      this.showToast(message);
-    }).catch(() => {
-      this.showToast('Copiato: ' + text);
-    });
+  /* =========================================================================
+     Reader Modal
+     ========================================================================= */
+
+  openModal(item) {
+    this.activeItem = item;
+    const modal = document.getElementById('article-modal');
+    if (!modal) return;
+
+    // Badges
+    const badgesWrap = document.getElementById('modal-top-badges');
+    if (badgesWrap) {
+      const isNews = item.item_type === 'news';
+      badgesWrap.innerHTML = `
+        <span class="badge ${isNews ? 'badge-news-item' : 'badge-paper'}">${isNews ? 'Notizia' : 'Articolo'}</span>
+        <span class="badge badge-journal">${this.escapeHTML(item.journal || item.source_outlet || '')}</span>
+        <span class="badge badge-paper">${item.publication_date || ''}</span>
+        ${item.open_access ? '<span class="badge badge-oa">Open Access</span>' : ''}
+      `;
+    }
+
+    // Title
+    const titleEl = document.getElementById('modal-title');
+    if (titleEl) titleEl.textContent = item.title;
+
+    // Authors & Affiliations
+    const authorsSection = document.getElementById('modal-authors');
+    if (authorsSection) {
+      if (Array.isArray(item.authors) && item.authors.length > 0) {
+        authorsSection.innerHTML = item.authors.map(a => `
+          <div style="margin-bottom: 0.35rem;">
+            <strong>${this.escapeHTML(a.name)}</strong>
+            ${a.affiliation ? `<span style="color: var(--text-muted); font-size: 0.8rem;"> — ${this.escapeHTML(a.affiliation)}</span>` : ''}
+            ${a.orcid ? `<a href="https://orcid.org/${a.orcid}" target="_blank" rel="noopener noreferrer" style="color: #a6ce39; font-size: 0.72rem; font-family: var(--font-mono); margin-left: 0.3rem;">[ORCID: ${a.orcid}]</a>` : ''}
+          </div>
+        `).join('');
+      } else {
+        authorsSection.innerHTML = `<div><strong>${this.escapeHTML(item.author_or_editor || item.source_outlet || 'Redazione')}</strong></div>`;
+      }
+    }
+
+    // Tags
+    const tagsEl = document.getElementById('modal-tags');
+    if (tagsEl) {
+      const tagsHTML = [
+        item.organism ? `<span class="tag-organism">🌱 ${this.escapeHTML(item.organism)}</span>` : '',
+        `<span class="tag-topic">📚 ${this.escapeHTML(item.category || '')}</span>`,
+        ...(item.tags || []).map(t => `<span class="tag-topic">#${this.escapeHTML(t)}</span>`)
+      ].filter(Boolean).join('');
+      tagsEl.innerHTML = tagsHTML;
+    }
+
+    // Abstract
+    const abstractEl = document.getElementById('modal-abstract');
+    if (abstractEl) abstractEl.textContent = item.abstract;
+
+    // Citation block
+    const citSection = document.getElementById('modal-citation-section');
+    if (citSection) {
+      if (item.item_type === 'news') {
+        citSection.classList.add('hidden');
+      } else {
+        citSection.classList.remove('hidden');
+        this.updateModalCitationText();
+      }
+    }
+
+    // DOI & Footer
+    const doiContainer = document.getElementById('modal-doi-container');
+    const doiVal = document.getElementById('modal-doi');
+    if (item.doi) {
+      doiContainer?.classList.remove('hidden');
+      if (doiVal) doiVal.textContent = item.doi;
+    } else {
+      doiContainer?.classList.add('hidden');
+    }
+
+    // Direct Link Button
+    const extLink = document.getElementById('modal-link-external');
+    const extLabel = document.getElementById('modal-external-label');
+    if (extLink) {
+      extLink.href = item.url || (item.doi ? `https://doi.org/${item.doi}` : '#');
+      if (extLabel) {
+        extLabel.textContent = `Apri Articolo Ufficiale (${item.journal || 'DOI'})`;
+      }
+    }
+
+    this.updateModalBookmarkState();
+    modal.classList.remove('hidden');
   }
 
-  showToast(msg) {
+  closeModal() {
+    document.getElementById('article-modal')?.classList.add('hidden');
+    this.activeItem = null;
+  }
+
+  updateModalBookmarkState() {
+    if (!this.activeItem) return;
+    const isSaved = this.savedIds.has(this.activeItem.id);
+    const label = document.getElementById('modal-bookmark-label');
+    const btn = document.getElementById('modal-btn-bookmark');
+    if (label) label.textContent = isSaved ? 'Salvato nei preferiti' : 'Salva';
+    if (btn) {
+      btn.querySelector('svg')?.setAttribute('fill', isSaved ? 'currentColor' : 'none');
+      btn.classList.toggle('btn-emerald', isSaved);
+      btn.classList.toggle('btn-outline', !isSaved);
+    }
+  }
+
+  updateModalCitationText() {
+    if (!this.activeItem) return;
+    const item = this.activeItem;
+    const codeBlock = document.getElementById('modal-citation-text');
+    if (!codeBlock) return;
+
+    if (this.citationFormat === 'apa') {
+      const authorList = Array.isArray(item.authors)
+        ? item.authors.map(a => a.name).join(', ')
+        : (item.author_or_editor || 'Redazione');
+      const year = item.year || (item.publication_date ? item.publication_date.substring(0, 4) : '2026');
+      codeBlock.textContent = `${authorList} (${year}). ${item.title}. ${item.journal || item.source_outlet || ''}. https://doi.org/${item.doi || ''}`;
+    } else if (this.citationFormat === 'bibtex') {
+      const firstAuthorKey = Array.isArray(item.authors) && item.authors.length > 0
+        ? item.authors[0].name.split(' ').pop().toLowerCase()
+        : 'lumen';
+      const year = item.year || (item.publication_date ? item.publication_date.substring(0, 4) : '2026');
+      const authorsBib = Array.isArray(item.authors)
+        ? item.authors.map(a => a.name).join(' and ')
+        : (item.author_or_editor || 'Lumen Editorial');
+
+      codeBlock.textContent = `@article{${firstAuthorKey}${year}${item.id.substring(0, 6)},
+  title = {${item.title}},
+  author = {${authorsBib}},
+  journal = {${item.journal || item.source_outlet || 'Photosynthesis Research'}},
+  year = {${year}},
+  doi = {${item.doi || ''}},
+  url = {${item.url}}
+}`;
+    }
+  }
+
+  /* =========================================================================
+     ZINE ENGINE (1-Page A4 Printable Mini-Magazine)
+     ========================================================================= */
+
+  openZineModal() {
+    const modal = document.getElementById('zine-modal');
+    const container = document.getElementById('zine-sheet-content');
+    if (!modal || !container) return;
+
+    // Pick top breakthrough paper
+    const leadPaper = this.items.find(it => it.id === 'li-2026-in-situ-photosystems') ||
+                      this.items.find(it => it.featured && it.item_type !== 'news') ||
+                      this.items[0];
+
+    // Pick 3 top fresh news
+    const newsItems = this.items.filter(it => it.item_type === 'news').slice(0, 3);
+
+    // Pick 4 hot research papers across key disciplines
+    const researchPapers = this.items
+      .filter(it => (it.item_type === 'article' || !it.item_type) && it.id !== leadPaper.id)
+      .slice(0, 4);
+
+    const leadAuthors = Array.isArray(leadPaper.authors)
+      ? leadPaper.authors.map(a => a.name).join(', ')
+      : '';
+
+    container.innerHTML = `
+      <div class="zine-masthead">
+        <div class="zine-masthead-brand">
+          <h1>LUMEN · ZINE</h1>
+          <span>Rivista Scientifica &amp; Research Digest di Fotosintesi e Bioenergetica</span>
+        </div>
+        <div class="zine-masthead-meta">
+          <strong>Volume IV · Issue 8</strong><br>
+          Agosto 2026 · Edizione Laboratorio<br>
+          <em>50 Record Censiti</em>
+        </div>
+      </div>
+
+      <!-- Lead Breakthrough Story -->
+      <section class="zine-lead-box">
+        <span class="zine-section-tag">Breakthrough in Evidenza</span>
+        <h2 class="zine-lead-title">${this.escapeHTML(leadPaper.title)}</h2>
+        <div class="zine-lead-authors">
+          <strong>${this.escapeHTML(leadPaper.journal || 'Nature')}</strong> · ${leadPaper.publication_date || ''} · <em>${this.escapeHTML(leadAuthors)}</em>
+        </div>
+        <p class="zine-lead-text">${this.escapeHTML(leadPaper.abstract)}</p>
+        <div class="zine-lead-footer">
+          <span>Organismo: ${this.escapeHTML(leadPaper.organism || 'Piante Superiori')}</span>
+          <span>DOI: ${leadPaper.doi || ''}</span>
+        </div>
+      </section>
+
+      <!-- 2-Column Grid with News Wire and Hot Research Papers -->
+      <div class="zine-columns-grid">
+        
+        <!-- Left Column: Flash News & Biotech Perspectives -->
+        <div class="zine-col">
+          <div class="zine-col-header">Notizie &amp; Rassegna Stampa</div>
+          ${newsItems.map(item => `
+            <div class="zine-item">
+              <h4 class="zine-item-title">${this.escapeHTML(item.title)}</h4>
+              <div class="zine-item-meta">${this.escapeHTML(item.source_outlet || item.journal || 'Fonte')} · ${item.publication_date || ''}</div>
+              <p class="zine-item-text">${this.escapeHTML(item.abstract)}</p>
+            </div>
+          `).join('')}
+        </div>
+
+        <!-- Right Column: Top Research Publications -->
+        <div class="zine-col">
+          <div class="zine-col-header">Articoli Caldi di Ricerca</div>
+          ${researchPapers.map(item => {
+            const auth = Array.isArray(item.authors) && item.authors.length > 0
+              ? `${item.authors[0].name} et al.`
+              : '';
+            return `
+              <div class="zine-item">
+                <h4 class="zine-item-title">${this.escapeHTML(item.title)}</h4>
+                <div class="zine-item-meta">${this.escapeHTML(item.journal || 'Journal')} (${item.year || '2026'}) · <em>${this.escapeHTML(auth)}</em></div>
+                <p class="zine-item-text">${this.escapeHTML(item.abstract.substring(0, 190))}...</p>
+              </div>
+            `;
+          }).join('')}
+        </div>
+
+      </div>
+
+      <!-- Editorial Note Banner -->
+      <div class="zine-editorial-note">
+        "Dalle strutture ad altissima risoluzione dei supercomplessi in situ all'ingegneria della Rubisco e ai sistemi sintetici: la fotosintesi unisce biologia strutturale nativa e transizione energetica." — <strong>Laboratorio di Fotosintesi &amp; Bioenergetica</strong>
+      </div>
+
+      <!-- Zine Sheet Footer -->
+      <footer class="zine-footer">
+        <span>LUMEN · The Photosynthesis Digest</span>
+        <span>Dati verificati: CrossRef, Europe PMC, Science, Nature, PNAS</span>
+        <span>Per il download completo dei PDF, consultare i DOI ufficiali</span>
+      </footer>
+    `;
+
+    modal.classList.remove('hidden');
+  }
+
+  closeZineModal() {
+    document.getElementById('zine-modal')?.classList.add('hidden');
+  }
+
+  copyZineText() {
+    const leadPaper = this.items.find(it => it.id === 'li-2026-in-situ-photosystems') || this.items[0];
+    const newsItems = this.items.filter(it => it.item_type === 'news').slice(0, 3);
+    const researchPapers = this.items.filter(it => (it.item_type === 'article' || !it.item_type) && it.id !== leadPaper.id).slice(0, 4);
+
+    let text = `=========================================\n`;
+    text += `LUMEN · ZINE (Edizione 1 Pagina)\n`;
+    text += `Laboratorio di Fotosintesi & Bioenergetica · Agosto 2026\n`;
+    text += `=========================================\n\n`;
+    
+    text += `[LEAD BREAKTHROUGH]\n`;
+    text += `Titolo: ${leadPaper.title}\n`;
+    text += `Rivista: ${leadPaper.journal} (${leadPaper.publication_date})\n`;
+    text += `DOI: https://doi.org/${leadPaper.doi}\n`;
+    text += `Sintesi: ${leadPaper.abstract}\n\n`;
+
+    text += `[NOTIZIE & RASSEGNA STAMPA]\n`;
+    newsItems.forEach((n, i) => {
+      text += `${i + 1}. ${n.title} (${n.source_outlet || n.journal})\n   ${n.abstract}\n   Link: ${n.url}\n\n`;
+    });
+
+    text += `[ARTICOLI CALDI DI RICERCA]\n`;
+    researchPapers.forEach((p, i) => {
+      text += `${i + 1}. ${p.title} (${p.journal})\n   DOI: https://doi.org/${p.doi}\n\n`;
+    });
+
+    this.copyToClipboard(text, 'Sommario Zine copiato negli appunti!');
+  }
+
+  /* =========================================================================
+     Utility Helpers
+     ========================================================================= */
+
+  copyToClipboard(text, successMsg) {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => {
+        this.showToast(successMsg);
+      }).catch(() => {
+        this.fallbackCopy(text, successMsg);
+      });
+    } else {
+      this.fallbackCopy(text, successMsg);
+    }
+  }
+
+  fallbackCopy(text, successMsg) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      this.showToast(successMsg);
+    } catch (e) {
+      this.showToast('Errore durante la copia');
+    }
+    document.body.removeChild(ta);
+  }
+
+  showToast(message) {
     const container = document.getElementById('toast-container');
     if (!container) return;
-
     const toast = document.createElement('div');
     toast.className = 'toast';
-    toast.textContent = msg;
+    toast.textContent = message;
     container.appendChild(toast);
-
     setTimeout(() => {
       toast.style.opacity = '0';
-      toast.style.transition = 'opacity 0.3s ease';
-      setTimeout(() => toast.remove(), 300);
+      setTimeout(() => toast.remove(), 250);
     }, 2800);
   }
 
-  formatAuthorsShort(authors) {
-    if (!authors || !Array.isArray(authors) || authors.length === 0) return 'Autori vari';
-    if (authors.length === 1) return authors[0].name || 'Autore';
-    if (authors.length === 2) return `${authors[0].name} & ${authors[1].name}`;
-    return `${authors[0].name} et al.`;
-  }
-
-  escapeHtml(str) {
+  escapeHTML(str) {
     if (!str) return '';
     return String(str)
       .replace(/&/g, '&amp;')
@@ -1063,7 +879,7 @@ class PhotosynthesisMagazineApp {
   }
 }
 
-// Inizializzazione automatica al caricamento del DOM
+// Instantiate application on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
-  window.photosynthesisApp = new PhotosynthesisMagazineApp();
+  window.lumenApp = new LumenApp();
 });

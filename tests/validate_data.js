@@ -1,5 +1,5 @@
 /**
- * Test di validazione formale del dataset di Photosynthesis Digest
+ * Test di validazione formale del dataset di LUMEN (Node.js version)
  */
 
 const fs = require('fs');
@@ -8,7 +8,7 @@ const path = require('path');
 const jsonPath = path.join(__dirname, '..', 'assets', 'data', 'articles.json');
 const jsPath = path.join(__dirname, '..', 'assets', 'js', 'articles-data.js');
 
-console.log('=== TEST DI VALIDAZIONE: Photosynthesis Digest ===\n');
+console.log('=== TEST DI VALIDAZIONE: LUMEN ===\n');
 
 // 1. Check articles.json
 if (!fs.existsSync(jsonPath)) {
@@ -17,70 +17,78 @@ if (!fs.existsSync(jsonPath)) {
 }
 
 const rawJson = fs.readFileSync(jsonPath, 'utf-8');
-let articles;
+let items;
 try {
-  articles = JSON.parse(rawJson);
+  items = JSON.parse(rawJson);
 } catch (e) {
   console.error('[ERRORE] JSON non valido in articles.json:', e.message);
   process.exit(1);
 }
 
-console.log(`[+] articles.json caricato correttamente. Articoli trovati: ${articles.length}`);
+console.log(`[+] articles.json caricato correttamente. Record totali trovati: ${items.length}`);
 
-if (articles.length < 15) {
-  console.error(`[ERRORE] Richiesti almeno 15 articoli, trovati solo ${articles.length}`);
+if (items.length < 50) {
+  console.error(`[ERRORE] Richiesti almeno 50 record, trovati ${items.length}`);
   process.exit(1);
 }
 
-// 2. Validate fields and check duplicates
-const seenDois = new Set();
 const seenIds = new Set();
-const requiredFields = ['id', 'doi', 'title', 'authors', 'journal', 'publication_date', 'abstract', 'url'];
+const seenDois = new Set();
+let articlesCount = 0;
+let newsCount = 0;
 
-articles.forEach((art, index) => {
-  const prefix = `Articolo #${index + 1} (${art.doi || 'SENZA DOI'}):`;
+items.forEach((item, index) => {
+  const itemType = item.item_type || 'article';
+  const prefix = `Record #${index + 1} [${itemType}] (${item.id}):`;
 
-  requiredFields.forEach(field => {
-    if (!art[field]) {
+  ['id', 'title', 'publication_date', 'abstract', 'url', 'category'].forEach(field => {
+    if (!item[field]) {
       console.error(`[ERRORE] ${prefix} Manca il campo obbligatorio '${field}'`);
       process.exit(1);
     }
   });
 
-  if (!Array.isArray(art.authors) || art.authors.length === 0) {
-    console.error(`[ERRORE] ${prefix} Il campo 'authors' deve essere un array non vuoto`);
+  if (seenIds.has(item.id)) {
+    console.error(`[ERRORE] ${prefix} ID duplicato riscontrato: ${item.id}`);
+    process.exit(1);
+  }
+  seenIds.add(item.id);
+
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(item.publication_date)) {
+    console.error(`[ERRORE] ${prefix} Formato data non valido: '${item.publication_date}' (richiesto YYYY-MM-DD)`);
     process.exit(1);
   }
 
-  const cleanDoi = art.doi.toLowerCase().trim();
-  if (seenDois.has(cleanDoi)) {
-    console.error(`[ERRORE] ${prefix} DOI duplicato riscontrato: ${art.doi}`);
-    process.exit(1);
-  }
-  seenDois.add(cleanDoi);
-
-  if (seenIds.has(art.id)) {
-    console.error(`[ERRORE] ${prefix} ID duplicato riscontrato: ${art.id}`);
-    process.exit(1);
-  }
-  seenIds.add(art.id);
-
-  // Check date format YYYY-MM-DD
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(art.publication_date)) {
-    console.error(`[ERRORE] ${prefix} Formato data non valido: '${art.publication_date}' (richiesto YYYY-MM-DD)`);
+  if (item.abstract.length < 40) {
+    console.error(`[ERRORE] ${prefix} Abstract/sommario troppo corto (${item.abstract.length} caratteri)`);
     process.exit(1);
   }
 
-  // Check abstract length (must not be empty placeholder)
-  if (art.abstract.length < 50) {
-    console.error(`[ERRORE] ${prefix} Abstract troppo corto o assente (${art.abstract.length} caratteri)`);
-    process.exit(1);
+  if (itemType === 'article') {
+    articlesCount++;
+    if (!item.doi) {
+      console.error(`[ERRORE] ${prefix} Manca il DOI obbligatorio per l'articolo scientifico`);
+      process.exit(1);
+    }
+    const cleanDoi = item.doi.toLowerCase().trim();
+    if (seenDois.has(cleanDoi)) {
+      console.error(`[ERRORE] ${prefix} DOI duplicato riscontrato: ${item.doi}`);
+      process.exit(1);
+    }
+    seenDois.add(cleanDoi);
+
+    if (!Array.isArray(item.authors) || item.authors.length === 0) {
+      console.error(`[ERRORE] ${prefix} Il campo 'authors' deve essere un array non vuoto`);
+      process.exit(1);
+    }
+  } else if (itemType === 'news') {
+    newsCount++;
   }
 });
 
-console.log(`[+] Tutti i ${articles.length} articoli possiedono tutti i campi obbligatori, date valide e nessun DOI duplicato.`);
+console.log(`[+] Validazione record completata con successo: ${articlesCount} articoli scientifici e ${newsCount} notizie.`);
 
-// 3. Check JS module file
+// Check JS module file
 if (!fs.existsSync(jsPath)) {
   console.error('[ERRORE] File JS non trovato:', jsPath);
   process.exit(1);
