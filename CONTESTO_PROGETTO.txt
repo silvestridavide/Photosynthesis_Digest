@@ -61,8 +61,8 @@ STRUTTURA E DISTRIBUZIONE
   - vercel.json, .gitignore, .gitattributes, .vercelignore, README.md.
 
 GITHUB E VERCEL
-- Repository: autonomo in LAVORO/TOOLS/Photosynthesis_Digest.
-- Ramo principale: main. Sviluppo attivo su branch agent/*.
+- Repository: https://github.com/silvestridavide/Photosynthesis_Digest.git
+- Ramo principale: main. Sviluppo attivo su branch agent/photosynthesis-digest-initial-2026-08-31.
 - Preset Vercel: Other (deploy statico senza build).
 - Entry point: index.html.
 
