@@ -5,8 +5,7 @@ PROGETTO
 
 PERCORSO CANONICO
 - Cartella canonica: LAVORO/TOOLS/Photosynthesis_Digest.
-- Predecessore: Photosynthesis Digest.
-- Repository GitHub: https://github.com/silvestridavide/Photosynthesis_Digest.git (branch main).
+- Repository GitHub: https://github.com/silvestridavide/Photosynthesis_Digest.git (branch attivo: agent/lumen-rebranding-zine-50articles-2026-08-31).
 
 INPUT E OUTPUT
 - Input: 
