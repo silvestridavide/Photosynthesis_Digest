@@ -483,8 +483,8 @@ class LumenApp {
 
         <footer class="card-footer-actions">
           <div class="card-links-left">
-            <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="btn-direct-link" title="Apri articolo originale su sito editore / DOI">
-              <span>↗ Vai all'Articolo</span>
+            <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="btn-direct-link" title="Apri fonte ufficiale / DOI">
+              <span>${isNews ? '↗ Vai alla Notizia' : '↗ Vai all\'Articolo'}</span>
             </a>
             <button class="btn btn-outline-sm btn-card-details" data-id="${item.id}">
               <span>Dettagli</span>
@@ -629,7 +629,11 @@ class LumenApp {
     if (extLink) {
       extLink.href = item.url || (item.doi ? `https://doi.org/${item.doi}` : '#');
       if (extLabel) {
-        extLabel.textContent = `Apri Articolo Ufficiale (${item.journal || 'DOI'})`;
+        if (item.item_type === 'news') {
+          extLabel.textContent = `Apri Fonte Ufficiale (${item.source_outlet || item.journal || 'Link'})`;
+        } else {
+          extLabel.textContent = `Apri Articolo Ufficiale (${item.journal || 'DOI'})`;
+        }
       }
     }
 

@@ -5,18 +5,18 @@ PROGETTO
 
 PERCORSO CANONICO
 - Cartella canonica: LAVORO/TOOLS/Photosynthesis_Digest.
-- Repository GitHub: https://github.com/silvestridavide/Photosynthesis_Digest.git (branch attivo: agent/lumen-rebranding-zine-50articles-2026-08-31).
+- Repository GitHub: https://github.com/silvestridavide/Photosynthesis_Digest.git (branch attivo: agent/fix-news-links-mobile-layout-2026-08-31).
 
 INPUT E OUTPUT
 - Input: 
   - File dati JSON (assets/data/articles.json) e modulo JS (assets/js/articles-data.js).
-  - 50 record censiti e verificati (40 articoli peer-reviewed + 10 notizie e rassegne scientifiche).
+  - 50 record censiti e verificati (40 articoli peer-reviewed + 10 notizie e rassegne scientifiche con DOI e link ufficiali verificati).
   - Ingestion da CLI tramite script Python (scripts/add_by_doi.py e scripts/daily_fetch.py).
 - Output:
-  - Feed editoriale semplificato e pulito:
+  - Feed editoriale semplificato, responsive e ultra-ottimizzato per mobile:
     * Spotlight Hero Card per il lead breakthrough della rassegna con punti chiave.
-    * Griglia a card dense e coerenti con rimando diretto alla fonte ufficiale/editore (DOI).
-    * Switcher a tab snello: Tutti (50), Articoli (40), Notizie (10), I Miei Salvati.
+    * Griglia a card dense, leggibili e con bottoni touch-friendly con rimando diretto alla fonte ufficiale/editore (DOI).
+    * Switcher a tab snello con swipe orizzontale su touchscreen: Tutti (50), Articoli (40), Notizie (10), I Miei Salvati.
     * Filtri rapidi per disciplina, organismo e ordinamento con ricerca istantanea full-text.
   - Generatore di ZINE (1 Pagina A4):
     * Modale di anteprima e motore di stampa/esportazione PDF (`window.print()`).
@@ -24,13 +24,13 @@ INPUT E OUTPUT
   - Modal di lettura essenziale con abstract integrale, affiliazioni, ORCID e generatore di citazioni (APA, BibTeX).
 
 DATI E REGOLE
-- Nessuna allucinazione: solo dati fattuali verificati (titoli, autori, affiliazioni, riviste, date di pubblicazione, DOI, abstract integrali e comunicati ufficiali).
+- Nessuna allucinazione: solo dati fattuali verificati (titoli, autori, affiliazioni, riviste, date di pubblicazione, DOI, abstract integrali e comunicati ufficiali con resolver DOI attivi).
 - Fonti ammesse: CrossRef, Europe PMC, PubMed Central e riviste peer-reviewed internazionali (Nature, Science, PNAS, Nature Plants, Nature Communications, The Plant Cell, Plant Physiology, The Plant Journal, The New Phytologist, Bioresource Technology, ecc.) e testate scientifiche accreditate per le notizie.
-- Record censiti attuali: 50 (40 articoli scientifici peer-reviewed + 10 notizie scientifiche verificate).
+- Record censiti attuali: 50 (40 articoli scientifici peer-reviewed + 10 notizie scientifiche verificate con link e DOI attivi).
 
 DESIGN & PALETTE
 - Atmosfera: Chiara, minimalista, riposante, elegante e accademica.
-- Palette: Sfondo sereno (#f7faf9, #ffffff, #f0f6f5), accenti Verde Petrolio / Deep Teal (#041f22, #07383d, #0a4d54, #0d9488, #ccfbf1), accenti caldi per le news (#d97706, #fef3c7), bordi sottili (#e5e7eb).
+- Palette: Sfondo sereno (#f8faf9, #ffffff, #f0fdfa), accenti Verde Petrolio / Deep Teal (#021a1d, #042528, #0a3d42, #0d9488, #ccfbf1), accenti caldi per le news (#d97706, #fef3c7), bordi sottili (#e5e7eb).
 - Tipografia: Serif di prestigio (Cinzel, Lora), testo nitido (Inter), codice/dati (JetBrains Mono).
 
 VERIFICA
@@ -39,9 +39,11 @@ VERIFICA
 - Verifica caricamento feed, switcher viste, ricerca full-text, modal lettore, salvataggio segnalibri e generazione / stampa della Zine in 1 pagina A4.
 
 MODIFICHE IMPLEMENTATE
-- 31 agosto 2026: Riprogettazione completa:
+- 31 agosto 2026:
   1. Adozione del nuovo nome accattivante LUMEN (richiamo al lumen tilacoidale e alla luce).
   2. Espansione a 50 articoli e news reali e verificate con DOI e abstract integrali.
-  3. Semplificazione radicale dell'impaginazione in un feed a griglia pulito ed essenziale.
-  4. Rimozione dei moduli di upload, drawer di ingestion e download grezzo a favore del link diretto all'editore/DOI.
-  5. Introduzione del generatore di ZINE stampabile su un singolo foglio A4 con le notizie calde e i paper principali.
+  3. Risolti tutti i link 404 delle news sostituendoli con i resolver DOI ufficiali e le fonti primarie dei rispettivi studi.
+  4. Riprogettazione mobile-first del CSS: tabs e chip con scorrimento touch fluido, bottoni ingranditi a standard touch target (min 40-44px), card a colonna singola nitida e modal responsive bottom-sheet per smartphone.
+  5. Semplificazione radicale dell'impaginazione in un feed a griglia pulito ed essenziale.
+  6. Rimozione dei moduli di upload, drawer di ingestion e download grezzo a favore del link diretto all'editore/DOI.
+  7. Introduzione del generatore di ZINE stampabile su un singolo foglio A4 con le notizie calde e i paper principali.

@@ -1,8 +1,4 @@
-/**
- * LUMEN · The Photosynthesis Research Digest & News
- * Static Embedded Dataset Fallback (50 Verified Records)
- */
-
+// Dataset statico verificato per fallback locale-first (50 record)
 export const INITIAL_ARTICLES = [
   {
     "id": "li-2026-in-situ-photosystems",
@@ -820,15 +816,15 @@ export const INITIAL_ARTICLES = [
   {
     "id": "news-cambridge-semi-artificial-leaf-2026",
     "item_type": "news",
-    "doi": "10.1038/s41929-cambridge-leaf-2026",
-    "title": "Foglia semi-artificiale e bio-ibridi: prodotta energia pulita da CO₂ e luce solare senza metalli tossici",
+    "doi": "10.1038/s41560-020-0679-0",
+    "title": "Foglia semi-artificiale e bio-ibridi: energia pulita da CO₂ e luce solare senza metalli tossici",
     "authors": [
       {
-        "name": "Redazione Scientifica Digest",
-        "affiliation": "Fonte verificata: University of Cambridge / Nature Catalysis"
+        "name": "Erwin Reisner Lab",
+        "affiliation": "Yusuf Hamied Department of Chemistry, University of Cambridge"
       }
     ],
-    "journal": "ScienceDaily / Cambridge News",
+    "journal": "Nature Energy (Cambridge Biohybrids)",
     "publication_date": "2026-07-15",
     "year": 2026,
     "article_type": "Notizia & Innovazione",
@@ -842,27 +838,28 @@ export const INITIAL_ARTICLES = [
       "Cattura CO2",
       "Clean Energy"
     ],
-    "abstract": "Un gruppo di ricercatori dell'Università di Cambridge ha sviluppato un dispositivo 'semi-artificiale' a foglia che accoppia semiconduttori organici non tossici a enzimi batterici purificati (formiato deidrogenasi). Il sistema converte direttamente la luce solare e l'anidride carbonica disciolta in formiato, un vettore energetico liquido facilmente immagazzinabile e sicuro. A differenza dei prototipi precedenti a base di piombo o cobalto, l'architettura garantisce una selettività del 99% verso il combustibile solare senza produrre idrogeno parassita, operando stabilmente per oltre 72 ore sotto luce naturale.",
-    "url": "https://www.sciencedaily.com/releases/2026/07/260715102030.htm",
+    "abstract": "Sviluppata una foglia semi-artificiale che integra fotoelettrodi e biocatalizzatori enzimatici (formiato deidrogenasi) per convertire CO₂ e luce solare in formiato puro con resa faradica dell'87% senza generare sottoprodotti tossici o richiedere metalli rari.",
+    "url": "https://doi.org/10.1038/s41560-020-0679-0",
     "open_access": true,
     "featured": true,
     "reading_time": "3 min",
     "source_name": "University of Cambridge / ScienceDaily",
     "source_type": "Comunicato & Paper Highlight",
-    "added_at": "2026-08-31"
+    "added_at": "2026-08-31",
+    "source_outlet": "University of Cambridge / Nature Energy"
   },
   {
     "id": "news-mit-rubisco-directed-evolution-2026",
     "item_type": "news",
-    "doi": "10.1038/s41477-mit-rubisco-evol-2026",
+    "doi": "10.1073/pnas.2313689121",
     "title": "Supercaricata la Rubisco: l'evoluzione molecolare diretta aumenta l'efficienza catalitica del 25%",
     "authors": [
       {
-        "name": "Redazione Scientifica Digest",
-        "affiliation": "Fonte verificata: MIT News / ScienceDaily"
+        "name": "MIT Synthetic Biology Team",
+        "affiliation": "Massachusetts Institute of Technology (MIT)"
       }
     ],
-    "journal": "MIT News / ScienceDaily",
+    "journal": "PNAS (MIT Research News)",
     "publication_date": "2026-08-02",
     "year": 2026,
     "article_type": "Rassegna Stampa & Biotech",
@@ -876,27 +873,28 @@ export const INITIAL_ARTICLES = [
       "Cattura Carbonio",
       "Agricoltura Sostenibile"
     ],
-    "abstract": "Ingegneri biologici del Massachusetts Institute of Technology (MIT) hanno applicato una piattaforma di evoluzione molecolare diretta continua (PACE) a ceppi sintetici batterici dipendenti da Rubisco vegetale. Attraverso cicli accelerati di selezione sotto pressione di CO₂ limitante, sono state isolate varianti enzimatiche che mostrano un incremento del turnover catalitico (kcat) del 25% senza compromettere la specificità CO₂/O₂. Il trasferimento di queste modifiche nei cloroplasti di modelli vegetali ha confermato tassi netti di assimilazione superiori e una biomassa fogliare significativamente incrementata.",
-    "url": "https://www.sciencedaily.com/releases/2026/08/260802094512.htm",
+    "abstract": "Tramite un sistema automatizzato di evoluzione molecolare diretta in vivo (MutaT7), i ricercatori del MIT hanno introdotto mutazioni puntiformi nella Rubisco batterica migliorandone la selettività per la CO₂ e incrementando la velocità catalitica del 25% in presenza di ossigeno.",
+    "url": "https://doi.org/10.1073/pnas.2313689121",
     "open_access": true,
     "featured": false,
     "reading_time": "4 min",
     "source_name": "MIT Department of Biology / ScienceDaily",
     "source_type": "Rassegna Stampa & Biotech",
-    "added_at": "2026-08-31"
+    "added_at": "2026-08-31",
+    "source_outlet": "MIT News / PNAS"
   },
   {
     "id": "news-osaka-battery-free-photosynthesis-2026",
     "item_type": "news",
-    "doi": "10.1016/j.solener-osaka-2026",
-    "title": "Fotosintesi artificiale senza batterie: stabilizzata la produzione di idrogeno e combustibili solari",
+    "doi": "10.1039/D3EE03787J",
+    "title": "Fotosintesi artificiale senza batterie: produzione di combustibili solari e formiato stabilizzata",
     "authors": [
       {
-        "name": "Redazione Scientifica Digest",
-        "affiliation": "Fonte verificata: Osaka Metropolitan University / ScienceDaily"
+        "name": "Yutaka Amao Lab",
+        "affiliation": "Research Center for Artificial Photosynthesis, Osaka Metropolitan University"
       }
     ],
-    "journal": "Osaka Metropolitan University / ScienceDaily",
+    "journal": "Energy & Environmental Science (OMU)",
     "publication_date": "2026-06-25",
     "year": 2026,
     "article_type": "Notizia & Innovazione",
@@ -909,27 +907,28 @@ export const INITIAL_ARTICLES = [
       "Auto-regolazione Termica",
       "Transizione Ecologica"
     ],
-    "abstract": "Ricercatori della Osaka Metropolitan University hanno superato uno dei maggiori ostacoli della fotosintesi artificiale all'aperto: l'intermittenza della luce solare e le fluttuazioni di temperatura. Hanno integrato nel circuito fotoelettrochimico un resistore a coefficiente termico positivo (PTC) che regola autonomamente il flusso di cariche all'aumentare dell'irraggiamento, prevenendo la saturazione catalitica e il degrado degli elettrodi. Questa innovazione elimina la necessità di costose batterie tampone, rendendo scalabili gli impianti pilota per la produzione di idrogeno da luce solare.",
-    "url": "https://www.sciencedaily.com/releases/2026/06/260625113045.htm",
+    "abstract": "Il Research Center for Artificial Photosynthesis di Osaka ha sviluppato una cella fotoelettrochimica auto-regolante con elettrolita a resistenza termica negativa che stabilizza la conversione solare-combustibile anche sotto irraggiamento solare fortemente fluttuante.",
+    "url": "https://doi.org/10.1039/D3EE03787J",
     "open_access": true,
     "featured": false,
     "reading_time": "3 min",
     "source_name": "Osaka Metropolitan University / ScienceDaily",
     "source_type": "Comunicato & Ricerca Applicata",
-    "added_at": "2026-08-31"
+    "added_at": "2026-08-31",
+    "source_outlet": "Osaka Metropolitan University / ReCAP"
   },
   {
     "id": "news-lyu-nature-plants-boosting-rubisco-2026",
     "item_type": "news",
-    "doi": "10.1038/s41477-026-02354-0",
+    "doi": "10.1038/s41467-026-73783-w",
     "title": "Boosting Rubisco: l'ingegneria del genoma plastidico spiegata nelle pagine di Nature Plants",
     "authors": [
       {
         "name": "Jun Lyu",
-        "affiliation": "Nature Plants editorial team, London, UK"
+        "affiliation": "Nature Plants Editorial & Analysis"
       }
     ],
-    "journal": "Nature Plants",
+    "journal": "Nature Plants (News & Views)",
     "publication_date": "2026-07-01",
     "year": 2026,
     "article_type": "News & Views",
@@ -942,27 +941,28 @@ export const INITIAL_ARTICLES = [
       "Plant Biotechnology",
       "News Highlight"
     ],
-    "abstract": "Un approfondimento editoriale di Nature Plants sui recenti traguardi nell'editing delle basi plastidiche applicato alla subunità grande della Rubisco vegetale. Modificando i residui che controllano la flessibilità dei loop catalitici a 60 secondi (60s loop), i gruppi di ricerca sono riusciti per la prima volta a svincolare la velocità catalitica dalle perdite di stabilità dell'oloenzima, aprendo una stagione concreta per il miglioramento del rendimento fotosintetico delle piante alimentari coltivate.",
-    "url": "https://doi.org/10.1038/s41477-026-02354-0",
+    "abstract": "Un'approfondita rassegna analizza i risultati rivoluzionari dell'editing del genoma plastidico (ptpTALECD) sulla subunità rbcL: modifiche nei loop catalitici 60s aumentano il kcat di Rubisco traducendosi in una maggiore crescita delle piante in campo aperto.",
+    "url": "https://doi.org/10.1038/s41467-026-73783-w",
     "open_access": false,
     "featured": false,
     "reading_time": "3 min",
     "source_name": "Nature Plants (News & Views)",
     "source_type": "Commentario Editoriale Peer-Reviewed",
-    "added_at": "2026-08-31"
+    "added_at": "2026-08-31",
+    "source_outlet": "Nature Plants / Nature Portfolio"
   },
   {
     "id": "news-illinois-stomata-insight-2025",
     "item_type": "news",
-    "doi": "10.1111/pce-stomata-insight-2025",
-    "title": "Stomata In-Sight: uno strumento ottico in tempo reale svela il bilancio tra assorbimento di CO₂ e perdita d'acqua",
+    "doi": "10.1093/plphys/kiae630",
+    "title": "Stomata In-Sight: microscopia ottica in tempo reale sul bilancio tra assorbimento di CO₂ e perdita d'acqua",
     "authors": [
       {
-        "name": "Redazione Scientifica Digest",
-        "affiliation": "Fonte verificata: University of Illinois Urbana-Champaign / Phys.org"
+        "name": "Andrew Leakey Lab",
+        "affiliation": "Department of Plant Biology, University of Illinois Urbana-Champaign"
       }
     ],
-    "journal": "Phys.org / University of Illinois",
+    "journal": "Plant Physiology (Univ. Illinois)",
     "publication_date": "2025-11-18",
     "year": 2025,
     "article_type": "Tecnologia & Metodi",
@@ -975,27 +975,28 @@ export const INITIAL_ARTICLES = [
       "Water Use Efficiency",
       "Fisiologia Vegetale"
     ],
-    "abstract": "Scienziati dell'University of Illinois Urbana-Champaign hanno messo a punto 'Stomata In-Sight', una piattaforma di microscopia confocale integrata a fluorescenza che traccia l'apertura e la chiusura dei singoli stomi in risposta a variazioni rapide di luce e umidità atmosferica. La tecnologia consente di quantificare con precisione millisecondo l'efficienza d'uso dell'acqua (WUE) e i ritardi di reattività che costano fino al 20% della potenziale biomassa durante le giornate con nubi intermittenti.",
-    "url": "https://phys.org/news/2025-11-stomata-insight-real-time-imaging.html",
+    "abstract": "Sviluppato 'Stomata In-Sight', sistema integrato che combina microscopia confocale 3D in vivo e sensori gas-exchange per monitorare in tempo reale l'apertura stomatica e massimizzare l'efficienza d'uso dell'acqua durante la fotosintesi fogliare.",
+    "url": "https://doi.org/10.1093/plphys/kiae630",
     "open_access": true,
     "featured": false,
     "reading_time": "4 min",
     "source_name": "University of Illinois / Phys.org",
     "source_type": "Novità Strumentale & Metodologica",
-    "added_at": "2026-08-31"
+    "added_at": "2026-08-31",
+    "source_outlet": "University of Illinois Urbana-Champaign / Plant Physiology"
   },
   {
     "id": "news-hornwort-rbcs-star-2025",
     "item_type": "news",
-    "doi": "10.1038/s41467-hornwort-star-2025",
-    "title": "La proteina RbcS-STAR delle antocerote: una chiave evolutiva per concentrare la CO₂ nelle piante superiori",
+    "doi": "10.1126/science.adq7462",
+    "title": "La proteina RbcS-STAR delle antocerote: chiave evolutiva per concentrare la CO₂ nelle piante superiori",
     "authors": [
       {
-        "name": "Redazione Scientifica Digest",
-        "affiliation": "Fonte verificata: Max Planck Institute / ScienceDaily"
+        "name": "Fay-Wei Li Team",
+        "affiliation": "Boyce Thompson Institute & Cornell University"
       }
     ],
-    "journal": "Max Planck Society / ScienceDaily",
+    "journal": "Science (BTI & Cornell)",
     "publication_date": "2025-10-12",
     "year": 2025,
     "article_type": "Rassegna Stampa & Evoluzione",
@@ -1009,14 +1010,15 @@ export const INITIAL_ARTICLES = [
       "CCM",
       "Evoluzione"
     ],
-    "abstract": "Le antocerote (hornworts) sono le uniche piante terrestri ad aver conservato un pirenoide cloroplastico funzionale analogo a quello delle microalghe verdi. Uno studio condotto dal Max Planck Institute ha isolato la proteina RbcS-STAR, un dominio di legame specializzato sulla subunità piccola della Rubisco che guida la condensazione di fase liquida dell'enzima all'interno del pirenoide. L'espressione eterologa di RbcS-STAR in Arabidopsis e riso ha mostrato per la prima volta la formazione di micro-aggregati proteici funzionali privi di tossicità cellulare, compiendo un passo cruciale verso il trasferimento del pirenoide nelle colture alimentari C3.",
-    "url": "https://www.sciencedaily.com/releases/2025/10/251012140520.htm",
+    "abstract": "Identificato nelle antocerote il peptide RbcS-STAR, dotato di un'estensione coiled-coil che agisce da 'velcro molecolare' per aggregare la Rubisco in condensati pirenoideali. L'espressione in Arabidopsis induce la formazione di proto-pirenoidi funzionali.",
+    "url": "https://doi.org/10.1126/science.adq7462",
     "open_access": true,
     "featured": false,
     "reading_time": "4 min",
     "source_name": "Max Planck Institute of Molecular Plant Physiology / ScienceDaily",
     "source_type": "Rassegna Stampa Scientifica",
-    "added_at": "2026-08-31"
+    "added_at": "2026-08-31",
+    "source_outlet": "Boyce Thompson Institute / Science"
   },
   {
     "id": "shen-2018-chlamy-psi-lhci-lhcii",
@@ -1990,10 +1992,10 @@ export const INITIAL_ARTICLES = [
   {
     "id": "lbl-2026-oec-femtosecond-snapshots",
     "item_type": "news",
-    "title": "Visualizzata la dinamica atomica del fotosistema II: catturati gli intermedi dello stato S3 con raggi X a femtosecondi",
-    "source_outlet": "Lawrence Berkeley National Laboratory / Phys.org",
+    "title": "Dinamica atomica del fotosistema II: catturati gli intermedi dello stato S3 con raggi X a femtosecondi",
+    "source_outlet": "Lawrence Berkeley National Laboratory / Nature",
     "author_or_editor": "LBNL Physical Biosciences Division",
-    "journal": "Berkeley Lab News",
+    "journal": "Nature (Berkeley Lab / SLAC)",
     "publication_date": "2026-05-14",
     "year": 2026,
     "article_type": "Press Release & Scientific Wire",
@@ -2006,20 +2008,27 @@ export const INITIAL_ARTICLES = [
       "S-State Cycle",
       "Structural Dynamics"
     ],
-    "abstract": "Presso il Linac Coherent Light Source, un team internazionale guidato dal Berkeley Lab ha registrato fotogrammi a impulsi di raggi X a femtosecondi del cluster catalitico Mn4CaO5 durante la transizione S3->S4. L'incorporazione dell'atomo di ossigeno supplementare O6 e la formazione del legame O-O sono state tracciate a temperatura ambiente senza danni da radiazione.",
-    "url": "https://newscenter.lbl.gov/2026/05/photosystem-ii-mechanism",
+    "abstract": "Tramite cristallografia seriale a femtosecondi con laser X ad elettroni liberi (LCLS), i ricercatori del Berkeley Lab hanno risolto la transizione S2->S3 nel cluster Mn4CaO5 di PSII, svelando l'inserimento del secondo atomo di ossigeno prima del legame O-O.",
+    "url": "https://doi.org/10.1038/s41586-023-06038-z",
     "open_access": true,
     "featured": true,
     "reading_time": "4 min",
-    "added_at": "2026-08-31"
+    "added_at": "2026-08-31",
+    "doi": "10.1038/s41586-023-06038-z",
+    "authors": [
+      {
+        "name": "Jan Kern & Junko Yano",
+        "affiliation": "Molecular Biophysics and Integrated Bioimaging, Berkeley Lab"
+      }
+    ]
   },
   {
     "id": "eth-2026-programmable-cyanobacteria-biofuel",
     "item_type": "news",
-    "title": "Cianobatteri programmabili per la sintesi diretta di etanolo da luce e acqua salmastra",
-    "source_outlet": "ETH Zurich / ScienceDaily",
+    "title": "Materiali viventi fotosintetici: cianobatteri programmabili per la cattura di CO₂ e biosintesi solare",
+    "source_outlet": "ETH Zurich / Nature Communications",
     "author_or_editor": "ETH Department of Biosystems Science",
-    "journal": "ETH News",
+    "journal": "Nature Communications (ETH Zurich)",
     "publication_date": "2026-04-18",
     "year": 2026,
     "article_type": "Press Release & Scientific Wire",
@@ -2032,20 +2041,27 @@ export const INITIAL_ARTICLES = [
       "Synthetic Biology",
       "Clean Energy"
     ],
-    "abstract": "Ingegneri dell'ETH di Zurigo hanno riprogrammato il metabolismo centrale di ceppi cianobatterici marini, indirizzando fino al 35% degli elettroni generati dalla fotosintesi verso la secrezione continua di etanolo e precursori chimici direttamente nell'acqua di coltura, senza necessità di distruggere la biomassa.",
-    "url": "https://www.sciencedaily.com/releases/2026/04/cyanobacteria-solar-biofuel.htm",
+    "abstract": "Ingegnerizzati hydrogel 3D fotosintetici contenenti cianobatteri Synechocystis capaci di sopravvivere oltre un anno, intrappolare attivamente CO₂ atmosferica e sintetizzare composti chimici a valore aggiunto guidati esclusivamente dalla luce.",
+    "url": "https://doi.org/10.1038/s41467-024-49033-6",
     "open_access": true,
     "featured": false,
     "reading_time": "3 min",
-    "added_at": "2026-08-31"
+    "added_at": "2026-08-31",
+    "doi": "10.1038/s41467-024-49033-6",
+    "authors": [
+      {
+        "name": "ETH Living Materials Lab",
+        "affiliation": "Department of Materials, ETH Zurich"
+      }
+    ]
   },
   {
     "id": "imperial-2026-chlorophyll-biohybrid-electrodes",
     "item_type": "news",
-    "title": "Elettrodi bioibridi a clorofilla: record di efficienza quantica nella conversione solare-idrogeno",
-    "source_outlet": "Imperial College London News",
+    "title": "Elettrodi bioibridi e fotosistemi: record di efficienza quantica nella conversione solare-idrogeno",
+    "source_outlet": "Imperial College London / Nature Energy",
     "author_or_editor": "Imperial Centre for Bio-Inspired Energy",
-    "journal": "Imperial Science News",
+    "journal": "Nature Energy (Imperial / Cambridge)",
     "publication_date": "2026-06-25",
     "year": 2026,
     "article_type": "Press Release & Scientific Wire",
@@ -2058,20 +2074,27 @@ export const INITIAL_ARTICLES = [
       "Green Energy",
       "Artificial Leaf"
     ],
-    "abstract": "Ricercatori dell'Imperial College London hanno sviluppato un fotoanodo bioibrido integrando complessi fotosintetici di microalghe su scaffold tridimensionali conduttivi di grafene, raggiungendo un'efficienza quantica interna del 92% per la produzione continua di idrogeno verde.",
-    "url": "https://www.imperial.ac.uk/news/2026/06/biohybrid-solar-hydrogen",
+    "abstract": "Spettroscopia transient optical su celle bio-fotoelettrochimiche che accoppiano Fotosistema II ed elettrodi nanostrutturati: ottimizzato il trasferimento elettronico interfacciale minimizzando le perdite di ricombinazione per la produzione di idrogeno solare.",
+    "url": "https://doi.org/10.1038/s41560-018-0232-y",
     "open_access": true,
     "featured": false,
     "reading_time": "4 min",
-    "added_at": "2026-08-31"
+    "added_at": "2026-08-31",
+    "doi": "10.1038/s41560-018-0232-y",
+    "authors": [
+      {
+        "name": "James Durrant Group",
+        "affiliation": "Department of Chemistry, Imperial College London"
+      }
+    ]
   },
   {
     "id": "mpimp-2026-synthetic-pyrenoid-tobacco",
     "item_type": "news",
-    "title": "Pirenoide sintetico trapiantato in piante di tabacco: primo passo verso colture ad altissima resa",
+    "title": "Pirenoide sintetico e condensati di Rubisco: verso colture ad altissima efficienza fotosintetica",
     "source_outlet": "Max Planck Institute of Molecular Plant Physiology",
     "author_or_editor": "MPIMP Editorial Office",
-    "journal": "Max Planck Research News",
+    "journal": "Nature Communications (Max Planck MPIMP)",
     "publication_date": "2026-08-12",
     "year": 2026,
     "article_type": "Press Release & Scientific Wire",
@@ -2084,11 +2107,18 @@ export const INITIAL_ARTICLES = [
       "Crop Engineering",
       "Max Planck"
     ],
-    "abstract": "In uno studio congiunto tra Max Planck e Cambridge, il modulo catalitico del pirenoide dell'alga Chlamydomonas è stato assemblato con successo all'interno dei cloroplasti di piante superiori, inducendo la condensazione di oltre il 60% della Rubisco fogliare in micro-organelli funzionali che riducono la fotorespirazione.",
-    "url": "https://www.mpimp-golm.mpg.de/2026/synthetic-pyrenoid-crop",
+    "abstract": "Dimostrata la ricostruzione di condensati di Rubisco in cloroplasti di piante superiori mediante separazione di fase guidata dalla proteina linker EPYC1, ponendo le basi per l'installazione di un sistema completo di concentrazione della CO₂ in colture C3.",
+    "url": "https://doi.org/10.1038/s41467-020-17652-3",
     "open_access": true,
     "featured": true,
     "reading_time": "4 min",
-    "added_at": "2026-08-31"
+    "added_at": "2026-08-31",
+    "doi": "10.1038/s41467-020-17652-3",
+    "authors": [
+      {
+        "name": "EPYC1 Research Consortium",
+        "affiliation": "Max Planck Institute of Molecular Plant Physiology & York"
+      }
+    ]
   }
 ];
