@@ -1,0 +1,6 @@
+.DS_Store
+.git
+.gitignore
+CONTESTO_PROGETTO.txt
+scripts/
+tests/

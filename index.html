@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photosynthesis Digest · Vetrina Scientifica & News</title>
+  <meta name="description" content="Vetrina scientifica quotidiana e rassegna della letteratura internazionale su tutti gli aspetti e organismi della fotosintesi.">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    
+    <!-- Top Editorial Header -->
+    <header class="masthead">
+      <div class="container masthead-inner">
+        <div class="masthead-brand">
+          <div class="brand-badge">
+            <span class="pulse-dot"></span>
+            <span class="edition-label">Rassegna Scientifica Quotidiana</span>
+          </div>
+          <h1 class="journal-title">Photosynthesis Digest</h1>
+          <p class="journal-subtitle">Letteratura peer-reviewed, biologia strutturale, biofisica, genetica e biotecnologie della fotosintesi</p>
+        </div>
+
+        <div class="masthead-metrics">
+          <div class="metric-card">
+            <span class="metric-value" id="metric-total">15</span>
+            <span class="metric-label">Articoli Tracciati</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value" id="metric-journals">6</span>
+            <span class="metric-label">Riviste Censite</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value" id="metric-latest-date">Lug-Ago 2026</span>
+            <span class="metric-label">Ultimo Rilascio</span>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-primary" id="btn-open-doi-drawer" title="Aggiungi rapidamente un articolo inserendo il DOI">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+              <span>Aggiungi via DOI</span>
+            </button>
+            <button class="btn btn-secondary" id="btn-export-data" title="Esporta dataset in JSON o BibTeX">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+              <span>Esporta</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation & Sticky Toolbar -->
+    <nav class="toolbar-sticky" id="toolbar">
+      <div class="container toolbar-inner">
+        
+        <!-- Search bar -->
+        <div class="search-box">
+          <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" id="search-input" placeholder="Cerca per titolo, autore, rivista, DOI, organismo o keyword..." autocomplete="off" spellcheck="false">
+          <button id="search-clear" class="btn-icon hidden" title="Cancella ricerca">✕</button>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="filters-row">
+          <!-- Category Filter -->
+          <div class="filter-group">
+            <label for="filter-category" class="filter-label">Macro-Area:</label>
+            <select id="filter-category" class="select-input">
+              <option value="ALL">Tutte le Aree</option>
+              <option value="Structural Biology & Cryo-EM">Biologia Strutturale & Cryo-EM</option>
+              <option value="Molecular Genetics & Crop Engineering">Genetica & Ingegneria Cloroplastica</option>
+              <option value="Biophysics & Photoprotection">Biofisica & Fotoprotezione (NPQ)</option>
+              <option value="Photoprotection & Algae">Fotoprotezione & Alghe</option>
+              <option value="Carbon Fixation & Pyrenoids">Fissazione CO₂ & Pirenoide</option>
+              <option value="Bioenergy & Synthetic Biology">Bioenergia & Fotosintesi Artificiale</option>
+              <option value="Evolution & Enzymology">Evoluzione & Enzimologia</option>
+              <option value="Environmental Biotechnology & Algae">Biotecnologie Ambientali & Chlorella</option>
+              <option value="News & Perspectives">News & Perspectives</option>
+            </select>
+          </div>
+
+          <!-- Organism Filter -->
+          <div class="filter-group">
+            <label for="filter-organism" class="filter-label">Organismo:</label>
+            <select id="filter-organism" class="select-input">
+              <option value="ALL">Tutti gli Organismi</option>
+              <option value="Arabidopsis thaliana">Arabidopsis thaliana</option>
+              <option value="Chlamydomonas reinhardtii">Chlamydomonas reinhardtii</option>
+              <option value="Anabaena sp. PCC 7120">Anabaena / Cianobatteri</option>
+              <option value="Synechocystis sp. PCC 6803">Synechocystis sp. PCC 6803</option>
+              <option value="Chlorella vulgaris">Chlorella vulgaris</option>
+              <option value="Cyanidioschyzon merolae">Cyanidioschyzon merolae (Alga Rossa)</option>
+              <option value="Oryza sativa (Rice)">Oryza sativa (Riso / Piante)</option>
+              <option value="Diverse Microbial Clades">Cladi Microbici Diversi</option>
+              <option value="Synthetic Biohybrid">Bioibridi & Sistemi Sintetici</option>
+            </select>
+          </div>
+
+          <!-- Sort Order -->
+          <div class="filter-group">
+            <label for="sort-order" class="filter-label">Ordina per:</label>
+            <select id="sort-order" class="select-input">
+              <option value="date-desc">Data (Più recente prima)</option>
+              <option value="date-asc">Data (Meno recente prima)</option>
+              <option value="journal-asc">Rivista (A-Z)</option>
+              <option value="title-asc">Titolo (A-Z)</option>
+            </select>
+          </div>
+
+          <!-- Bookmarks toggle -->
+          <button class="btn btn-outline" id="btn-toggle-saved" title="Mostra solo gli articoli salvati tra i preferiti">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            <span id="saved-btn-text">Salvati (<span id="saved-count">0</span>)</span>
+          </button>
+
+          <!-- Reset Button -->
+          <button class="btn btn-text" id="btn-reset-filters" title="Reimposta tutti i filtri">
+            <span>Reimposta</span>
+          </button>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="container main-content">
+      
+      <!-- Active filters summary & count -->
+      <div class="results-header">
+        <div class="results-count-wrapper">
+          <span class="results-count" id="visible-count">15</span>
+          <span class="results-label" id="results-count-label">articoli scientifici selezionati</span>
+        </div>
+        <div class="quick-tags" id="quick-category-pills">
+          <!-- Dynamic pills rendered by JS -->
+        </div>
+      </div>
+
+      <!-- Spotlight / Featured Article Banner -->
+      <section class="spotlight-section" id="spotlight-container">
+        <!-- Rendered dynamically if a featured article is present -->
+      </section>
+
+      <!-- Articles Grid -->
+      <section class="articles-grid" id="articles-container">
+        <!-- Cards injected via app.js -->
+      </section>
+
+      <!-- Empty State -->
+      <div class="empty-state hidden" id="empty-state">
+        <div class="empty-icon">🔬</div>
+        <h3>Nessun articolo corrispondente ai criteri</h3>
+        <p>Prova a modificare i termini di ricerca o a selezionare una diversa categoria/organismo.</p>
+        <button class="btn btn-primary" id="btn-empty-reset">Mostra tutti gli articoli</button>
+      </div>
+
+    </main>
+
+    <!-- Article Detail Modal -->
+    <div class="modal-overlay hidden" id="article-modal" role="dialog" aria-modal="true">
+      <div class="modal-card">
+        <header class="modal-header">
+          <div class="modal-meta-top">
+            <span class="badge badge-journal" id="modal-journal">Nature</span>
+            <span class="badge badge-date" id="modal-date">2026-07-29</span>
+            <span class="badge badge-type" id="modal-type">Research Article</span>
+            <span class="badge badge-oa hidden" id="modal-oa">Open Access</span>
+          </div>
+          <button class="modal-close" id="modal-close" aria-label="Chiudi finestra">✕</button>
+        </header>
+
+        <div class="modal-body">
+          <h2 class="modal-title" id="modal-title">Titolo dell'articolo</h2>
+          
+          <div class="modal-authors-section">
+            <h4 class="section-micro-title">AUTORI & AFFILIAZIONI</h4>
+            <div class="modal-authors-list" id="modal-authors">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <div class="modal-badges-row" id="modal-tags">
+            <!-- Tags & Organism pills -->
+          </div>
+
+          <div class="modal-abstract-section">
+            <h4 class="section-micro-title">ABSTRACT UFFICIALE</h4>
+            <div class="modal-abstract-text" id="modal-abstract"></div>
+          </div>
+
+          <div class="modal-citation-section">
+            <div class="citation-header">
+              <h4 class="section-micro-title">CITAZIONE ACCADEMICA</h4>
+              <div class="citation-formats">
+                <button class="btn-format active" data-fmt="apa">APA</button>
+                <button class="btn-format" data-fmt="bibtex">BibTeX</button>
+                <button class="btn-format" data-fmt="ris">RIS</button>
+              </div>
+            </div>
+            <pre class="citation-box" id="modal-citation-text"></pre>
+          </div>
+        </div>
+
+        <footer class="modal-footer">
+          <div class="doi-container">
+            <span class="doi-label">DOI:</span>
+            <code class="doi-code" id="modal-doi">10.1038/xxx</code>
+            <button class="btn-copy" id="btn-copy-doi" title="Copia DOI negli appunti">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              <span>Copia DOI</span>
+            </button>
+          </div>
+          <div class="modal-actions-right">
+            <button class="btn btn-outline" id="modal-btn-bookmark">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+              <span id="modal-bookmark-label">Salva nei preferiti</span>
+            </button>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="modal-link-external">
+              <span>Vai all'Editore Ufficiale</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg>
+            </a>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- DOI Ingestion Drawer -->
+    <div class="drawer-overlay hidden" id="doi-drawer">
+      <div class="drawer-panel">
+        <header class="drawer-header">
+          <div>
+            <h3>Inserimento Rapido via DOI / CLI</h3>
+            <p>Aggiungi articoli al database in 1 passaggio senza alterare il codice dell'applicazione.</p>
+          </div>
+          <button class="drawer-close" id="drawer-close">✕</button>
+        </header>
+
+        <div class="drawer-body">
+          
+          <div class="instruction-card">
+            <h4>1. Inserimento Automatico da Riga di Comando (Consigliato)</h4>
+            <p>Esegui lo script Python dedicato passando uno o più DOI. Lo script contatta le API di CrossRef / Europe PMC, formatta i metadati e aggiorna il catalogo:</p>
+            <div class="code-block-wrapper">
+              <code>python3 scripts/add_by_doi.py 10.1038/s41586-026-10847-3</code>
+              <button class="btn-copy-code" data-code="python3 scripts/add_by_doi.py 10.1038/s41586-026-10847-3">Copia</button>
+            </div>
+            <p class="micro-note">Supporta anche liste di DOI multiple: <code>python3 scripts/add_by_doi.py 10.1038/... 10.1073/...</code></p>
+          </div>
+
+          <div class="instruction-card">
+            <h4>2. Scheduled Task Giornaliero Automatico</h4>
+            <p>Per la scansione giornaliera automatica delle ultime uscite in letteratura su fotosintesi:</p>
+            <div class="code-block-wrapper">
+              <code>python3 scripts/daily_fetch.py --days 1 --max-results 20</code>
+              <button class="btn-copy-code" data-code="python3 scripts/daily_fetch.py --days 1 --max-results 20">Copia</button>
+            </div>
+          </div>
+
+          <div class="instruction-card">
+            <h4>3. Inserimento Rapido nel Browser (Sessione Locale)</h4>
+            <p>Incolla un DOI o link di un articolo per visualizzarne l'anteprima e salvarlo nella sessione corrente:</p>
+            <div class="doi-form-group">
+              <input type="text" id="input-manual-doi" placeholder="es. 10.1038/s41477-026-02357-x oppure https://doi.org/..." class="input-text">
+              <button class="btn btn-primary" id="btn-fetch-doi-client">Anteprima & Aggiungi</button>
+            </div>
+            <div id="doi-fetch-status" class="status-msg hidden"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Export Modal -->
+    <div class="modal-overlay hidden" id="export-modal">
+      <div class="modal-card modal-small">
+        <header class="modal-header">
+          <h3 class="modal-title">Esporta Dataset Articoli</h3>
+          <button class="modal-close" id="export-modal-close">✕</button>
+        </header>
+        <div class="modal-body">
+          <p>Scegli il formato desiderato per esportare la selezione corrente di <strong id="export-count-label">15</strong> articoli:</p>
+          <div class="export-options">
+            <button class="btn btn-outline btn-export-opt" data-type="json">
+              <strong>JSON Completo</strong>
+              <span>Tutti i metadati strutturati e campi di classificazione</span>
+            </button>
+            <button class="btn btn-outline btn-export-opt" data-type="bibtex">
+              <strong>BibTeX (.bib)</strong>
+              <span>Pronto per LaTeX, Overleaf, Zotero e Mendeley</span>
+            </button>
+            <button class="btn btn-outline btn-export-opt" data-type="csv">
+              <strong>Tabella CSV</strong>
+              <span>Foglio di calcolo con Titoli, Autori, Date, Riviste e DOI</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Editorial Footer -->
+    <footer class="journal-footer">
+      <div class="container footer-inner">
+        <div class="footer-col">
+          <h4>Photosynthesis Digest</h4>
+          <p>Strumento scientifico locale-first per il monitoraggio rigoroso e l'aggregazione delle scoperte sulla fotosintesi ossigenica, organismi modello (<em>Chlamydomonas</em>, <em>Arabidopsis</em>, <em>Chlorella</em>, cianobatteri, alghe rosse, diatomee) e fotosintesi artificiale.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Fonti & Protocollo</h4>
+          <p>Tutti gli articoli sono tratti esclusivamente da fonti primarie peer-reviewed (CrossRef, Europe PMC, PubMed). Nessuna allucinazione o sintesi interpretativa non verificata.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Comandi Rapidi</h4>
+          <p>Avvio HTTP locale: <code>python3 -m http.server 8780</code></p>
+          <p>Aggiornamento DOI: <code>python3 scripts/add_by_doi.py &lt;DOI&gt;</code></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+          <span>&copy; 2026 Photosynthesis Digest · Laboratorio di Fotosintesi & Bioenergetica</span>
+          <span>Compatibile con Vercel & GitHub Actions</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Toast Notification System -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Vanilla ES Module Script Entry -->
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>
