@@ -220,6 +220,7 @@ def fetch_doi_metadata(doi):
 
     return {
         "id": item_id,
+        "item_type": "article",
         "doi": clean,
         "title": title,
         "authors": authors,
@@ -234,6 +235,7 @@ def fetch_doi_metadata(doi):
         "url": f"https://doi.org/{clean}",
         "open_access": open_access,
         "featured": False,
+        "reading_time": "5 min",
         "added_at": datetime.now().strftime("%Y-%m-%d")
     }
 
@@ -275,7 +277,7 @@ def main():
         except Exception as e:
             print(f"[!] Errore lettura database esistente: {e}")
 
-    doi_map = {clean_doi(a["doi"]).lower(): i for i, a in enumerate(existing_articles)}
+    doi_map = {clean_doi(a["doi"]).lower(): i for i, a in enumerate(existing_articles) if a.get("doi")}
 
     added_count = 0
     updated_count = 0

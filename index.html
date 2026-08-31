@@ -3,334 +3,463 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Photosynthesis Digest · Vetrina Scientifica & News</title>
-  <meta name="description" content="Vetrina scientifica quotidiana e rassegna della letteratura internazionale su tutti gli aspetti e organismi della fotosintesi.">
+  <title>Photosynthesis Digest · Rivista Scientifica & News</title>
+  <meta name="description" content="Rivista scientifica online e rassegna della letteratura internazionale su biologia strutturale, biofisica, alghe e fotosintesi.">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="app-layout">
     
-    <!-- Top Editorial Header -->
-    <header class="masthead">
+    <!-- Top Editorial Edition Bar -->
+    <aside class="edition-topbar">
+      <div class="container edition-topbar-inner">
+        <div class="topbar-left">
+          <span class="edition-tag">Volume IV · Issue 8</span>
+          <span class="topbar-sep">•</span>
+          <span class="edition-date" id="topbar-current-date">Agosto 2026</span>
+          <span class="topbar-sep">•</span>
+          <span class="edition-lab">Laboratorio di Fotosintesi &amp; Bioenergetica</span>
+        </div>
+        <div class="topbar-right">
+          <span class="live-dot-wrapper">
+            <span class="live-dot"></span>
+            <span class="live-status">Dataset Verificato &amp; Attivo</span>
+          </span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Magazine Masthead -->
+    <header class="magazine-masthead">
       <div class="container masthead-inner">
-        <div class="masthead-brand">
-          <div class="brand-badge">
-            <span class="pulse-dot"></span>
-            <span class="edition-label">Rassegna Scientifica Quotidiana</span>
-          </div>
-          <h1 class="journal-title">Photosynthesis Digest</h1>
-          <p class="journal-subtitle">Letteratura peer-reviewed, biologia strutturale, biofisica, genetica e biotecnologie della fotosintesi</p>
+        
+        <div class="masthead-center-brand">
+          <div class="masthead-kicker">Rassegna Editoriale &amp; Monitoraggio della Letteratura</div>
+          <h1 class="magazine-logo">PHOTOSYNTHESIS DIGEST</h1>
+          <p class="magazine-motto">Biologia strutturale, biofisica delle membrane, genetica plastidica, alghe e bioenergie</p>
         </div>
 
-        <div class="masthead-metrics">
-          <div class="metric-card">
-            <span class="metric-value" id="metric-total">15</span>
-            <span class="metric-label">Articoli Tracciati</span>
+        <div class="masthead-meta-panel">
+          <div class="meta-stat-group">
+            <div class="stat-pill">
+              <span class="stat-num" id="metric-papers">17</span>
+              <span class="stat-lbl">Articoli Peer-Reviewed</span>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-num" id="metric-news">6</span>
+              <span class="stat-lbl">Notizie &amp; Notiziari</span>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-num" id="metric-journals">8</span>
+              <span class="stat-lbl">Riviste Censite</span>
+            </div>
           </div>
-          <div class="metric-card">
-            <span class="metric-value" id="metric-journals">6</span>
-            <span class="metric-label">Riviste Censite</span>
-          </div>
-          <div class="metric-card">
-            <span class="metric-value" id="metric-latest-date">Lug-Ago 2026</span>
-            <span class="metric-label">Ultimo Rilascio</span>
-          </div>
-          <div class="header-actions">
-            <button class="btn btn-primary" id="btn-open-doi-drawer" title="Aggiungi rapidamente un articolo inserendo il DOI">
+
+          <div class="masthead-action-buttons">
+            <button class="btn btn-petrol-soft" id="btn-open-doi-drawer" title="Aggiungi rapidamente un articolo inserendo il DOI">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
               <span>Aggiungi via DOI</span>
             </button>
-            <button class="btn btn-secondary" id="btn-export-data" title="Esporta dataset in JSON o BibTeX">
+            <button class="btn btn-petrol-ghost" id="btn-export-data" title="Esporta dataset in JSON, BibTeX o CSV">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-              <span>Esporta</span>
+              <span>Esporta Rassegna</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Magazine Navigation & Filter Bar -->
+    <nav class="magazine-nav" id="toolbar">
+      <div class="container nav-inner">
+        
+        <!-- View Switcher Tabs -->
+        <div class="view-tabs" role="tablist">
+          <button class="tab-btn active" data-view="magazine" role="tab" id="tab-magazine" title="Visualizzazione completa a rivista con copertina, notizie e articoli">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10M6 10h10M6 14h6"/></svg>
+            <span>Edizione Rivista</span>
+          </button>
+          <button class="tab-btn" data-view="articles" role="tab" id="tab-articles" title="Consulta tutti gli articoli scientifici peer-reviewed">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            <span>Articoli Scientifici (<span id="tab-articles-count">17</span>)</span>
+          </button>
+          <button class="tab-btn" data-view="news" role="tab" id="tab-news" title="Visualizza notizie, flash, rassegna stampa ed estratti verificati">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <span>Notizie &amp; Rassegna Stampa (<span id="tab-news-count">6</span>)</span>
+          </button>
+          <button class="tab-btn" data-view="saved" role="tab" id="tab-saved" title="Visualizza i segnalibri salvati">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            <span>I Miei Salvati (<span id="saved-count">0</span>)</span>
+          </button>
+        </div>
+
+        <!-- Search Box -->
+        <div class="search-wrap">
+          <svg class="search-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" id="search-input" placeholder="Cerca nella rivista (titolo, autore, DOI, rivista, argomento)..." autocomplete="off" spellcheck="false">
+          <button id="search-clear" class="btn-clear-search hidden" title="Cancella ricerca">✕</button>
+        </div>
+
+      </div>
+
+      <!-- Secondary Filters Bar -->
+      <div class="sub-filter-bar">
+        <div class="container sub-filter-inner">
+          <div class="filters-left">
+            
+            <div class="filter-item">
+              <label for="filter-category" class="filter-lbl">Disciplina / Tema:</label>
+              <select id="filter-category" class="filter-select">
+                <option value="ALL">Tutti i Temi</option>
+                <option value="Structural Biology & Cryo-EM">Biologia Strutturale &amp; Cryo-EM</option>
+                <option value="Molecular Genetics & Crop Engineering">Genetica &amp; Rubisco</option>
+                <option value="Biophysics & Photoprotection">Biofisica &amp; NPQ</option>
+                <option value="Photoprotection & Algae">Fotoprotezione &amp; Alghe (LHCSR/Chlamy)</option>
+                <option value="Carbon Fixation & Pyrenoids">Fissazione CO₂ &amp; Pirenoide</option>
+                <option value="Bioenergy & Synthetic Biology">Bioenergia &amp; Fotosintesi Artificiale</option>
+                <option value="Evolution & Enzymology">Evoluzione &amp; Enzimologia</option>
+                <option value="Environmental Biotechnology & Algae">Biotecnologie &amp; Chlorella</option>
+                <option value="News & Perspectives">News &amp; Perspectives</option>
+              </select>
+            </div>
+
+            <div class="filter-item">
+              <label for="filter-organism" class="filter-lbl">Organismo:</label>
+              <select id="filter-organism" class="filter-select">
+                <option value="ALL">Tutti gli Organismi</option>
+                <option value="Arabidopsis">Arabidopsis thaliana</option>
+                <option value="Chlamydomonas">Chlamydomonas reinhardtii</option>
+                <option value="Chlorella">Chlorella (vulgaris / ohadii)</option>
+                <option value="Anabaena">Anabaena sp. PCC 7120</option>
+                <option value="Synechocystis">Synechocystis sp. PCC 6803</option>
+                <option value="Cyanidioschyzon">Cyanidioschyzon merolae (Alga Rossa)</option>
+                <option value="Chromera">Chromera velia</option>
+                <option value="Oryza">Oryza sativa (Riso / Piante)</option>
+                <option value="Synthetic">Bioibridi &amp; Sistemi Sintetici</option>
+              </select>
+            </div>
+
+            <div class="filter-item">
+              <label for="sort-order" class="filter-lbl">Ordina:</label>
+              <select id="sort-order" class="filter-select">
+                <option value="date-desc">Data (Più recente)</option>
+                <option value="date-asc">Data (Meno recente)</option>
+                <option value="journal-asc">Rivista (A-Z)</option>
+                <option value="title-asc">Titolo (A-Z)</option>
+              </select>
+            </div>
+
+          </div>
+
+          <div class="filters-right">
+            <button class="btn btn-subtle-reset" id="btn-reset-filters" title="Reimposta tutti i parametri">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+              <span>Reimposta</span>
             </button>
           </div>
         </div>
       </div>
-    </header>
-
-    <!-- Navigation & Sticky Toolbar -->
-    <nav class="toolbar-sticky" id="toolbar">
-      <div class="container toolbar-inner">
-        
-        <!-- Search bar -->
-        <div class="search-box">
-          <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-          <input type="text" id="search-input" placeholder="Cerca per titolo, autore, rivista, DOI, organismo o keyword..." autocomplete="off" spellcheck="false">
-          <button id="search-clear" class="btn-icon hidden" title="Cancella ricerca">✕</button>
-        </div>
-
-        <!-- Filter Controls -->
-        <div class="filters-row">
-          <!-- Category Filter -->
-          <div class="filter-group">
-            <label for="filter-category" class="filter-label">Macro-Area:</label>
-            <select id="filter-category" class="select-input">
-              <option value="ALL">Tutte le Aree</option>
-              <option value="Structural Biology & Cryo-EM">Biologia Strutturale & Cryo-EM</option>
-              <option value="Molecular Genetics & Crop Engineering">Genetica & Ingegneria Cloroplastica</option>
-              <option value="Biophysics & Photoprotection">Biofisica & Fotoprotezione (NPQ)</option>
-              <option value="Photoprotection & Algae">Fotoprotezione & Alghe</option>
-              <option value="Carbon Fixation & Pyrenoids">Fissazione CO₂ & Pirenoide</option>
-              <option value="Bioenergy & Synthetic Biology">Bioenergia & Fotosintesi Artificiale</option>
-              <option value="Evolution & Enzymology">Evoluzione & Enzimologia</option>
-              <option value="Environmental Biotechnology & Algae">Biotecnologie Ambientali & Chlorella</option>
-              <option value="News & Perspectives">News & Perspectives</option>
-            </select>
-          </div>
-
-          <!-- Organism Filter -->
-          <div class="filter-group">
-            <label for="filter-organism" class="filter-label">Organismo:</label>
-            <select id="filter-organism" class="select-input">
-              <option value="ALL">Tutti gli Organismi</option>
-              <option value="Arabidopsis thaliana">Arabidopsis thaliana</option>
-              <option value="Chlamydomonas reinhardtii">Chlamydomonas reinhardtii</option>
-              <option value="Anabaena sp. PCC 7120">Anabaena / Cianobatteri</option>
-              <option value="Synechocystis sp. PCC 6803">Synechocystis sp. PCC 6803</option>
-              <option value="Chlorella vulgaris">Chlorella vulgaris</option>
-              <option value="Cyanidioschyzon merolae">Cyanidioschyzon merolae (Alga Rossa)</option>
-              <option value="Oryza sativa (Rice)">Oryza sativa (Riso / Piante)</option>
-              <option value="Diverse Microbial Clades">Cladi Microbici Diversi</option>
-              <option value="Synthetic Biohybrid">Bioibridi & Sistemi Sintetici</option>
-            </select>
-          </div>
-
-          <!-- Sort Order -->
-          <div class="filter-group">
-            <label for="sort-order" class="filter-label">Ordina per:</label>
-            <select id="sort-order" class="select-input">
-              <option value="date-desc">Data (Più recente prima)</option>
-              <option value="date-asc">Data (Meno recente prima)</option>
-              <option value="journal-asc">Rivista (A-Z)</option>
-              <option value="title-asc">Titolo (A-Z)</option>
-            </select>
-          </div>
-
-          <!-- Bookmarks toggle -->
-          <button class="btn btn-outline" id="btn-toggle-saved" title="Mostra solo gli articoli salvati tra i preferiti">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-            <span id="saved-btn-text">Salvati (<span id="saved-count">0</span>)</span>
-          </button>
-
-          <!-- Reset Button -->
-          <button class="btn btn-text" id="btn-reset-filters" title="Reimposta tutti i filtri">
-            <span>Reimposta</span>
-          </button>
-        </div>
-
-      </div>
     </nav>
 
-    <!-- Main Content Area -->
-    <main class="container main-content">
+    <!-- Main Magazine Content Layout -->
+    <main class="container main-editorial-content">
       
-      <!-- Active filters summary & count -->
-      <div class="results-header">
-        <div class="results-count-wrapper">
-          <span class="results-count" id="visible-count">15</span>
-          <span class="results-label" id="results-count-label">articoli scientifici selezionati</span>
+      <!-- Category quick tags bar -->
+      <section class="quick-category-section">
+        <div class="quick-category-pills" id="quick-category-pills">
+          <!-- Populated by app.js -->
         </div>
-        <div class="quick-tags" id="quick-category-pills">
-          <!-- Dynamic pills rendered by JS -->
+      </section>
+
+      <!-- Active search / filter notice if searching -->
+      <div class="filter-status-banner hidden" id="filter-status-banner">
+        <div class="status-banner-text">
+          Risultati filtrati: <strong id="filter-active-count">0</strong> contenuti trovati per i criteri impostati.
         </div>
+        <button class="btn-banner-reset" id="btn-banner-reset">Mostra Edizione Completa</button>
       </div>
 
-      <!-- Spotlight / Featured Article Banner -->
-      <section class="spotlight-section" id="spotlight-container">
-        <!-- Rendered dynamically if a featured article is present -->
-      </section>
+      <!-- ================================================================= -->
+      <!-- MAGAZINE VIEW: Lead Feature Cover Story & Editorial Highlights    -->
+      <!-- ================================================================= -->
+      <div id="magazine-main-view">
+        
+        <!-- Cover Story / Lead Story Spread -->
+        <section class="cover-feature-spread" id="cover-feature-container">
+          <!-- Injected dynamically via app.js -->
+        </section>
 
-      <!-- Articles Grid -->
-      <section class="articles-grid" id="articles-container">
-        <!-- Cards injected via app.js -->
-      </section>
+        <!-- Secondary Highlights 2-column Grid -->
+        <section class="editorial-highlights-section" id="editorial-highlights-container">
+          <!-- Injected dynamically via app.js -->
+        </section>
+
+        <!-- =============================================================== -->
+        <!-- SECTION: Notizie & Rassegna Stampa Scientifica (Verified News)   -->
+        <!-- =============================================================== -->
+        <section class="news-wire-section" id="news-section">
+          <div class="section-editorial-header">
+            <div class="section-title-wrap">
+              <span class="section-kicker">Informazione Scientifica &amp; Biotech</span>
+              <h2 class="section-title">Notizie &amp; Rassegna Stampa</h2>
+            </div>
+            <p class="section-desc">Estratti, comunicati verificati e innovazioni tecnologiche da riviste e istituti di ricerca (ScienceDaily, Phys.org, Nature Plants, MIT, Max Planck, Cambridge).</p>
+          </div>
+
+          <div class="news-cards-grid" id="news-cards-container">
+            <!-- News cards rendered by app.js -->
+          </div>
+        </section>
+
+        <!-- Editorial Insight / Quote Banner -->
+        <section class="editorial-insight-banner">
+          <div class="insight-content">
+            <span class="insight-label">Nota Editoriale · Ricerca sulla Fotosintesi</span>
+            <blockquote class="insight-quote">
+              "Dalle strutture ad altissima risoluzione dei supercomplessi PSI-PSII in situ all'ingegneria catalitica della Rubisco e ai sistemi bioibridi semi-artificiali: la ricerca moderna sulla fotosintesi unisce per la prima volta la biologia strutturale nativa alla transizione energetica globale."
+            </blockquote>
+            <cite class="insight-cite">— Laboratorio di Fotosintesi &amp; Bioenergetica</cite>
+          </div>
+        </section>
+
+        <!-- =============================================================== -->
+        <!-- SECTION: Ultime Pubblicazioni Peer-Reviewed (Research Papers)   -->
+        <!-- =============================================================== -->
+        <section class="research-archive-section" id="research-section">
+          <div class="section-editorial-header">
+            <div class="section-title-wrap">
+              <span class="section-kicker">Letteratura Internazionale Peer-Reviewed</span>
+              <h2 class="section-title">Articoli di Ricerca &amp; Strutture</h2>
+            </div>
+            <div class="section-header-meta">
+              <span class="meta-tag-count" id="research-count-tag">17 pubblicazioni censite</span>
+            </div>
+          </div>
+
+          <div class="research-cards-grid" id="research-cards-container">
+            <!-- Research paper cards rendered by app.js -->
+          </div>
+        </section>
+
+      </div>
+
+      <!-- ================================================================= -->
+      <!-- FILTERED / FLAT VIEW (When searching, filtering, or in tabs)      -->
+      <!-- ================================================================= -->
+      <div class="flat-results-view hidden" id="flat-results-view">
+        <div class="flat-grid" id="flat-cards-container">
+          <!-- Dynamically populated cards -->
+        </div>
+      </div>
 
       <!-- Empty State -->
       <div class="empty-state hidden" id="empty-state">
-        <div class="empty-icon">🔬</div>
-        <h3>Nessun articolo corrispondente ai criteri</h3>
-        <p>Prova a modificare i termini di ricerca o a selezionare una diversa categoria/organismo.</p>
-        <button class="btn btn-primary" id="btn-empty-reset">Mostra tutti gli articoli</button>
+        <div class="empty-state-icon">🔬</div>
+        <h3 class="empty-state-title">Nessun contenuto corrispondente</h3>
+        <p class="empty-state-text">Non abbiamo trovato articoli o notizie corrispondenti ai criteri di ricerca e filtro selezionati.</p>
+        <button class="btn btn-petrol" id="btn-empty-reset">Mostra Tutta la Rivista</button>
       </div>
 
     </main>
 
-    <!-- Article Detail Modal -->
+    <!-- =================================================================== -->
+    <!-- ARTICLE & NEWS DETAIL MODAL (Universal Academic & News Reader)      -->
+    <!-- =================================================================== -->
     <div class="modal-overlay hidden" id="article-modal" role="dialog" aria-modal="true">
       <div class="modal-card">
+        
         <header class="modal-header">
-          <div class="modal-meta-top">
+          <div class="modal-meta-badges" id="modal-top-badges">
             <span class="badge badge-journal" id="modal-journal">Nature</span>
             <span class="badge badge-date" id="modal-date">2026-07-29</span>
             <span class="badge badge-type" id="modal-type">Research Article</span>
             <span class="badge badge-oa hidden" id="modal-oa">Open Access</span>
           </div>
-          <button class="modal-close" id="modal-close" aria-label="Chiudi finestra">✕</button>
+          <button class="modal-close-btn" id="modal-close" aria-label="Chiudi finestra">✕</button>
         </header>
 
-        <div class="modal-body">
-          <h2 class="modal-title" id="modal-title">Titolo dell'articolo</h2>
+        <div class="modal-body-scroll">
           
-          <div class="modal-authors-section">
-            <h4 class="section-micro-title">AUTORI & AFFILIAZIONI</h4>
-            <div class="modal-authors-list" id="modal-authors">
-              <!-- Rendered via JS -->
+          <h2 class="modal-headline" id="modal-title">Titolo del documento</h2>
+          
+          <!-- Authors or News Source section -->
+          <div class="modal-source-section" id="modal-authors-section">
+            <div class="modal-section-kicker" id="modal-authors-kicker">AUTORI &amp; AFFILIAZIONI</div>
+            <div class="modal-authors-content" id="modal-authors">
+              <!-- Rendered by JS -->
             </div>
           </div>
 
-          <div class="modal-badges-row" id="modal-tags">
-            <!-- Tags & Organism pills -->
+          <!-- Tags & Organism Pills -->
+          <div class="modal-tags-row" id="modal-tags">
+            <!-- Badges rendered by JS -->
           </div>
 
-          <div class="modal-abstract-section">
-            <h4 class="section-micro-title">ABSTRACT UFFICIALE</h4>
-            <div class="modal-abstract-text" id="modal-abstract"></div>
+          <!-- Abstract or News Body -->
+          <div class="modal-abstract-box">
+            <div class="modal-section-kicker" id="modal-body-kicker">TESTO &amp; ABSTRACT INTEGRALE</div>
+            <div class="modal-abstract-content" id="modal-abstract"></div>
           </div>
 
-          <div class="modal-citation-section">
-            <div class="citation-header">
-              <h4 class="section-micro-title">CITAZIONE ACCADEMICA</h4>
-              <div class="citation-formats">
-                <button class="btn-format active" data-fmt="apa">APA</button>
-                <button class="btn-format" data-fmt="bibtex">BibTeX</button>
-                <button class="btn-format" data-fmt="ris">RIS</button>
+          <!-- Academic Citations (shown for scientific articles) -->
+          <div class="modal-citation-box" id="modal-citation-section">
+            <div class="citation-top">
+              <span class="modal-section-kicker">CITAZIONE BIBLIOGRAFICA ACCADEMICA</span>
+              <div class="citation-format-buttons">
+                <button class="btn-fmt active" data-fmt="apa">APA</button>
+                <button class="btn-fmt" data-fmt="bibtex">BibTeX</button>
+                <button class="btn-fmt" data-fmt="ris">RIS</button>
               </div>
             </div>
-            <pre class="citation-box" id="modal-citation-text"></pre>
+            <pre class="citation-code-block" id="modal-citation-text"></pre>
           </div>
+
         </div>
 
         <footer class="modal-footer">
-          <div class="doi-container">
-            <span class="doi-label">DOI:</span>
-            <code class="doi-code" id="modal-doi">10.1038/xxx</code>
-            <button class="btn-copy" id="btn-copy-doi" title="Copia DOI negli appunti">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+          <div class="modal-footer-doi" id="modal-doi-container">
+            <span class="doi-lbl">DOI:</span>
+            <code class="doi-val" id="modal-doi">10.1038/xxx</code>
+            <button class="btn-copy-doi" id="btn-copy-doi" title="Copia DOI negli appunti">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
               <span>Copia DOI</span>
             </button>
           </div>
-          <div class="modal-actions-right">
-            <button class="btn btn-outline" id="modal-btn-bookmark">
+          <div class="modal-footer-actions">
+            <button class="btn btn-petrol-ghost" id="modal-btn-bookmark">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
               <span id="modal-bookmark-label">Salva nei preferiti</span>
             </button>
-            <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="modal-link-external">
-              <span>Vai all'Editore Ufficiale</span>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-petrol" id="modal-link-external">
+              <span id="modal-external-label">Vai alla Fonte Ufficiale</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg>
             </a>
           </div>
         </footer>
+
       </div>
     </div>
 
-    <!-- DOI Ingestion Drawer -->
+    <!-- =================================================================== -->
+    <!-- DOI INGESTION DRAWER                                                -->
+    <!-- =================================================================== -->
     <div class="drawer-overlay hidden" id="doi-drawer">
       <div class="drawer-panel">
         <header class="drawer-header">
           <div>
-            <h3>Inserimento Rapido via DOI / CLI</h3>
-            <p>Aggiungi articoli al database in 1 passaggio senza alterare il codice dell'applicazione.</p>
+            <h3 class="drawer-title">Inserimento Rapido via DOI &amp; CLI</h3>
+            <p class="drawer-subtitle">Aggiungi articoli al database in 1 passaggio interrogando CrossRef &amp; Europe PMC.</p>
           </div>
           <button class="drawer-close" id="drawer-close">✕</button>
         </header>
 
         <div class="drawer-body">
-          
-          <div class="instruction-card">
-            <h4>1. Inserimento Automatico da Riga di Comando (Consigliato)</h4>
-            <p>Esegui lo script Python dedicato passando uno o più DOI. Lo script contatta le API di CrossRef / Europe PMC, formatta i metadati e aggiorna il catalogo:</p>
-            <div class="code-block-wrapper">
+          <div class="guide-box">
+            <h4>1. Inserimento Automatico da Terminale (Consigliato)</h4>
+            <p>Esegui lo script Python passando uno o più DOI per interrogare le fonti accademiche e salvare il record:</p>
+            <div class="cli-snippet">
               <code>python3 scripts/add_by_doi.py 10.1038/s41586-026-10847-3</code>
-              <button class="btn-copy-code" data-code="python3 scripts/add_by_doi.py 10.1038/s41586-026-10847-3">Copia</button>
+              <button class="btn-copy-cli" data-code="python3 scripts/add_by_doi.py 10.1038/s41586-026-10847-3">Copia</button>
             </div>
-            <p class="micro-note">Supporta anche liste di DOI multiple: <code>python3 scripts/add_by_doi.py 10.1038/... 10.1073/...</code></p>
+            <p class="cli-subtext">Supporta elenchi multipli di DOI separati da spazio.</p>
           </div>
 
-          <div class="instruction-card">
-            <h4>2. Scheduled Task Giornaliero Automatico</h4>
-            <p>Per la scansione giornaliera automatica delle ultime uscite in letteratura su fotosintesi:</p>
-            <div class="code-block-wrapper">
+          <div class="guide-box">
+            <h4>2. Scansione Automatica Giornaliera (Scheduled Task)</h4>
+            <p>Esegui la scansione delle ultime uscite in letteratura su fotosintesi:</p>
+            <div class="cli-snippet">
               <code>python3 scripts/daily_fetch.py --days 1 --max-results 20</code>
-              <button class="btn-copy-code" data-code="python3 scripts/daily_fetch.py --days 1 --max-results 20">Copia</button>
+              <button class="btn-copy-cli" data-code="python3 scripts/daily_fetch.py --days 1 --max-results 20">Copia</button>
             </div>
           </div>
 
-          <div class="instruction-card">
-            <h4>3. Inserimento Rapido nel Browser (Sessione Locale)</h4>
-            <p>Incolla un DOI o link di un articolo per visualizzarne l'anteprima e salvarlo nella sessione corrente:</p>
-            <div class="doi-form-group">
-              <input type="text" id="input-manual-doi" placeholder="es. 10.1038/s41477-026-02357-x oppure https://doi.org/..." class="input-text">
-              <button class="btn btn-primary" id="btn-fetch-doi-client">Anteprima & Aggiungi</button>
+          <div class="guide-box">
+            <h4>3. Inserimento Diretto nel Browser</h4>
+            <p>Incolla un DOI per recuperarne i metadati online e aggiungerlo alla sessione:</p>
+            <div class="inline-doi-form">
+              <input type="text" id="input-manual-doi" placeholder="es. 10.1038/s41477-026-02357-x" class="input-doi">
+              <button class="btn btn-petrol" id="btn-fetch-doi-client">Recupera &amp; Aggiungi</button>
             </div>
-            <div id="doi-fetch-status" class="status-msg hidden"></div>
+            <div id="doi-fetch-status" class="doi-status hidden"></div>
           </div>
-
         </div>
       </div>
     </div>
 
-    <!-- Export Modal -->
+    <!-- =================================================================== -->
+    <!-- EXPORT MODAL                                                        -->
+    <!-- =================================================================== -->
     <div class="modal-overlay hidden" id="export-modal">
-      <div class="modal-card modal-small">
+      <div class="modal-card modal-compact">
         <header class="modal-header">
-          <h3 class="modal-title">Esporta Dataset Articoli</h3>
-          <button class="modal-close" id="export-modal-close">✕</button>
+          <h3 class="modal-headline">Esporta Dataset &amp; Citazioni</h3>
+          <button class="modal-close-btn" id="export-modal-close">✕</button>
         </header>
-        <div class="modal-body">
-          <p>Scegli il formato desiderato per esportare la selezione corrente di <strong id="export-count-label">15</strong> articoli:</p>
-          <div class="export-options">
-            <button class="btn btn-outline btn-export-opt" data-type="json">
-              <strong>JSON Completo</strong>
-              <span>Tutti i metadati strutturati e campi di classificazione</span>
+        <div class="modal-body-scroll">
+          <p class="export-intro">Esporta la selezione corrente di <strong id="export-count-label">23</strong> elementi nei formati accademici e tabellari standard:</p>
+          <div class="export-grid">
+            <button class="export-card-btn" data-type="json">
+              <div class="export-icon">📦</div>
+              <div class="export-info">
+                <strong>JSON Completo</strong>
+                <span>Tutti i metadati strutturati, affiliazioni, ORCID e tag</span>
+              </div>
             </button>
-            <button class="btn btn-outline btn-export-opt" data-type="bibtex">
-              <strong>BibTeX (.bib)</strong>
-              <span>Pronto per LaTeX, Overleaf, Zotero e Mendeley</span>
+            <button class="export-card-btn" data-type="bibtex">
+              <div class="export-icon">📚</div>
+              <div class="export-info">
+                <strong>BibTeX (.bib)</strong>
+                <span>Pronto per Overleaf, LaTeX, Zotero, Mendeley e JabRef</span>
+              </div>
             </button>
-            <button class="btn btn-outline btn-export-opt" data-type="csv">
-              <strong>Tabella CSV</strong>
-              <span>Foglio di calcolo con Titoli, Autori, Date, Riviste e DOI</span>
+            <button class="export-card-btn" data-type="csv">
+              <div class="export-icon">📊</div>
+              <div class="export-info">
+                <strong>Tabella CSV</strong>
+                <span>Foglio di calcolo con Titoli, Autori, Riviste, Date e DOI</span>
+              </div>
             </button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Editorial Footer -->
-    <footer class="journal-footer">
-      <div class="container footer-inner">
-        <div class="footer-col">
-          <h4>Photosynthesis Digest</h4>
-          <p>Strumento scientifico locale-first per il monitoraggio rigoroso e l'aggregazione delle scoperte sulla fotosintesi ossigenica, organismi modello (<em>Chlamydomonas</em>, <em>Arabidopsis</em>, <em>Chlorella</em>, cianobatteri, alghe rosse, diatomee) e fotosintesi artificiale.</p>
+    <!-- Magazine Editorial Footer -->
+    <footer class="magazine-footer">
+      <div class="container footer-grid">
+        <div class="footer-brand-col">
+          <h3 class="footer-title">Photosynthesis Digest</h3>
+          <p class="footer-desc">Piattaforma editoriale scientifica locale-first per il monitoraggio rigoroso, la sintesi e la divulgazione delle scoperte sulla fotosintesi ossigenica, organismi modello (<em>Arabidopsis</em>, <em>Chlamydomonas</em>, <em>Chlorella</em>, cianobatteri, alghe rosse) e fotosintesi artificiale.</p>
         </div>
-        <div class="footer-col">
-          <h4>Fonti & Protocollo</h4>
-          <p>Tutti gli articoli sono tratti esclusivamente da fonti primarie peer-reviewed (CrossRef, Europe PMC, PubMed). Nessuna allucinazione o sintesi interpretativa non verificata.</p>
+        <div class="footer-links-col">
+          <h4 class="footer-heading">Fonti &amp; Standard</h4>
+          <p class="footer-sub">Dati primari verificati da CrossRef, Europe PMC, PubMed Central e dalle principali riviste peer-reviewed internazionali (Nature, Science, PNAS, Nature Plants, Nature Communications, The New Phytologist, Bioresource Technology).</p>
         </div>
-        <div class="footer-col">
-          <h4>Comandi Rapidi</h4>
-          <p>Avvio HTTP locale: <code>python3 -m http.server 8780</code></p>
-          <p>Aggiornamento DOI: <code>python3 scripts/add_by_doi.py &lt;DOI&gt;</code></p>
+        <div class="footer-cli-col">
+          <h4 class="footer-heading">Comandi &amp; Server</h4>
+          <p class="footer-code-line">Avvio locale: <code>python3 -m http.server 8780</code></p>
+          <p class="footer-code-line">Ingestion DOI: <code>python3 scripts/add_by_doi.py &lt;DOI&gt;</code></p>
+          <p class="footer-code-line">Scheduled Fetch: <code>python3 scripts/daily_fetch.py</code></p>
         </div>
       </div>
-      <div class="footer-bottom">
-        <div class="container footer-bottom-inner">
-          <span>&copy; 2026 Photosynthesis Digest · Laboratorio di Fotosintesi & Bioenergetica</span>
-          <span>Compatibile con Vercel & GitHub Actions</span>
+      <div class="footer-bottom-bar">
+        <div class="container footer-bottom-flex">
+          <span>&copy; 2026 Photosynthesis Digest · Laboratorio di Fotosintesi &amp; Bioenergetica</span>
+          <span>Compatibile con Vercel &amp; GitHub Actions · Local-First Architecture</span>
         </div>
       </div>
     </footer>
 
   </div>
 
-  <!-- Toast Notification System -->
+  <!-- Toast Notification Container -->
   <div class="toast-container" id="toast-container"></div>
 
-  <!-- Vanilla ES Module Script Entry -->
+  <!-- Main ES Module Script Entry -->
   <script type="module" src="assets/js/app.js"></script>
 </body>
 </html>

@@ -1,70 +1,44 @@
 PROGETTO
-- Nome: Photosynthesis Digest · Vetrina Scientifica & Rassegna Letteratura.
-- Scopo: Fornire una vetrina quotidiana, strutturata come una rivista scientifica online, per monitorare gli ultimi articoli e news pubblicati sulla fotosintesi in qualsiasi organismo (piante superiori, Chlamydomonas, Chlorella, cianobatteri, alghe rosse, diatomee o sistemi sintetici).
+- Nome: Photosynthesis Digest · Rivista Scientifica & News (Magazine Layout).
+- Scopo: Fornire una rivista scientifica online quotidiana con impaginazione chiara, tranquilla ed elegante con accenti verde petrolio, per monitorare gli ultimi articoli peer-reviewed e le notizie scientifiche verificate sulla fotosintesi in qualsiasi organismo (piante superiori, Chlamydomonas, Chlorella, cianobatteri, alghe rosse, diatomee o sistemi sintetici).
 - Destinatario: Ricercatori del Laboratorio di Fotosintesi & Bioenergetica.
 
 PERCORSO CANONICO
 - Cartella canonica: LAVORO/TOOLS/Photosynthesis_Digest.
-- Predecessore: Nessuno (nuovo tool scientifico autonomo).
-- Repository GitHub: autonomo con branch main e sviluppo su branch agent/ dedicati.
+- Predecessore: Nessuno.
+- Repository GitHub: https://github.com/silvestridavide/Photosynthesis_Digest.git (branch main).
 
 INPUT E OUTPUT
 - Input: 
   - File dati JSON (assets/data/articles.json) e modulo JS (assets/js/articles-data.js).
   - Ingestion via DOI singolo o multiplo tramite script Python (scripts/add_by_doi.py).
-  - Ingestion automatica programmata via scheduled task giornaliero (scripts/daily_fetch.py).
-  - Inserimento manuale istantaneo nel browser con persistenza locale (localStorage).
+  - Ingestion automatica programmata (scripts/daily_fetch.py).
+  - Inserimento manuale rapido nel browser con persistenza locale (localStorage).
 - Output:
-  - Vetrina web responsive a schede dense con date ed autori in prima linea.
-  - Modal di lettura con abstract completo, affiliazioni, ORCID e visualizzatore di citazioni accademiche (APA, BibTeX, RIS).
+  - Layout a Rivista (Magazine Layout):
+    * Copertina & Lead Story Spread con introduzione drop-cap e punti chiave (Key Takeaways).
+    * Focus della Settimana & Editor's Choice (griglia a 2 colonne).
+    * Sezione Notizie, Flash & Rassegna Stampa Scientifica con badge per fonti verificate (ScienceDaily, Phys.org, Nature Plants, MIT, Max Planck, Cambridge).
+    * Archivio Ricerca Peer-Reviewed con card dense e bordature verde petrolio.
+    * Nota Editoriale & Citazione dell'Edizione.
+  - Viste a Tab: Edizione Rivista, Articoli Scientifici, Notizie & Rassegna Stampa, I Miei Salvati.
+  - Modal di lettura universale con abstract/estratto integrale, affiliazioni, ORCID e generatore di citazioni (APA, BibTeX, RIS).
   - Esportazione istantanea del dataset in formato JSON, BibTeX (.bib) e CSV.
 
-FLUSSO OPERATIVO
-1. L'utente apre il tool da browser (locale o Vercel) per consultare le ultime pubblicazioni censite.
-2. Filtra per macro-area (Cryo-EM, Rubisco, NPQ, Pirenoide, Bioenergia, ecc.) o per organismo modello, ordina per data o esegue ricerche libere.
-3. Clicca su un articolo per leggere l'abstract completo, copiare il DOI o la citazione BibTeX/APA con un clic, o aprire direttamente la pagina dell'editore.
-4. Salva gli articoli di interesse nei preferiti (memorizzati localmente nel browser).
-5. Per aggiungere nuovi articoli, l'agente o lo scheduled task esegue `python3 scripts/add_by_doi.py <DOI>` oppure `python3 scripts/daily_fetch.py`: i dati vengono interrogati online, normalizzati e memorizzati senza modificare l'interfaccia.
-
 DATI E REGOLE
-- Nessuna allucinazione o sintesi interpretativa: solo dati fattuali verificati (titoli, autori, affiliazioni, riviste, date di pubblicazione, DOI e abstract integrali originali).
-- Fonti ammesse: CrossRef, Europe PMC, PubMed Central e riviste peer-reviewed internazionali (Nature, Science, PNAS, Nature Plants, Nature Communications, The New Phytologist, Plant Cell & Environment, Bioresource Technology, ecc.).
-- Ogni record possiede: id univoco, doi, title, authors (array con name, affiliation, orcid), journal, publication_date (YYYY-MM-DD), year, article_type, organism, category, tags, abstract, url, open_access, featured, added_at.
-- Disaccoppiamento totale tra dati e vista: il catalogo viene renderizzato dinamicamente a partire dal file dati.
+- Nessuna allucinazione: solo dati fattuali verificati (titoli, autori, affiliazioni, riviste, date di pubblicazione, DOI, abstract integrali e comunicati ufficiali).
+- Fonti ammesse: CrossRef, Europe PMC, PubMed Central e riviste peer-reviewed internazionali (Nature, Science, PNAS, Nature Plants, Nature Communications, The New Phytologist, Plant Cell & Environment, Bioresource Technology, ecc.) e testate scientifiche accreditate per le notizie.
+- Record censiti attuali: 23 (17 articoli scientifici peer-reviewed + 6 notizie scientifiche verificate).
 
-INTERFACCIA
-- Masthead accademico con titolo editoriale, contatori in tempo reale (articoli tracciati, riviste censite, ultima pubblicazione) e pulsanti rapidi.
-- Toolbar sticky con barra di ricerca full-text, selettori di filtro per area scientifica ed organismo, selettore di ordinamento (data desc/asc, alfabetico), pulsante segnalibri "Salvati" e reset.
-- Sezione Spotlight per la scoperta di punta in evidenza.
-- Griglia responsive a 1, 2 o 3 colonne con schede dense, badge colorati per rivista e data in evidenza, lista autori in grassetto, abstract clampato e pulsanti d'azione.
-- Modal di lettura con abstract integrale, lista dettagliata degli autori, generatore di citazioni (APA, BibTeX, RIS) e pulsante di copia DOI.
-- Drawer laterale per inserimento rapido via DOI e visualizzazione dei comandi CLI.
-- Design responsive privo di overflow orizzontale su qualsiasi risoluzione (da smartphone 390px a desktop >1200px).
+DESIGN & PALETTE
+- Atmosfera: Chiara, riposante, tranquilla e accademica.
+- Palette: Sfondo sereno (#f8faf9, #ffffff, #f0fbf9), accenti Verde Petrolio / Deep Teal (#0a3d42, #0c4a4f, #0d9488, #ccf0eb), bordi sottili (#e3ecea).
+- Tipografia: Serif di prestigio (Lora, Cinzel), testo nitido (Inter), codice/dati (JetBrains Mono).
 
 VERIFICA
-- Esecuzione del test di validazione sintattica e strutturale: `node tests/validate_data.js` (verifica 15 articoli minimi, nessun DOI duplicato, date e campi obbligatori).
+- Test di validazione sintattica e strutturale: `python3 tests/validate_data.py` (valida schemi, date, campi obbligatori, assenza duplicati).
 - Test di esecuzione locale HTTP: `python3 -m http.server 8780 --bind 127.0.0.1`.
-- Verifica caricamento schede, ricerca full-text, filtri per area ed organismo, ordinamento per data, modal di lettura con copia DOI/citazione, salvataggio nei preferiti e apertura del drawer DOI.
-- Ispezione console browser (0 errori) e assenza di overflow orizzontale.
-
-STRUTTURA E DISTRIBUZIONE
-- Cartella: LAVORO/TOOLS/Photosynthesis_Digest.
-- File principali:
-  - index.html: Shell statica dell'applicazione.
-  - assets/css/style.css: Stili accademici e layout responsive.
-  - assets/js/app.js: Controller JavaScript ES Module vanilla.
-  - assets/js/articles-data.js: Modulo JS con array esportato degli articoli.
-  - assets/data/articles.json: Database JSON degli articoli.
-  - scripts/add_by_doi.py: Script CLI per ingestion via DOI singolo o multiplo.
-  - scripts/daily_fetch.py: Script per scheduled task giornaliero di ricerca automatica in letteratura.
-  - tests/validate_data.js: Suite di test di validazione dati.
-  - vercel.json, .gitignore, .gitattributes, .vercelignore, README.md.
-
-GITHUB E VERCEL
-- Repository: https://github.com/silvestridavide/Photosynthesis_Digest.git
-- Ramo principale: main. Sviluppo attivo su branch agent/photosynthesis-digest-initial-2026-08-31.
-- Preset Vercel: Other (deploy statico senza build).
-- Entry point: index.html.
+- Verifica caricamento layout a rivista, switcher a tab (Rivista, Articoli, News, Salvati), ricerca full-text, filtri per area ed organismo, modal di lettura con citazioni, salvataggio segnalibri e drawer DOI.
 
 MODIFICHE IMPLEMENTATE
-- 31 agosto 2026: Creazione iniziale del tool Photosynthesis Digest con dataset di 15 articoli scientifici verificati da fonti primarie, interfaccia stile rivista online accademica con ordinamento e filtri multifattoriali, modal di lettura con citazioni, drawer di ingestion DOI, script Python di automazione e suite di test automatizzati.
+- 31 agosto 2026: Riprogettazione completa in stile rivista online (Magazine Layout) con palette chiara e tranquilla, accenti verde petrolio, integrazione dei recenti articoli dalla letteratura (Science 2024, Chlorella ohadii Nat Commun 2026, Chromera velia Nat Commun 2026, ecc.) e nuova sezione Notizie & Rassegna Stampa Scientifica da fonti verificate.
