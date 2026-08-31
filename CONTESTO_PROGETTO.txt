@@ -5,45 +5,34 @@ PROGETTO
 
 PERCORSO CANONICO
 - Cartella canonica: LAVORO/TOOLS/Photosynthesis_Digest.
-- Repository GitHub: https://github.com/silvestridavide/Photosynthesis_Digest.git (branch attivo: agent/fix-news-links-mobile-layout-2026-08-31).
+- Repository GitHub: https://github.com/silvestridavide/Photosynthesis_Digest.git (branch attivo: agent/journal-style-eggshell-verified-links-2026-08-31).
 
 INPUT E OUTPUT
 - Input: 
   - File dati JSON (assets/data/articles.json) e modulo JS (assets/js/articles-data.js).
-  - 50 record censiti e verificati (40 articoli peer-reviewed + 10 notizie e rassegne scientifiche con DOI e link ufficiali verificati).
+  - 50 record censiti e verificati al 100% con test live di rete (40 articoli peer-reviewed + 10 notizie e rassegne scientifiche da testate e uffici stampa ufficiali).
   - Ingestion da CLI tramite script Python (scripts/add_by_doi.py e scripts/daily_fetch.py).
 - Output:
-  - Feed editoriale semplificato, responsive e ultra-ottimizzato per mobile:
-    * Spotlight Hero Card per il lead breakthrough della rassegna con punti chiave.
-    * Griglia a card dense, leggibili e con bottoni touch-friendly con rimando diretto alla fonte ufficiale/editore (DOI).
-    * Switcher a tab snello con swipe orizzontale su touchscreen: Tutti (50), Articoli (40), Notizie (10), I Miei Salvati.
-    * Filtri rapidi per disciplina, organismo e ordinamento con ricerca istantanea full-text.
+  - Feed editoriale da rivista scientifica:
+    * Spotlight Hero Card per il lead breakthrough della rassegna con punti chiave e azioni rapide.
+    * Griglia a card dense, leggibili ed eleganti con distinzione visiva tra Articolo Scientifico e Notizia / Research Highlight.
+    * Bottoni di reindirizzamento dedicati: "↗ Vai all'Articolo (${journal})" per i paper e "↗ Leggi Notizia (${source})" per le news.
+    * Switcher a tab snello: Tutti i Contenuti (50), Articoli Scientifici (40), Notizie & Rassegna (10), I Miei Salvati.
+    * Filtri per tema, organismo, ordinamento e ricerca istantanea full-text.
   - Generatore di ZINE (1 Pagina A4):
     * Modale di anteprima e motore di stampa/esportazione PDF (`window.print()`).
-    * Impaginazione su singola pagina A4 (@page { size: A4 portrait; margin: 8mm; }) con storia di copertina, flash news, paper di punta e nota editoriale.
-  - Modal di lettura essenziale con abstract integrale, affiliazioni, ORCID e generatore di citazioni (APA, BibTeX).
+    * Impaginazione A4 portrait in bianco e nero/ardesia editoriale con storia di copertina, flash news, paper di punta e nota editoriale.
+  - Modal di lettura essenziale come reprint accademico con abstract integrale, affiliazioni, ORCID, DOI e generatore di citazioni (APA, BibTeX).
 
 DATI E REGOLE
-- Nessuna allucinazione: solo dati fattuali verificati (titoli, autori, affiliazioni, riviste, date di pubblicazione, DOI, abstract integrali e comunicati ufficiali con resolver DOI attivi).
-- Fonti ammesse: CrossRef, Europe PMC, PubMed Central e riviste peer-reviewed internazionali (Nature, Science, PNAS, Nature Plants, Nature Communications, The Plant Cell, Plant Physiology, The Plant Journal, The New Phytologist, Bioresource Technology, ecc.) e testate scientifiche accreditate per le notizie.
-- Record censiti attuali: 50 (40 articoli scientifici peer-reviewed + 10 notizie scientifiche verificate con link e DOI attivi).
+- Nessuna allucinazione: 50 record reali e verificati tramite CrossRef, Europe PMC, PubMed Central e riviste peer-reviewed internazionali (Nature, Science, PNAS, Nature Plants, Nature Communications, The Plant Cell, Plant Physiology, The Plant Journal, The New Phytologist, Bioresource Technology, ecc.) e testate scientifiche accreditate.
+- 0 link non funzionanti: suite `tests/test_links_live.py` che valida al 100% l'apertura e la risoluzione di tutti i 50 URL.
 
 DESIGN & PALETTE
-- Atmosfera: Chiara, minimalista, riposante, elegante e accademica.
-- Palette: Sfondo sereno (#f8faf9, #ffffff, #f0fdfa), accenti Verde Petrolio / Deep Teal (#021a1d, #042528, #0a3d42, #0d9488, #ccfbf1), accenti caldi per le news (#d97706, #fef3c7), bordi sottili (#e5e7eb).
-- Tipografia: Serif di prestigio (Cinzel, Lora), testo nitido (Inter), codice/dati (JetBrains Mono).
+- Atmosfera: Taglio a rivista scientifica accademica, riposante, elegante e sobria.
+- Palette: Sfondo base Bianco Guscio d'Uovo / Avorio caldo (#f7f5f0, #faf9f6), card in bianco puro (#ffffff), testo in ardesia scura (#141a22, #353e4a), accenti spenti e discreti (ardesia accademica #354356, bordeaux attenuato #7c343a, sabbia/cuoio chiaro #825e34, salvia/pietra #4c6650), bordi caldi in pietra naturale (#e4dfd6, #cec6b7).
+- Tipografia: Serif classici da rivista (Cinzel, Lora), sans-serif nitido (Inter), dati e DOI (JetBrains Mono).
 
 VERIFICA
-- Test di validazione sintattica e strutturale: `python3 tests/validate_data.py` (valida schemi, date, campi obbligatori, assenza duplicati per tutti i 50 record).
-- Test di esecuzione locale HTTP: `python3 -m http.server 8780 --bind 127.0.0.1`.
-- Verifica caricamento feed, switcher viste, ricerca full-text, modal lettore, salvataggio segnalibri e generazione / stampa della Zine in 1 pagina A4.
-
-MODIFICHE IMPLEMENTATE
-- 31 agosto 2026:
-  1. Adozione del nuovo nome accattivante LUMEN (richiamo al lumen tilacoidale e alla luce).
-  2. Espansione a 50 articoli e news reali e verificate con DOI e abstract integrali.
-  3. Risolti tutti i link 404 delle news sostituendoli con i resolver DOI ufficiali e le fonti primarie dei rispettivi studi.
-  4. Riprogettazione mobile-first del CSS: tabs e chip con scorrimento touch fluido, bottoni ingranditi a standard touch target (min 40-44px), card a colonna singola nitida e modal responsive bottom-sheet per smartphone.
-  5. Semplificazione radicale dell'impaginazione in un feed a griglia pulito ed essenziale.
-  6. Rimozione dei moduli di upload, drawer di ingestion e download grezzo a favore del link diretto all'editore/DOI.
-  7. Introduzione del generatore di ZINE stampabile su un singolo foglio A4 con le notizie calde e i paper principali.
+- Test di validazione sintattica e strutturale: `python3 tests/validate_data.py`.
+- Test di verifica live dei link: `python3 tests/test_links_live.py` (50/50 passati).

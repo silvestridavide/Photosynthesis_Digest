@@ -1,5 +1,5 @@
 /**
- * LUMEN · Application Controller & Scientific Zine Engine
+ * LUMEN · Application Controller & Scientific Journal Engine
  * Architecture: Vanilla ES Module (Zero Build Step, Local-First)
  */
 
@@ -149,13 +149,10 @@ class LumenApp {
       };
       if (searchInput) searchInput.value = '';
       searchClear?.classList.add('hidden');
-
-      const orgSel = document.getElementById('filter-organism');
-      if (orgSel) orgSel.value = 'ALL';
-      const sortSel = document.getElementById('sort-order');
-      if (sortSel) sortSel.value = 'date-desc';
-
-      this.setActiveView('all');
+      const orgSelect = document.getElementById('filter-organism');
+      if (orgSelect) orgSelect.value = 'ALL';
+      const sortSelect = document.getElementById('sort-order');
+      if (sortSelect) sortSelect.value = 'date-desc';
       this.updateActiveCategoryChips();
       this.applyFiltersAndRender();
     };
@@ -170,7 +167,22 @@ class LumenApp {
       if (e.target.id === 'article-modal') this.closeModal();
     });
 
-    // Citation Format Buttons in Modal
+    // Modal Copy DOI
+    document.getElementById('btn-copy-doi')?.addEventListener('click', () => {
+      if (this.activeItem?.doi) {
+        this.copyToClipboard(this.activeItem.doi, 'DOI copiato negli appunti!');
+      }
+    });
+
+    // Modal Bookmark Toggle
+    document.getElementById('modal-btn-bookmark')?.addEventListener('click', () => {
+      if (this.activeItem) {
+        this.toggleBookmark(this.activeItem.id);
+        this.updateModalBookmarkState();
+      }
+    });
+
+    // Citation Format Switchers
     document.querySelectorAll('.btn-fmt').forEach(btn => {
       btn.addEventListener('click', (e) => {
         document.querySelectorAll('.btn-fmt').forEach(b => b.classList.remove('active'));
@@ -180,22 +192,7 @@ class LumenApp {
       });
     });
 
-    // Copy DOI in Modal
-    document.getElementById('btn-copy-doi')?.addEventListener('click', () => {
-      if (this.activeItem?.doi) {
-        this.copyToClipboard(this.activeItem.doi, 'DOI copiato negli appunti!');
-      }
-    });
-
-    // Bookmark in Modal
-    document.getElementById('modal-btn-bookmark')?.addEventListener('click', () => {
-      if (this.activeItem) {
-        this.toggleBookmark(this.activeItem.id);
-        this.updateModalBookmarkState();
-      }
-    });
-
-    // ZINE Modal Triggers
+    // ZINE Open Buttons
     const openZine = () => this.openZineModal();
     document.getElementById('btn-open-zine')?.addEventListener('click', openZine);
     document.getElementById('btn-footer-zine')?.addEventListener('click', openZine);
@@ -386,16 +383,20 @@ class LumenApp {
   renderHeroSpotlight(item, container) {
     if (!item) return;
     const isSaved = this.savedIds.has(item.id);
+    const isNews = item.item_type === 'news';
     const authorsText = Array.isArray(item.authors) 
       ? item.authors.map(a => a.name).join(', ')
       : (item.author_or_editor || item.source_outlet || '');
+
+    const sourceLabel = item.journal || item.source_outlet || (isNews ? 'News' : 'Journal');
+    const directActionText = isNews ? `Leggi Notizia (${sourceLabel})` : `Apri Articolo Ufficiale (${sourceLabel})`;
 
     container.innerHTML = `
       <div class="hero-spotlight-card">
         <div class="hero-kicker-row">
           <div class="hero-badge-group">
             <span class="hero-lead-label">Lead Breakthrough · In Evidenza</span>
-            <span class="badge badge-journal">${this.escapeHTML(item.journal || item.source_outlet || '')}</span>
+            <span class="badge badge-journal">${this.escapeHTML(sourceLabel)}</span>
             ${item.open_access ? '<span class="badge badge-oa">Open Access</span>' : ''}
           </div>
           <span class="hero-meta-date">${item.publication_date || ''}</span>
@@ -403,18 +404,18 @@ class LumenApp {
 
         <h2 class="hero-title" data-id="${item.id}">${this.escapeHTML(item.title)}</h2>
         
-        <p class="hero-authors"><strong>Autori:</strong> ${this.escapeHTML(authorsText)}</p>
+        <p class="hero-authors"><strong>${isNews ? 'Fonte:' : 'Autori:'}</strong> ${this.escapeHTML(authorsText)}</p>
         <p class="hero-abstract">${this.escapeHTML(item.abstract)}</p>
 
         <div class="hero-actions-row">
           <div class="hero-left-actions">
-            <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="btn btn-emerald" title="Apri articolo originale su sito dell'editore">
-              <span>Apri Articolo Ufficiale (${this.escapeHTML(item.journal || 'DOI')})</span>
+            <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="btn btn-emerald" title="Apri fonte ufficiale">
+              <span>↗ ${this.escapeHTML(directActionText)}</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg>
             </a>
             <button class="btn btn-outline btn-hero-details" data-id="${item.id}">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-              <span>Dettagli &amp; Citazione</span>
+              <span>Scheda &amp; Citazione</span>
             </button>
           </div>
 
@@ -437,7 +438,8 @@ class LumenApp {
   createCardHTML(item) {
     const isNews = item.item_type === 'news';
     const isSaved = this.savedIds.has(item.id);
-    const journalName = item.journal || item.source_outlet || (isNews ? 'News' : 'Journal');
+    const sourceLabel = item.journal || item.source_outlet || (isNews ? 'News Outlet' : 'Journal');
+    const buttonText = isNews ? `↗ Leggi Notizia (${sourceLabel})` : `↗ Vai all'Articolo (${sourceLabel})`;
 
     let authorsPreview = '';
     if (Array.isArray(item.authors) && item.authors.length > 0) {
@@ -449,7 +451,7 @@ class LumenApp {
         authorsPreview = `${item.authors[0].name} et al.`;
       }
     } else {
-      authorsPreview = item.author_or_editor || item.source_outlet || '';
+      authorsPreview = item.author_or_editor || item.source_outlet || (isNews ? 'Redazione Scientifica' : '');
     }
 
     return `
@@ -458,7 +460,7 @@ class LumenApp {
         <header class="card-header-meta">
           <div class="card-badges-wrap">
             <span class="badge ${isNews ? 'badge-news-item' : 'badge-paper'}">${isNews ? 'News' : 'Articolo'}</span>
-            <span class="badge badge-journal">${this.escapeHTML(journalName)}</span>
+            <span class="badge badge-journal" title="${this.escapeHTML(sourceLabel)}">${this.escapeHTML(sourceLabel)}</span>
             ${item.open_access ? '<span class="badge badge-oa">OA</span>' : ''}
           </div>
           <time class="card-date" datetime="${item.publication_date || ''}">${item.publication_date || ''}</time>
@@ -483,11 +485,11 @@ class LumenApp {
 
         <footer class="card-footer-actions">
           <div class="card-links-left">
-            <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="btn-direct-link" title="Apri fonte ufficiale / DOI">
-              <span>${isNews ? '↗ Vai alla Notizia' : '↗ Vai all\'Articolo'}</span>
+            <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="btn-direct-link" title="Apri link ufficiale">
+              <span>${this.escapeHTML(buttonText)}</span>
             </a>
             <button class="btn btn-outline-sm btn-card-details" data-id="${item.id}">
-              <span>Dettagli</span>
+              <span>Scheda</span>
             </button>
           </div>
 
@@ -535,10 +537,10 @@ class LumenApp {
   toggleBookmark(id) {
     if (this.savedIds.has(id)) {
       this.savedIds.delete(id);
-      this.showToast('Articolo rimosso dai preferiti');
+      this.showToast('Rimosso dai preferiti');
     } else {
       this.savedIds.add(id);
-      this.showToast('Articolo aggiunto ai preferiti ⭐');
+      this.showToast('Aggiunto ai preferiti ⭐');
     }
     this.saveSavedState();
     if (this.activeView === 'saved') {
@@ -555,10 +557,11 @@ class LumenApp {
     const modal = document.getElementById('article-modal');
     if (!modal) return;
 
+    const isNews = item.item_type === 'news';
+
     // Badges
     const badgesWrap = document.getElementById('modal-top-badges');
     if (badgesWrap) {
-      const isNews = item.item_type === 'news';
       badgesWrap.innerHTML = `
         <span class="badge ${isNews ? 'badge-news-item' : 'badge-paper'}">${isNews ? 'Notizia' : 'Articolo'}</span>
         <span class="badge badge-journal">${this.escapeHTML(item.journal || item.source_outlet || '')}</span>
@@ -571,19 +574,28 @@ class LumenApp {
     const titleEl = document.getElementById('modal-title');
     if (titleEl) titleEl.textContent = item.title;
 
-    // Authors & Affiliations
+    // Authors or News Source Section
+    const authorsKicker = document.getElementById('modal-authors-kicker');
     const authorsSection = document.getElementById('modal-authors');
+    if (authorsKicker) {
+      authorsKicker.textContent = isNews ? 'FONTE NOTIZIA & REDAZIONE' : 'AUTORI & AFFILIAZIONI';
+    }
     if (authorsSection) {
-      if (Array.isArray(item.authors) && item.authors.length > 0) {
+      if (isNews) {
+        authorsSection.innerHTML = `
+          <div><strong>${this.escapeHTML(item.source_outlet || item.source_name || 'Ufficio Stampa')}</strong></div>
+          <div style="color: var(--text-muted); font-size: 0.82rem; margin-top: 0.2rem;">Rassegna scientifica e monitoraggio per il Laboratorio di Fotosintesi.</div>
+        `;
+      } else if (Array.isArray(item.authors) && item.authors.length > 0) {
         authorsSection.innerHTML = item.authors.map(a => `
           <div style="margin-bottom: 0.35rem;">
             <strong>${this.escapeHTML(a.name)}</strong>
             ${a.affiliation ? `<span style="color: var(--text-muted); font-size: 0.8rem;"> — ${this.escapeHTML(a.affiliation)}</span>` : ''}
-            ${a.orcid ? `<a href="https://orcid.org/${a.orcid}" target="_blank" rel="noopener noreferrer" style="color: #a6ce39; font-size: 0.72rem; font-family: var(--font-mono); margin-left: 0.3rem;">[ORCID: ${a.orcid}]</a>` : ''}
+            ${a.orcid ? `<a href="https://orcid.org/${a.orcid}" target="_blank" rel="noopener noreferrer" style="color: var(--wine-700); font-size: 0.72rem; font-family: var(--font-mono); margin-left: 0.3rem;">[ORCID: ${a.orcid}]</a>` : ''}
           </div>
         `).join('');
       } else {
-        authorsSection.innerHTML = `<div><strong>${this.escapeHTML(item.author_or_editor || item.source_outlet || 'Redazione')}</strong></div>`;
+        authorsSection.innerHTML = `<div><strong>${this.escapeHTML(item.author_or_editor || 'Redazione LUMEN')}</strong></div>`;
       }
     }
 
@@ -598,14 +610,14 @@ class LumenApp {
       tagsEl.innerHTML = tagsHTML;
     }
 
-    // Abstract
+    // Abstract / Body
     const abstractEl = document.getElementById('modal-abstract');
     if (abstractEl) abstractEl.textContent = item.abstract;
 
     // Citation block
     const citSection = document.getElementById('modal-citation-section');
     if (citSection) {
-      if (item.item_type === 'news') {
+      if (isNews) {
         citSection.classList.add('hidden');
       } else {
         citSection.classList.remove('hidden');
@@ -616,7 +628,7 @@ class LumenApp {
     // DOI & Footer
     const doiContainer = document.getElementById('modal-doi-container');
     const doiVal = document.getElementById('modal-doi');
-    if (item.doi) {
+    if (item.doi && !isNews) {
       doiContainer?.classList.remove('hidden');
       if (doiVal) doiVal.textContent = item.doi;
     } else {
@@ -629,8 +641,8 @@ class LumenApp {
     if (extLink) {
       extLink.href = item.url || (item.doi ? `https://doi.org/${item.doi}` : '#');
       if (extLabel) {
-        if (item.item_type === 'news') {
-          extLabel.textContent = `Apri Fonte Ufficiale (${item.source_outlet || item.journal || 'Link'})`;
+        if (isNews) {
+          extLabel.textContent = `Apri Fonte Ufficiale (${item.source_outlet || item.source_name || 'Link'})`;
         } else {
           extLabel.textContent = `Apri Articolo Ufficiale (${item.journal || 'DOI'})`;
         }
@@ -719,75 +731,66 @@ class LumenApp {
 
     container.innerHTML = `
       <div class="zine-masthead">
-        <div class="zine-masthead-brand">
-          <h1>LUMEN · ZINE</h1>
-          <span>Rivista Scientifica &amp; Research Digest di Fotosintesi e Bioenergetica</span>
+        <div class="zine-volume-line">
+          <span>LUMEN · Research Digest</span>
+          <span>Volume IV · Issue 8</span>
+          <span>Agosto 2026</span>
         </div>
-        <div class="zine-masthead-meta">
-          <strong>Volume IV · Issue 8</strong><br>
-          Agosto 2026 · Edizione Laboratorio<br>
-          <em>50 Record Censiti</em>
-        </div>
+        <h1 class="zine-title">LUMEN</h1>
+        <div class="zine-subtitle">Rassegna Scientifica di Fotosintesi &amp; Bioenergetica · Laboratorio di Ricerca</div>
       </div>
 
-      <!-- Lead Breakthrough Story -->
-      <section class="zine-lead-box">
-        <span class="zine-section-tag">Breakthrough in Evidenza</span>
-        <h2 class="zine-lead-title">${this.escapeHTML(leadPaper.title)}</h2>
-        <div class="zine-lead-authors">
-          <strong>${this.escapeHTML(leadPaper.journal || 'Nature')}</strong> · ${leadPaper.publication_date || ''} · <em>${this.escapeHTML(leadAuthors)}</em>
-        </div>
-        <p class="zine-lead-text">${this.escapeHTML(leadPaper.abstract)}</p>
-        <div class="zine-lead-footer">
-          <span>Organismo: ${this.escapeHTML(leadPaper.organism || 'Piante Superiori')}</span>
-          <span>DOI: ${leadPaper.doi || ''}</span>
-        </div>
-      </section>
-
-      <!-- 2-Column Grid with News Wire and Hot Research Papers -->
-      <div class="zine-columns-grid">
+      <div class="zine-layout-body">
         
-        <!-- Left Column: Flash News & Biotech Perspectives -->
-        <div class="zine-col">
-          <div class="zine-col-header">Notizie &amp; Rassegna Stampa</div>
+        <!-- Left Column: Lead Story -->
+        <div class="zine-col-lead">
+          <div>
+            <span class="zine-section-header">Articolo di Copertina · In Evidenza</span>
+            <h2 class="zine-lead-title">${this.escapeHTML(leadPaper.title)}</h2>
+            <div class="zine-lead-meta">
+              <strong>${this.escapeHTML(leadPaper.journal || 'Nature')}</strong> (${leadPaper.publication_date}) · <em>${this.escapeHTML(leadAuthors)}</em>
+            </div>
+            <p class="zine-lead-text">${this.escapeHTML(leadPaper.abstract)}</p>
+          </div>
+
+          <div style="margin-top: 0.6rem; border-top: 1px dashed #9ca3af; padding-top: 0.5rem;">
+            <span class="zine-section-header">Articoli di Punta Selezionati</span>
+            ${researchPapers.slice(0, 2).map(item => `
+              <div style="margin-bottom: 0.45rem;">
+                <strong style="font-size: 8.5pt; color: #000;">${this.escapeHTML(item.title)}</strong>
+                <div style="font-size: 7.5pt; color: #4b5563;">${this.escapeHTML(item.journal)} (${item.year || '2026'}) · DOI: ${item.doi || ''}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- Right Column: News & Briefs -->
+        <div class="zine-col-side">
+          <span class="zine-section-header">Notizie &amp; Comunicati Ufficiali</span>
           ${newsItems.map(item => `
-            <div class="zine-item">
-              <h4 class="zine-item-title">${this.escapeHTML(item.title)}</h4>
-              <div class="zine-item-meta">${this.escapeHTML(item.source_outlet || item.journal || 'Fonte')} · ${item.publication_date || ''}</div>
-              <p class="zine-item-text">${this.escapeHTML(item.abstract)}</p>
+            <div class="zine-news-item">
+              <h4>${this.escapeHTML(item.title)}</h4>
+              <div style="font-size: 7.2pt; font-family: sans-serif; color: #4b5563; margin-bottom: 0.15rem;">
+                <strong>${this.escapeHTML(item.source_outlet || item.journal || 'Fonte')}</strong> · ${item.publication_date || ''}
+              </div>
+              <p>${this.escapeHTML(item.abstract.substring(0, 160))}...</p>
             </div>
           `).join('')}
-        </div>
 
-        <!-- Right Column: Top Research Publications -->
-        <div class="zine-col">
-          <div class="zine-col-header">Articoli Caldi di Ricerca</div>
-          ${researchPapers.map(item => {
-            const auth = Array.isArray(item.authors) && item.authors.length > 0
-              ? `${item.authors[0].name} et al.`
-              : '';
-            return `
-              <div class="zine-item">
-                <h4 class="zine-item-title">${this.escapeHTML(item.title)}</h4>
-                <div class="zine-item-meta">${this.escapeHTML(item.journal || 'Journal')} (${item.year || '2026'}) · <em>${this.escapeHTML(auth)}</em></div>
-                <p class="zine-item-text">${this.escapeHTML(item.abstract.substring(0, 190))}...</p>
-              </div>
-            `;
-          }).join('')}
+          <div style="margin-top: auto; background-color: #f3f4f6; padding: 0.4rem 0.55rem; border-left: 2px solid #111827;">
+            <div style="font-size: 7pt; font-weight: bold; text-transform: uppercase;">Nota di Laboratorio</div>
+            <div style="font-size: 6.8pt; line-height: 1.35; color: #374151;">
+              Tutti i 50 record censiti sono verificati con link diretti alle fonti primarie e DOI ufficiali.
+            </div>
+          </div>
         </div>
 
       </div>
 
-      <!-- Editorial Note Banner -->
-      <div class="zine-editorial-note">
-        "Dalle strutture ad altissima risoluzione dei supercomplessi in situ all'ingegneria della Rubisco e ai sistemi sintetici: la fotosintesi unisce biologia strutturale nativa e transizione energetica." — <strong>Laboratorio di Fotosintesi &amp; Bioenergetica</strong>
-      </div>
-
-      <!-- Zine Sheet Footer -->
       <footer class="zine-footer">
-        <span>LUMEN · The Photosynthesis Digest</span>
-        <span>Dati verificati: CrossRef, Europe PMC, Science, Nature, PNAS</span>
-        <span>Per il download completo dei PDF, consultare i DOI ufficiali</span>
+        <span>LUMEN · Edizione Periodica di Laboratorio</span>
+        <span>50 Record Verificati (Nature, Science, PNAS, Plant Physiol, Bioresour Technol)</span>
+        <span>Stampato tramite Motore Web ZINE A4</span>
       </footer>
     `;
 
