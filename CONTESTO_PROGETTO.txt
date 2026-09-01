@@ -5,7 +5,7 @@ PROGETTO
 
 PERCORSO CANONICO
 - Cartella canonica: LAVORO/TOOLS/Photosynthesis_Digest.
-- Repository GitHub: https://github.com/silvestridavide/Photosynthesis_Digest.git (branch attivo: agent/journal-style-eggshell-verified-links-2026-08-31).
+- Repository GitHub: https://github.com/silvestridavide/Photosynthesis_Digest.git (branch attivo: agent/lumen-nature-editorial-2026-09-01).
 
 INPUT E OUTPUT
 - Input: 
@@ -29,9 +29,11 @@ DATI E REGOLE
 - 0 link non funzionanti: suite `tests/test_links_live.py` che valida al 100% l'apertura e la risoluzione di tutti i 50 URL.
 
 DESIGN & PALETTE
-- Atmosfera: Taglio a rivista scientifica accademica, riposante, elegante e sobria.
-- Palette: Sfondo base Bianco Guscio d'Uovo / Avorio caldo (#f7f5f0, #faf9f6), card in bianco puro (#ffffff), testo in ardesia scura (#141a22, #353e4a), accenti spenti e discreti (ardesia accademica #354356, bordeaux attenuato #7c343a, sabbia/cuoio chiaro #825e34, salvia/pietra #4c6650), bordi caldi in pietra naturale (#e4dfd6, #cec6b7).
-- Tipografia: Serif classici da rivista (Cinzel, Lora), sans-serif nitido (Inter), dati e DOI (JetBrains Mono).
+- Atmosfera: Research journal contemporaneo, ricco ma rigoroso; cover story visiva, titoli editoriali e feed a dossier invece di card da dashboard.
+- Palette: Carta calda (#f5f2ea), carbone (#16201c), verde clorofilla (#174a3a), verde foglia (#8fae42) e ruggine (#b6543d) per i dispatch; bordi discreti in pietra.
+- Tipografia: DM Serif Display per i titoli, Source Serif 4 per la lettura, Manrope per UI/metadati e IBM Plex Mono per dati e DOI.
+- Immagini: asset locale `assets/images/lumen-thylakoid-cover.png`, visual research illustration originale con caption e alt text. È un elemento editoriale, non una figura sperimentale.
+- Regole di collaborazione e direzione visiva persistenti: `AGENTS.md` nella root del tool.
 
 VERIFICA
 - Test di validazione sintattica e strutturale: `python3 tests/validate_data.py`.

@@ -390,40 +390,35 @@ class LumenApp {
 
     const sourceLabel = item.journal || item.source_outlet || (isNews ? 'News' : 'Journal');
     const directActionText = isNews ? `Leggi Notizia (${sourceLabel})` : `Apri Articolo Ufficiale (${sourceLabel})`;
+    const dek = this.makeDek(item.abstract, 255);
 
     container.innerHTML = `
-      <div class="hero-spotlight-card">
-        <div class="hero-kicker-row">
-          <div class="hero-badge-group">
-            <span class="hero-lead-label">Lead Breakthrough · In Evidenza</span>
-            <span class="badge badge-journal">${this.escapeHTML(sourceLabel)}</span>
-            ${item.open_access ? '<span class="badge badge-oa">Open Access</span>' : ''}
+      <article class="hero-spotlight-card">
+        <figure class="hero-visual">
+          <img src="assets/images/lumen-thylakoid-cover.png" width="1672" height="941" alt="Illustrazione editoriale di membrane tilacoidali e microalghe fotosintetiche" fetchpriority="high">
+          <figcaption>Visual research illustration · Membrane tilacoidali, luce e architetture native</figcaption>
+        </figure>
+        <div class="hero-copy">
+          <div class="hero-kicker-row">
+            <span class="hero-lead-label">Cover story</span>
+            <span class="hero-meta-date">${item.publication_date || ''}</span>
           </div>
-          <span class="hero-meta-date">${item.publication_date || ''}</span>
-        </div>
-
-        <h2 class="hero-title" data-id="${item.id}">${this.escapeHTML(item.title)}</h2>
-        
-        <p class="hero-authors"><strong>${isNews ? 'Fonte:' : 'Autori:'}</strong> ${this.escapeHTML(authorsText)}</p>
-        <p class="hero-abstract">${this.escapeHTML(item.abstract)}</p>
-
-        <div class="hero-actions-row">
-          <div class="hero-left-actions">
-            <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="btn btn-emerald" title="Apri fonte ufficiale">
-              <span>↗ ${this.escapeHTML(directActionText)}</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg>
-            </a>
-            <button class="btn btn-outline btn-hero-details" data-id="${item.id}">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-              <span>Scheda &amp; Citazione</span>
+          <p class="hero-source">${this.escapeHTML(sourceLabel)} <span>·</span> ${this.escapeHTML(item.organism || 'Photosynthesis research')} ${item.open_access ? '<span>· Open access</span>' : ''}</p>
+          <h2 class="hero-title" data-id="${item.id}">${this.escapeHTML(item.title)}</h2>
+          <p class="hero-dek">${this.escapeHTML(dek)}</p>
+          <p class="hero-authors">${isNews ? 'Fonte' : 'By'}: ${this.escapeHTML(authorsText)}</p>
+          <p class="hero-why"><strong>Perché conta.</strong> Le strutture osservate nel loro ambiente nativo mostrano come l'organizzazione di PSI e PSII contribuisca all'efficienza reale della fotosintesi.</p>
+          <div class="hero-actions-row">
+            <div class="hero-left-actions">
+              <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="btn btn-emerald" title="Apri fonte ufficiale"><span>↗ ${this.escapeHTML(directActionText)}</span></a>
+              <button class="editorial-text-link btn-hero-details" data-id="${item.id}">Leggi scheda e citazione <span aria-hidden="true">→</span></button>
+            </div>
+            <button class="btn-icon-bookmark ${isSaved ? 'bookmarked' : ''}" data-id="${item.id}" title="${isSaved ? 'Rimuovi dai preferiti' : 'Salva nei preferiti'}">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
             </button>
           </div>
-
-          <button class="btn-icon-bookmark ${isSaved ? 'bookmarked' : ''}" data-id="${item.id}" title="${isSaved ? 'Rimuovi dai preferiti' : 'Salva nei preferiti'}">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-          </button>
         </div>
-      </div>
+      </article>
     `;
 
     container.querySelector('.hero-title')?.addEventListener('click', () => this.openModal(item));
@@ -439,7 +434,7 @@ class LumenApp {
     const isNews = item.item_type === 'news';
     const isSaved = this.savedIds.has(item.id);
     const sourceLabel = item.journal || item.source_outlet || (isNews ? 'News Outlet' : 'Journal');
-    const buttonText = isNews ? `↗ Leggi Notizia (${sourceLabel})` : `↗ Vai all'Articolo (${sourceLabel})`;
+    const buttonText = isNews ? 'Leggi il dispatch' : 'Apri il paper';
 
     let authorsPreview = '';
     if (Array.isArray(item.authors) && item.authors.length > 0) {
@@ -456,12 +451,14 @@ class LumenApp {
 
     return `
       <article class="article-card ${isNews ? 'card-news' : 'card-paper'}" data-id="${item.id}">
-        
+        <div class="card-visual ${isNews ? 'card-visual-news' : ''}" aria-hidden="true">
+          <img src="assets/images/lumen-thylakoid-cover.png" width="1672" height="941" alt="" loading="lazy">
+        </div>
+        <div class="card-content">
         <header class="card-header-meta">
           <div class="card-badges-wrap">
-            <span class="badge ${isNews ? 'badge-news-item' : 'badge-paper'}">${isNews ? 'News' : 'Articolo'}</span>
+            <span class="badge ${isNews ? 'badge-news-item' : 'badge-paper'}">${isNews ? 'From the field' : 'Research'}</span>
             <span class="badge badge-journal" title="${this.escapeHTML(sourceLabel)}">${this.escapeHTML(sourceLabel)}</span>
-            ${item.open_access ? '<span class="badge badge-oa">OA</span>' : ''}
           </div>
           <time class="card-date" datetime="${item.publication_date || ''}">${item.publication_date || ''}</time>
         </header>
@@ -475,7 +472,7 @@ class LumenApp {
         </div>
 
         <p class="card-abstract-preview">
-          ${this.escapeHTML(item.abstract)}
+          ${this.escapeHTML(this.makeDek(item.abstract, 168))}
         </p>
 
         <div class="card-tags-row">
@@ -486,10 +483,10 @@ class LumenApp {
         <footer class="card-footer-actions">
           <div class="card-links-left">
             <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="btn-direct-link" title="Apri link ufficiale">
-              <span>${this.escapeHTML(buttonText)}</span>
+              <span>${this.escapeHTML(buttonText)} <span aria-hidden="true">↗</span></span>
             </a>
-            <button class="btn btn-outline-sm btn-card-details" data-id="${item.id}">
-              <span>Scheda</span>
+            <button class="btn btn-outline-sm btn-card-details" data-id="${item.id}" aria-label="Apri scheda dell'articolo">
+              <span>Dettagli</span>
             </button>
           </div>
 
@@ -498,8 +495,16 @@ class LumenApp {
           </button>
         </footer>
 
+        </div>
       </article>
     `;
+  }
+
+  makeDek(text, maxLength) {
+    const compact = (text || '').replace(/\s+/g, ' ').trim();
+    if (compact.length <= maxLength) return compact;
+    const cutoff = compact.lastIndexOf(' ', maxLength);
+    return `${compact.slice(0, cutoff > 0 ? cutoff : maxLength)}…`;
   }
 
   bindCardEvents(container) {

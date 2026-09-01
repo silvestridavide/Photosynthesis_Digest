@@ -2,6 +2,8 @@
 
 **LUMEN** è una piattaforma editoriale e rassegna scientifica essenziale per il monitoraggio della letteratura internazionale su **fotosintesi**, biofisica delle membrane tilacoidali, biologia strutturale (Cryo-EM), fotoprotezione (NPQ, LHCSR, PsbS), ingegneria della Rubisco, pirenoide e bioenergie.
 
+L'interfaccia adotta ora una direzione da research journal contemporaneo: cover story con visual research illustration originale, gerarchia tipografica editoriale, metadati discreti e un feed che privilegia il racconto scientifico rispetto a card da dashboard. L'ispirazione è il rigore dell'editoria scientifica internazionale, senza riprodurre brand o identità di altre testate.
+
 Include un generatore dedicato di **ZINE in 1 singola pagina A4** stampabile o salvabile in PDF, con la storia di copertina, le notizie più fresche e i paper di punta.
 
 ---
@@ -9,8 +11,9 @@ Include un generatore dedicato di **ZINE in 1 singola pagina A4** stampabile o s
 ## Caratteristiche Principali
 
 - **Estetica da Rivista Scientifica Autorevole**:
-  - Sfondo base in **Bianco Guscio d'Uovo / Avorio Accademico** (`#F7F5F0`), testo in ardesia scura ad alto contrasto (`#141A22`), e palette dai toni sobri e spenti (ardesia accademica, bordeaux attenuato, sabbia naturale, salvia).
-  - Eliminazione di colori saturi/sgargianti a favore di un'impaginazione editoriale pulita e leggibile.
+  - Copertina visuale con illustrazione originale di ecosistemi tilacoidali, dichiarata come visual research illustration e provvista di alt text/caption.
+  - Carta calda, carbone, verde clorofilla e accenti calibrati; titoli in serif editoriale e metadati in sans/mono ad alta leggibilità.
+  - Impaginazione narrativa con cover story, research desk e briefing, responsive e senza imitare marchi di altre riviste.
 - **Link Diretti & 100% Verificati**:
   - Distinzione chiara tra **Articoli Peer-Reviewed** (`↗ Vai all'Articolo (${journal})` con rimando al DOI ufficiale) e **Notizie Scientifiche** (`↗ Leggi Notizia (${fonte})` con rimando diretto alla testata/comunicato stampa).
   - Tutti i 50 record censiti sono verificati con test di connessione live (`tests/test_links_live.py`) per garantire zero link rotti o errori 404/DOI not found.
