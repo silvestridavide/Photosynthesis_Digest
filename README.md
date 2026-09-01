@@ -11,9 +11,9 @@ Include un generatore dedicato di **ZINE in 1 singola pagina A4** stampabile o s
 ## Caratteristiche Principali
 
 - **Estetica da Rivista Scientifica Autorevole**:
-  - Copertina visuale con illustrazione originale di ecosistemi tilacoidali, dichiarata come visual research illustration e provvista di alt text/caption.
+  - Copertina visuale legata al singolo articolo: un asset compare soltanto quando appartiene al record editoriale selezionato, con alt text e caption. In assenza di un visual pertinente, la cover resta tipografica.
   - Carta calda, carbone, verde clorofilla e accenti calibrati; titoli in serif editoriale e metadati in sans/mono ad alta leggibilità.
-  - Impaginazione narrativa con cover story, research desk e briefing, responsive e senza imitare marchi di altre riviste.
+  - Impaginazione narrativa con cover story, research desk a ritmo variabile e briefing, responsive e senza imitare marchi di altre riviste.
 - **Link Diretti & 100% Verificati**:
   - Distinzione chiara tra **Articoli Peer-Reviewed** (`↗ Vai all'Articolo (${journal})` con rimando al DOI ufficiale) e **Notizie Scientifiche** (`↗ Leggi Notizia (${fonte})` con rimando diretto alla testata/comunicato stampa).
   - Tutti i 50 record censiti sono verificati con test di connessione live (`tests/test_links_live.py`) per garantire zero link rotti o errori 404/DOI not found.

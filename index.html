@@ -77,17 +77,17 @@
       <div class="container nav-inner">
         
         <!-- View Switcher Tabs -->
-        <div class="nav-tabs" role="tablist">
-          <button class="tab-pill active" data-view="all" role="tab" id="tab-all">
+        <div class="nav-tabs" aria-label="Filtra i contenuti">
+          <button class="tab-pill active" data-view="all" aria-pressed="true" id="tab-all">
             <span>Tutti i Contenuti (<span id="tab-all-count">50</span>)</span>
           </button>
-          <button class="tab-pill" data-view="articles" role="tab" id="tab-articles">
+          <button class="tab-pill" data-view="articles" aria-pressed="false" id="tab-articles">
             <span>Articoli Scientifici (<span id="tab-articles-count">40</span>)</span>
           </button>
-          <button class="tab-pill" data-view="news" role="tab" id="tab-news">
+          <button class="tab-pill" data-view="news" aria-pressed="false" id="tab-news">
             <span>Notizie &amp; Rassegna (<span id="tab-news-count">10</span>)</span>
           </button>
-          <button class="tab-pill" data-view="saved" role="tab" id="tab-saved">
+          <button class="tab-pill" data-view="saved" aria-pressed="false" id="tab-saved">
             <span>I Miei Salvati (<span id="saved-count">0</span>)</span>
           </button>
         </div>
@@ -156,7 +156,7 @@
     <main class="container main-feed-layout">
       
       <!-- Filter status banner if active search -->
-      <div class="filter-status-banner hidden" id="filter-status-banner">
+      <div class="filter-status-banner hidden" id="filter-status-banner" role="status" aria-live="polite">
         <span>Trovati <strong id="filter-active-count">0</strong> risultati per i criteri selezionati.</span>
         <button class="btn-banner-reset" id="btn-banner-reset">Mostra Tutti i Contenuti</button>
       </div>
@@ -181,7 +181,7 @@
           <span class="section-kicker">The research desk</span>
           <h2>La ricerca da seguire</h2>
         </div>
-        <p>Una selezione ragionata di paper, strutture e segnali dal campo.</p>
+        <p>Un fascicolo da leggere: storie lunghe, brevi dal campo e connessioni tra discipline.</p>
       </section>
 
       <!-- Main editorial feed -->
@@ -328,7 +328,7 @@
   </div>
 
   <!-- Toast Notification Container -->
-  <div class="toast-container" id="toast-container"></div>
+  <div class="toast-container" id="toast-container" role="status" aria-live="polite"></div>
 
   <!-- Main ES Module Entry -->
   <script type="module" src="assets/js/app.js"></script>

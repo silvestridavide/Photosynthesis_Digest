@@ -225,6 +225,7 @@ class LumenApp {
     this.activeView = view;
     document.querySelectorAll('.tab-pill').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.view === view);
+      btn.setAttribute('aria-pressed', String(btn.dataset.view === view));
     });
     this.applyFiltersAndRender();
   }
@@ -375,7 +376,7 @@ class LumenApp {
 
     // Render feed cards
     if (feedContainer) {
-      feedContainer.innerHTML = displayItems.map(item => this.createCardHTML(item)).join('');
+      feedContainer.innerHTML = displayItems.map((item, index) => this.createCardHTML(item, index)).join('');
       this.bindCardEvents(feedContainer);
     }
   }
@@ -391,26 +392,36 @@ class LumenApp {
     const sourceLabel = item.journal || item.source_outlet || (isNews ? 'News' : 'Journal');
     const directActionText = isNews ? `Leggi Notizia (${sourceLabel})` : `Apri Articolo Ufficiale (${sourceLabel})`;
     const dek = this.makeDek(item.abstract, 255);
-    const coverImage = item.hero_image || 'assets/images/lumen-thylakoid-cover.png';
-    const coverAlt = item.hero_image_alt || 'Illustrazione editoriale di membrane tilacoidali e microalghe fotosintetiche';
-    const coverCaption = item.hero_image_caption || 'Visual research illustration · Membrane tilacoidali, luce e architetture native';
+    // A cover visual belongs to the record that selected it. We deliberately do
+    // not substitute a generic scientific image: an image that does not refer
+    // to this paper is worse than a typographic cover.
+    const coverImage = item.hero_image;
+    const coverAlt = item.hero_image_alt || '';
+    const coverCaption = item.hero_image_caption || '';
+    const coverVisual = coverImage ? `
+      <figure class="hero-visual">
+        <img src="${this.escapeHTML(coverImage)}" width="1672" height="941" alt="${this.escapeHTML(coverAlt)}" fetchpriority="high">
+        ${coverCaption ? `<figcaption>${this.escapeHTML(coverCaption)}</figcaption>` : ''}
+      </figure>
+    ` : `
+      <div class="hero-visual hero-visual-typographic" aria-label="Cover tipografica per ${this.escapeHTML(item.title)}">
+        <span>Research<br>cover</span>
+      </div>
+    `;
 
     container.innerHTML = `
       <article class="hero-spotlight-card">
-        <figure class="hero-visual">
-          <img src="${this.escapeHTML(coverImage)}" width="1672" height="941" alt="${this.escapeHTML(coverAlt)}" fetchpriority="high">
-          <figcaption>${this.escapeHTML(coverCaption)}</figcaption>
-        </figure>
+        ${coverVisual}
         <div class="hero-copy">
           <div class="hero-kicker-row">
             <span class="hero-lead-label">Cover story</span>
             <span class="hero-meta-date">${item.publication_date || ''}</span>
           </div>
           <p class="hero-source">${this.escapeHTML(sourceLabel)} <span>·</span> ${this.escapeHTML(item.organism || 'Photosynthesis research')} ${item.open_access ? '<span>· Open access</span>' : ''}</p>
-          <h2 class="hero-title" data-id="${item.id}">${this.escapeHTML(item.title)}</h2>
+          <h2><button type="button" class="hero-title" data-id="${item.id}">${this.escapeHTML(item.title)}</button></h2>
           <p class="hero-dek">${this.escapeHTML(dek)}</p>
           <p class="hero-authors">${isNews ? 'Fonte' : 'By'}: ${this.escapeHTML(authorsText)}</p>
-          <p class="hero-why"><strong>Perché conta.</strong> Le strutture osservate nel loro ambiente nativo mostrano come l'organizzazione di PSI e PSII contribuisca all'efficienza reale della fotosintesi.</p>
+          <p class="hero-why"><strong>Focus editoriale.</strong> ${this.escapeHTML(item.editorial_note || item.category || 'Ricerca sulla fotosintesi')}${item.editorial_note ? '' : (item.organism ? ` · ${this.escapeHTML(item.organism)}` : '')}</p>
           <div class="hero-actions-row">
             <div class="hero-left-actions">
               <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="btn btn-emerald" title="Apri fonte ufficiale"><span>↗ ${this.escapeHTML(directActionText)}</span></a>
@@ -433,7 +444,7 @@ class LumenApp {
     });
   }
 
-  createCardHTML(item) {
+  createCardHTML(item, index = 0) {
     const isNews = item.item_type === 'news';
     const isSaved = this.savedIds.has(item.id);
     const sourceLabel = item.journal || item.source_outlet || (isNews ? 'News Outlet' : 'Journal');
@@ -455,7 +466,7 @@ class LumenApp {
     }
 
     return `
-      <article class="article-card ${isNews ? 'card-news' : 'card-paper'}" data-id="${item.id}">
+      <article class="article-card ${isNews ? 'card-news' : 'card-paper'} card-slot-${index % 6}" data-id="${item.id}">
         <div class="card-folio ${isNews ? 'card-folio-news' : ''}" aria-hidden="true">
           <span>${folioLabel}</span>
           <strong>${folioDate}</strong>
@@ -470,9 +481,9 @@ class LumenApp {
           <time class="card-date" datetime="${item.publication_date || ''}">${item.publication_date || ''}</time>
         </header>
 
-        <h3 class="card-title" data-id="${item.id}" title="${this.escapeHTML(item.title)}">
+        <h3><button type="button" class="card-title" data-id="${item.id}" title="${this.escapeHTML(item.title)}">
           ${this.escapeHTML(item.title)}
-        </h3>
+        </button></h3>
 
         <div class="card-authors">
           ${this.escapeHTML(authorsPreview)}
