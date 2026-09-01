@@ -54,6 +54,9 @@ export const INITIAL_ARTICLES = [
     "url": "https://doi.org/10.1038/s41586-026-10847-3",
     "open_access": false,
     "featured": true,
+    "hero_image": "assets/images/lumen-rice-photosystems-editorial-v2.png",
+    "hero_image_alt": "Illustrazione editoriale di cloroplasti di riso in sezione con membrane tilacoidali stratificate, fotosistemi e fasci di luce",
+    "hero_image_caption": "Visual research illustration · Architetture native di PSI e PSII nei tilacoidi del riso",
     "reading_time": "7 min",
     "added_at": "2026-08-31"
   },

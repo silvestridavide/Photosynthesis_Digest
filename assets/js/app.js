@@ -366,7 +366,7 @@ class LumenApp {
     // Hero spotlight (shown only on 'all' view when not searching/filtering specific categories)
     let displayItems = sorted;
     if (!isFiltered && spotlightContainer) {
-      const heroItem = sorted.find(it => it.featured && (it.item_type === 'article' || !it.item_type)) || sorted[0];
+      const heroItem = sorted.find(it => it.hero_image) || sorted.find(it => it.featured && (it.item_type === 'article' || !it.item_type)) || sorted[0];
       this.renderHeroSpotlight(heroItem, spotlightContainer);
       displayItems = sorted.filter(it => it.id !== heroItem.id);
     } else {
@@ -391,12 +391,15 @@ class LumenApp {
     const sourceLabel = item.journal || item.source_outlet || (isNews ? 'News' : 'Journal');
     const directActionText = isNews ? `Leggi Notizia (${sourceLabel})` : `Apri Articolo Ufficiale (${sourceLabel})`;
     const dek = this.makeDek(item.abstract, 255);
+    const coverImage = item.hero_image || 'assets/images/lumen-thylakoid-cover.png';
+    const coverAlt = item.hero_image_alt || 'Illustrazione editoriale di membrane tilacoidali e microalghe fotosintetiche';
+    const coverCaption = item.hero_image_caption || 'Visual research illustration · Membrane tilacoidali, luce e architetture native';
 
     container.innerHTML = `
       <article class="hero-spotlight-card">
         <figure class="hero-visual">
-          <img src="assets/images/lumen-thylakoid-cover.png" width="1672" height="941" alt="Illustrazione editoriale di membrane tilacoidali e microalghe fotosintetiche" fetchpriority="high">
-          <figcaption>Visual research illustration · Membrane tilacoidali, luce e architetture native</figcaption>
+          <img src="${this.escapeHTML(coverImage)}" width="1672" height="941" alt="${this.escapeHTML(coverAlt)}" fetchpriority="high">
+          <figcaption>${this.escapeHTML(coverCaption)}</figcaption>
         </figure>
         <div class="hero-copy">
           <div class="hero-kicker-row">
@@ -435,6 +438,8 @@ class LumenApp {
     const isSaved = this.savedIds.has(item.id);
     const sourceLabel = item.journal || item.source_outlet || (isNews ? 'News Outlet' : 'Journal');
     const buttonText = isNews ? 'Leggi il dispatch' : 'Apri il paper';
+    const folioLabel = isNews ? 'Dispatch' : 'Paper';
+    const folioDate = item.publication_date ? item.publication_date.slice(0, 4) : '—';
 
     let authorsPreview = '';
     if (Array.isArray(item.authors) && item.authors.length > 0) {
@@ -451,8 +456,10 @@ class LumenApp {
 
     return `
       <article class="article-card ${isNews ? 'card-news' : 'card-paper'}" data-id="${item.id}">
-        <div class="card-visual ${isNews ? 'card-visual-news' : ''}" aria-hidden="true">
-          <img src="assets/images/lumen-thylakoid-cover.png" width="1672" height="941" alt="" loading="lazy">
+        <div class="card-folio ${isNews ? 'card-folio-news' : ''}" aria-hidden="true">
+          <span>${folioLabel}</span>
+          <strong>${folioDate}</strong>
+          <small>${this.escapeHTML(item.category || 'Photosynthesis')}</small>
         </div>
         <div class="card-content">
         <header class="card-header-meta">
