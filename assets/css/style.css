@@ -1773,18 +1773,40 @@ body {
   outline-offset: 3px;
 }
 
-/* The alternating spans create editorial pacing: a lead note, a narrow brief,
-   then a wider analysis, without implying that all papers have images. */
-.article-card.card-slot-0 { grid-column: span 7; padding-right: 1.1rem; }
-.article-card.card-slot-0 .card-title { font-family: var(--font-display); font-size: clamp(1.65rem, 2.35vw, 2.45rem); line-height: 1; font-weight: 400; }
-.article-card.card-slot-0 .card-abstract-preview { font-size: .98rem; max-width: 42rem; }
-.article-card.card-slot-1 { grid-column: span 5; padding-left: 1.1rem; border-left: 1px solid var(--border-light); }
-.article-card.card-slot-2 { grid-column: span 4; }
-.article-card.card-slot-3 { grid-column: span 8; padding-left: 1.1rem; border-left: 1px solid var(--border-light); }
-.article-card.card-slot-3 .card-title { font-size: 1.55rem; }
-.article-card.card-slot-4 { grid-column: 3 / span 6; border-top: 2px solid var(--ink); margin-top: .45rem; }
-.article-card.card-slot-5 { grid-column: 9 / span 4; margin-top: .45rem; }
-.article-card.card-slot-5.card-news { background: #eee5d1; padding: 1.15rem; border-top: 3px solid var(--rust); }
+.fascicolo { margin: 0 0 3.5rem; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--ink); }
+.fascicolo-label { padding: .65rem 0; font: 700 .65rem var(--font-sans); letter-spacing: .11em; text-transform: uppercase; color: var(--chlorophyll); }
+.feature-notes { display: grid; grid-template-columns: repeat(3, 1fr); }
+.editorial-item { min-width: 0; }
+.editorial-item--feature-note { padding: 1.25rem 1.5rem 1.5rem 0; border-right: 1px solid var(--border-light); }
+.editorial-item--feature-note + .editorial-item--feature-note { padding-left: 1.5rem; }
+.editorial-item--feature-note:last-child { border-right: 0; }
+.editorial-meta { margin-bottom: .45rem; color: var(--text-muted); font: 600 .65rem var(--font-sans); letter-spacing: .055em; text-transform: uppercase; }
+.editorial-meta span { color: var(--leaf); }
+.editorial-dek { margin: .55rem 0 .65rem; font: .92rem/1.42 var(--font-serif); color: var(--text-body); }
+.editorial-detail { padding: 0; border: 0; background: transparent; color: var(--chlorophyll); cursor: pointer; font: 700 .7rem var(--font-sans); }
+.dossier, .research-index, .briefing { margin: 0 0 4.75rem; }
+.dossier-heading { display: grid; grid-template-columns: 1.15fr 1.3fr 1fr; gap: 1rem; align-items: end; padding-bottom: .8rem; border-bottom: 2px solid var(--ink); }
+.dossier-heading > span { color: var(--chlorophyll); font: 700 .68rem var(--font-sans); letter-spacing: .1em; text-transform: uppercase; }
+.dossier-heading h2 { font: 400 clamp(2.1rem, 4vw, 3.6rem)/.96 var(--font-display); letter-spacing: -.035em; }
+.dossier-heading p { color: var(--text-muted); font-size: .8rem; }
+.dossier-spread { display: grid; grid-template-columns: 7fr 5fr; column-gap: 2.5rem; padding-top: 1.25rem; }
+.editorial-item--dossier-lead { grid-row: span 3; padding-right: 1.5rem; border-right: 1px solid var(--border-light); }
+.editorial-item--dossier-lead .card-title { font: 400 clamp(2rem, 3.2vw, 3.25rem)/.98 var(--font-display); }
+.editorial-item--dossier-lead .editorial-dek { font-size: 1.08rem; max-width: 42rem; }
+.editorial-item--dossier-brief { padding: 0 0 1rem 1.2rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-light); }
+.editorial-item--dossier-brief .card-title { font-size: 1.12rem; }
+.index-section { margin-top: 2.35rem; }
+.index-section > h3 { padding-bottom: .55rem; border-bottom: 1px solid var(--ink); font: 400 1.55rem var(--font-display); }
+.index-list { display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 2.3rem; }
+.editorial-item--index-item { padding: 1rem 0; border-bottom: 1px solid var(--border-light); }
+.editorial-item--index-item .card-title { font-size: 1.18rem; }
+.editorial-item--index-item .editorial-dek { font-size: .82rem; }
+.briefing { padding: 2rem; background: #e9ddc3; border-top: 3px solid var(--rust); }
+.briefing .dossier-heading > span, .briefing .editorial-detail { color: var(--rust); }
+.briefing-list { display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 2.3rem; }
+.editorial-item--dispatch { padding: 1rem 0; border-bottom: 1px solid rgba(77,62,40,.25); }
+.editorial-item--dispatch .card-title { font-size: 1.15rem; }
+.results-grid .article-card { grid-column: span 6; }
 
 .hero-visual-typographic { display: grid; place-items: end start; padding: 1.45rem; background: linear-gradient(145deg, #325b49, #16201c 66%); color: var(--leaf); }
 .hero-visual-typographic span { font-family: var(--font-display); font-size: clamp(2.5rem, 7vw, 5.5rem); line-height: .8; letter-spacing: -.05em; }
@@ -1797,13 +1819,17 @@ body {
   .hero-copy { padding: 1.55rem; }
   .section-heading { align-items: start; flex-direction: column; gap: .5rem; }
   .section-heading > p { text-align: left; }
-  .feed-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 1.3rem; }
-  .article-card.card-slot-0, .article-card.card-slot-1, .article-card.card-slot-2, .article-card.card-slot-3, .article-card.card-slot-4, .article-card.card-slot-5 { grid-column: auto; margin-top: 0; padding-left: 0; padding-right: 0; border-left: 0; }
-  .article-card.card-slot-4 { border-top-width: 1px; }
+  .feature-notes, .dossier-heading, .dossier-spread { grid-template-columns: 1fr; }
+  .editorial-item--feature-note, .editorial-item--feature-note + .editorial-item--feature-note, .editorial-item--dossier-lead, .editorial-item--dossier-brief { padding: 1rem 0; border-right: 0; border-bottom: 1px solid var(--border-light); }
+  .dossier-heading { gap: .6rem; }
+  .dossier-spread { gap: 0; }
+  .briefing-list { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
   .brand-title { font-size: 4rem; }
   .feed-grid { grid-template-columns: 1fr; }
+  .index-list { grid-template-columns: 1fr; }
+  .results-grid .article-card { grid-column: auto; }
   .article-card { grid-template-columns: 4.65rem minmax(0, 1fr); gap: .75rem; }
   .card-folio { min-height: 0; padding: .1rem 0; }
   .card-folio strong { font-size: 1.18rem; }

@@ -79,7 +79,7 @@
         <!-- View Switcher Tabs -->
         <div class="nav-tabs" aria-label="Filtra i contenuti">
           <button class="tab-pill active" data-view="all" aria-pressed="true" id="tab-all">
-            <span>Tutti i Contenuti (<span id="tab-all-count">50</span>)</span>
+            <span>Edizione (<span id="tab-all-count">50</span>)</span>
           </button>
           <button class="tab-pill" data-view="articles" aria-pressed="false" id="tab-articles">
             <span>Articoli Scientifici (<span id="tab-articles-count">40</span>)</span>
@@ -176,16 +176,13 @@
         <!-- Rendered dynamically by JS -->
       </section>
 
-      <section class="section-heading" aria-label="Ultima ricerca">
-        <div>
-          <span class="section-kicker">The research desk</span>
-          <h2>La ricerca da seguire</h2>
-        </div>
-        <p>Un fascicolo da leggere: storie lunghe, brevi dal campo e connessioni tra discipline.</p>
-      </section>
+      <section class="edition-content" id="edition-content" aria-label="Edizione corrente"></section>
 
-      <!-- Main editorial feed -->
-      <section class="feed-grid-section">
+      <!-- Results replace the edition only when a filter is active -->
+      <section class="feed-grid-section hidden" id="results-section" aria-label="Risultati della ricerca">
+        <header class="section-heading">
+          <div><span class="section-kicker">Research index</span><h2>Risultati</h2></div>
+        </header>
         <div class="feed-grid" id="feed-cards-container">
           <!-- Rendered dynamically by JS -->
         </div>

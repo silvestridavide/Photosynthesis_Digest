@@ -13,7 +13,7 @@ Include un generatore dedicato di **ZINE in 1 singola pagina A4** stampabile o s
 - **Estetica da Rivista Scientifica Autorevole**:
   - Copertina visuale legata al singolo articolo: un asset compare soltanto quando appartiene al record editoriale selezionato, con alt text e caption. In assenza di un visual pertinente, la cover resta tipografica.
   - Carta calda, carbone, verde clorofilla e accenti calibrati; titoli in serif editoriale e metadati in sans/mono ad alta leggibilità.
-  - Impaginazione narrativa con cover story, research desk a ritmo variabile e briefing, responsive e senza imitare marchi di altre riviste.
+  - Impaginazione narrativa costruita come un numero di rivista: cover story, richiami "In questo fascicolo", dossier tematico, indice di ricerca e briefing news separato. La gerarchia è editoriale e stabile, non dipende dall'ordinamento dei record.
 - **Link Diretti & 100% Verificati**:
   - Distinzione chiara tra **Articoli Peer-Reviewed** (`↗ Vai all'Articolo (${journal})` con rimando al DOI ufficiale) e **Notizie Scientifiche** (`↗ Leggi Notizia (${fonte})` con rimando diretto alla testata/comunicato stampa).
   - Tutti i 50 record censiti sono verificati con test di connessione live (`tests/test_links_live.py`) per garantire zero link rotti o errori 404/DOI not found.

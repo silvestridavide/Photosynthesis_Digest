@@ -354,31 +354,61 @@ class LumenApp {
     const emptyState = document.getElementById('empty-state');
     const spotlightContainer = document.getElementById('hero-spotlight-container');
     const feedContainer = document.getElementById('feed-cards-container');
+    const editionContainer = document.getElementById('edition-content');
+    const resultsSection = document.getElementById('results-section');
 
     if (sorted.length === 0) {
       emptyState?.classList.remove('hidden');
       if (spotlightContainer) spotlightContainer.innerHTML = '';
+      if (editionContainer) editionContainer.innerHTML = '';
+      resultsSection?.classList.add('hidden');
       if (feedContainer) feedContainer.innerHTML = '';
       return;
     }
 
     emptyState?.classList.add('hidden');
 
-    // Hero spotlight (shown only on 'all' view when not searching/filtering specific categories)
-    let displayItems = sorted;
     if (!isFiltered && spotlightContainer) {
-      const heroItem = sorted.find(it => it.hero_image) || sorted.find(it => it.featured && (it.item_type === 'article' || !it.item_type)) || sorted[0];
+      const heroItem = this.items.find(it => it.id === 'li-2026-in-situ-photosystems') || sorted.find(it => it.hero_image) || sorted[0];
       this.renderHeroSpotlight(heroItem, spotlightContainer);
-      displayItems = sorted.filter(it => it.id !== heroItem.id);
+      this.renderMagazineEdition(heroItem, editionContainer);
+      resultsSection?.classList.add('hidden');
+      if (feedContainer) feedContainer.innerHTML = '';
     } else {
       if (spotlightContainer) spotlightContainer.innerHTML = '';
+      if (editionContainer) editionContainer.innerHTML = '';
+      resultsSection?.classList.remove('hidden');
+      if (feedContainer) {
+        feedContainer.classList.add('results-grid');
+        feedContainer.innerHTML = sorted.map(item => this.createCardHTML(item)).join('');
+        this.bindCardEvents(feedContainer);
+      }
     }
+  }
 
-    // Render feed cards
-    if (feedContainer) {
-      feedContainer.innerHTML = displayItems.map((item, index) => this.createCardHTML(item, index)).join('');
-      this.bindCardEvents(feedContainer);
-    }
+  renderMagazineEdition(coverItem, container) {
+    if (!container) return;
+    const byId = id => this.items.find(item => item.id === id);
+    const featureIds = ['ramakers-2026-psii-npq-states', 'yamori-2026-rubisco-base-editing', 'how-2026-rubisco-activase-pyrenoid'];
+    const features = featureIds.map(byId).filter(Boolean);
+    const structural = this.items.filter(item => item.category === 'Structural Biology & Cryo-EM' && item.id !== coverItem.id).slice(0, 4);
+    const news = this.getSortedItems(this.items.filter(item => item.item_type === 'news'));
+    const used = new Set([coverItem.id, ...features.map(item => item.id), ...structural.map(item => item.id), ...news.map(item => item.id)]);
+    const groups = [...new Set(this.items.filter(item => !used.has(item.id) && item.item_type !== 'news').map(item => item.category))]
+      .map(category => ({ category, items: this.getSortedItems(this.items.filter(item => !used.has(item.id) && item.category === category)) }));
+
+    container.innerHTML = `
+      <section class="fascicolo"><div class="fascicolo-label">In questo fascicolo</div><div class="feature-notes">${features.map(item => this.createEditorialItemHTML(item, 'feature-note')).join('')}</div></section>
+      <section class="dossier dossier-machines"><header class="dossier-heading"><span>Dossier 01</span><h2>Macchine della luce</h2><p>Strutture, pigmenti e architetture osservate alla scala in cui lavorano.</p></header><div class="dossier-spread">${structural.map((item, index) => this.createEditorialItemHTML(item, index === 0 ? 'dossier-lead' : 'dossier-brief')).join('')}</div></section>
+      <section class="research-index"><header class="section-heading"><div><span class="section-kicker">Research index</span><h2>Linee di ricerca</h2></div><p>Una lettura per temi, non una sequenza di card.</p></header>${groups.map(group => `<section class="index-section"><h3>${this.escapeHTML(group.category)}</h3><div class="index-list">${group.items.map(item => this.createEditorialItemHTML(item, 'index-item')).join('')}</div></section>`).join('')}</section>
+      <section class="briefing"><header class="dossier-heading"><span>Dal campo</span><h2>Briefing</h2><p>Comunicati e prospettive separati dalla letteratura peer-reviewed.</p></header><div class="briefing-list">${news.map(item => this.createEditorialItemHTML(item, 'dispatch')).join('')}</div></section>`;
+    this.bindCardEvents(container);
+  }
+
+  createEditorialItemHTML(item, treatment) {
+    const source = item.journal || item.source_outlet || 'Fonte';
+    const summary = this.makeDek(item.abstract, treatment === 'index-item' ? 150 : 190);
+    return `<article class="editorial-item editorial-item--${treatment}" data-id="${item.id}"><p class="editorial-meta">${this.escapeHTML(source)} <span>·</span> ${item.publication_date || ''}</p><h3><button type="button" class="card-title" data-id="${item.id}">${this.escapeHTML(item.title)}</button></h3><p class="editorial-dek">${this.escapeHTML(summary)}</p><button class="editorial-detail btn-card-details" data-id="${item.id}">Scheda <span aria-hidden="true">→</span></button></article>`;
   }
 
   renderHeroSpotlight(item, container) {
@@ -444,7 +474,7 @@ class LumenApp {
     });
   }
 
-  createCardHTML(item, index = 0) {
+  createCardHTML(item) {
     const isNews = item.item_type === 'news';
     const isSaved = this.savedIds.has(item.id);
     const sourceLabel = item.journal || item.source_outlet || (isNews ? 'News Outlet' : 'Journal');
@@ -466,7 +496,7 @@ class LumenApp {
     }
 
     return `
-      <article class="article-card ${isNews ? 'card-news' : 'card-paper'} card-slot-${index % 6}" data-id="${item.id}">
+      <article class="article-card ${isNews ? 'card-news' : 'card-paper'}" data-id="${item.id}">
         <div class="card-folio ${isNews ? 'card-folio-news' : ''}" aria-hidden="true">
           <span>${folioLabel}</span>
           <strong>${folioDate}</strong>
