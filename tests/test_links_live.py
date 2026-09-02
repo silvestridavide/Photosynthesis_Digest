@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-LUMEN · Live Link & DOI Verification Suite
+Resonance · Live Link & DOI Verification Suite
 Tests every URL and DOI in the dataset against live network to ensure 0 broken links.
 """
 
@@ -17,7 +17,7 @@ def test_all_links():
         items = json.load(f)
 
     print("==================================================")
-    print(f" LUMEN LINK VERIFIER: Testing {len(items)} items online")
+    print(f" RESONANCE LINK VERIFIER: Testing {len(items)} items online")
     print("==================================================")
 
     passed = 0
@@ -57,7 +57,7 @@ def test_all_links():
                 if doi:
                     try:
                         cr_url = f"https://api.crossref.org/works/{doi}"
-                        cr_req = urllib.request.Request(cr_url, headers={'User-Agent': 'mailto:test@lumen.org'})
+                        cr_req = urllib.request.Request(cr_url, headers={'User-Agent': 'mailto:test@resonance-journal.org'})
                         with urllib.request.urlopen(cr_req, timeout=5) as cr_resp:
                             if cr_resp.status == 200:
                                 passed += 1

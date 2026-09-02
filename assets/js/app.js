@@ -1,11 +1,11 @@
 /**
- * LUMEN · Application Controller & Scientific Journal Engine
+ * Resonance · Application Controller & Scientific Journal Engine
  * Architecture: Vanilla ES Module (Zero Build Step, Local-First)
  */
 
 import { INITIAL_ARTICLES } from './articles-data.js';
 
-class LumenApp {
+class ResonanceApp {
   constructor() {
     this.items = [];
     this.savedIds = new Set();
@@ -33,7 +33,7 @@ class LumenApp {
 
   loadSavedState() {
     try {
-      const stored = localStorage.getItem('lumen_saved_ids') || localStorage.getItem('photosynthesis_saved_ids');
+      const stored = localStorage.getItem('resonance_saved_ids') || localStorage.getItem('lumen_saved_ids') || localStorage.getItem('photosynthesis_saved_ids');
       if (stored) {
         this.savedIds = new Set(JSON.parse(stored));
       }
@@ -44,7 +44,7 @@ class LumenApp {
 
   saveSavedState() {
     try {
-      localStorage.setItem('lumen_saved_ids', JSON.stringify(Array.from(this.savedIds)));
+      localStorage.setItem('resonance_saved_ids', JSON.stringify(Array.from(this.savedIds)));
       this.updateSavedCountDisplay();
     } catch (e) {
       console.warn('Errore salvataggio bookmark:', e);
@@ -192,31 +192,10 @@ class LumenApp {
       });
     });
 
-    // ZINE Open Buttons
-    const openZine = () => this.openZineModal();
-    document.getElementById('btn-open-zine')?.addEventListener('click', openZine);
-    document.getElementById('btn-footer-zine')?.addEventListener('click', openZine);
-
-    document.getElementById('zine-modal-close')?.addEventListener('click', () => this.closeZineModal());
-    document.getElementById('zine-modal')?.addEventListener('click', (e) => {
-      if (e.target.id === 'zine-modal') this.closeZineModal();
-    });
-
-    // ZINE Print Button
-    document.getElementById('btn-print-zine')?.addEventListener('click', () => {
-      window.print();
-    });
-
-    // ZINE Copy Text Button
-    document.getElementById('btn-copy-zine-text')?.addEventListener('click', () => {
-      this.copyZineText();
-    });
-
     // ESC key listener
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         this.closeModal();
-        this.closeZineModal();
       }
     });
   }
@@ -648,7 +627,7 @@ class LumenApp {
           </div>
         `).join('');
       } else {
-        authorsSection.innerHTML = `<div><strong>${this.escapeHTML(item.author_or_editor || 'Redazione LUMEN')}</strong></div>`;
+        authorsSection.innerHTML = `<div><strong>${this.escapeHTML(item.author_or_editor || 'Redazione Resonance')}</strong></div>`;
       }
     }
 
@@ -739,11 +718,11 @@ class LumenApp {
     } else if (this.citationFormat === 'bibtex') {
       const firstAuthorKey = Array.isArray(item.authors) && item.authors.length > 0
         ? item.authors[0].name.split(' ').pop().toLowerCase()
-        : 'lumen';
+        : 'resonance';
       const year = item.year || (item.publication_date ? item.publication_date.substring(0, 4) : '2026');
       const authorsBib = Array.isArray(item.authors)
         ? item.authors.map(a => a.name).join(' and ')
-        : (item.author_or_editor || 'Lumen Editorial');
+        : (item.author_or_editor || 'Resonance Editorial');
 
       codeBlock.textContent = `@article{${firstAuthorKey}${year}${item.id.substring(0, 6)},
   title = {${item.title}},
@@ -754,133 +733,6 @@ class LumenApp {
   url = {${item.url}}
 }`;
     }
-  }
-
-  /* =========================================================================
-     ZINE ENGINE (1-Page A4 Printable Mini-Magazine)
-     ========================================================================= */
-
-  openZineModal() {
-    const modal = document.getElementById('zine-modal');
-    const container = document.getElementById('zine-sheet-content');
-    if (!modal || !container) return;
-
-    // Pick top breakthrough paper
-    const leadPaper = this.items.find(it => it.id === 'li-2026-in-situ-photosystems') ||
-                      this.items.find(it => it.featured && it.item_type !== 'news') ||
-                      this.items[0];
-
-    // Pick 3 top fresh news
-    const newsItems = this.items.filter(it => it.item_type === 'news').slice(0, 3);
-
-    // Pick 4 hot research papers across key disciplines
-    const researchPapers = this.items
-      .filter(it => (it.item_type === 'article' || !it.item_type) && it.id !== leadPaper.id)
-      .slice(0, 4);
-
-    const leadAuthors = Array.isArray(leadPaper.authors)
-      ? leadPaper.authors.map(a => a.name).join(', ')
-      : '';
-
-    container.innerHTML = `
-      <div class="zine-masthead">
-        <div class="zine-volume-line">
-          <span>LUMEN · Research Digest</span>
-          <span>Volume IV · Issue 8</span>
-          <span>Agosto 2026</span>
-        </div>
-        <h1 class="zine-title">LUMEN</h1>
-        <div class="zine-subtitle">Rassegna Scientifica di Fotosintesi &amp; Bioenergetica · Laboratorio di Ricerca</div>
-      </div>
-
-      <div class="zine-layout-body">
-        
-        <!-- Left Column: Lead Story -->
-        <div class="zine-col-lead">
-          <div>
-            <span class="zine-section-header">Articolo di Copertina · In Evidenza</span>
-            <h2 class="zine-lead-title">${this.escapeHTML(leadPaper.title)}</h2>
-            <div class="zine-lead-meta">
-              <strong>${this.escapeHTML(leadPaper.journal || 'Nature')}</strong> (${leadPaper.publication_date}) · <em>${this.escapeHTML(leadAuthors)}</em>
-            </div>
-            <p class="zine-lead-text">${this.escapeHTML(leadPaper.abstract)}</p>
-          </div>
-
-          <div style="margin-top: 0.6rem; border-top: 1px dashed #9ca3af; padding-top: 0.5rem;">
-            <span class="zine-section-header">Articoli di Punta Selezionati</span>
-            ${researchPapers.slice(0, 2).map(item => `
-              <div style="margin-bottom: 0.45rem;">
-                <strong style="font-size: 8.5pt; color: #000;">${this.escapeHTML(item.title)}</strong>
-                <div style="font-size: 7.5pt; color: #4b5563;">${this.escapeHTML(item.journal)} (${item.year || '2026'}) · DOI: ${item.doi || ''}</div>
-              </div>
-            `).join('')}
-          </div>
-        </div>
-
-        <!-- Right Column: News & Briefs -->
-        <div class="zine-col-side">
-          <span class="zine-section-header">Notizie &amp; Comunicati Ufficiali</span>
-          ${newsItems.map(item => `
-            <div class="zine-news-item">
-              <h4>${this.escapeHTML(item.title)}</h4>
-              <div style="font-size: 7.2pt; font-family: sans-serif; color: #4b5563; margin-bottom: 0.15rem;">
-                <strong>${this.escapeHTML(item.source_outlet || item.journal || 'Fonte')}</strong> · ${item.publication_date || ''}
-              </div>
-              <p>${this.escapeHTML(item.abstract.substring(0, 160))}...</p>
-            </div>
-          `).join('')}
-
-          <div style="margin-top: auto; background-color: #f3f4f6; padding: 0.4rem 0.55rem; border-left: 2px solid #111827;">
-            <div style="font-size: 7pt; font-weight: bold; text-transform: uppercase;">Nota di Laboratorio</div>
-            <div style="font-size: 6.8pt; line-height: 1.35; color: #374151;">
-              Tutti i 50 record censiti sono verificati con link diretti alle fonti primarie e DOI ufficiali.
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <footer class="zine-footer">
-        <span>LUMEN · Edizione Periodica di Laboratorio</span>
-        <span>50 Record Verificati (Nature, Science, PNAS, Plant Physiol, Bioresour Technol)</span>
-        <span>Stampato tramite Motore Web ZINE A4</span>
-      </footer>
-    `;
-
-    modal.classList.remove('hidden');
-  }
-
-  closeZineModal() {
-    document.getElementById('zine-modal')?.classList.add('hidden');
-  }
-
-  copyZineText() {
-    const leadPaper = this.items.find(it => it.id === 'li-2026-in-situ-photosystems') || this.items[0];
-    const newsItems = this.items.filter(it => it.item_type === 'news').slice(0, 3);
-    const researchPapers = this.items.filter(it => (it.item_type === 'article' || !it.item_type) && it.id !== leadPaper.id).slice(0, 4);
-
-    let text = `=========================================\n`;
-    text += `LUMEN · ZINE (Edizione 1 Pagina)\n`;
-    text += `Laboratorio di Fotosintesi & Bioenergetica · Agosto 2026\n`;
-    text += `=========================================\n\n`;
-    
-    text += `[LEAD BREAKTHROUGH]\n`;
-    text += `Titolo: ${leadPaper.title}\n`;
-    text += `Rivista: ${leadPaper.journal} (${leadPaper.publication_date})\n`;
-    text += `DOI: https://doi.org/${leadPaper.doi}\n`;
-    text += `Sintesi: ${leadPaper.abstract}\n\n`;
-
-    text += `[NOTIZIE & RASSEGNA STAMPA]\n`;
-    newsItems.forEach((n, i) => {
-      text += `${i + 1}. ${n.title} (${n.source_outlet || n.journal})\n   ${n.abstract}\n   Link: ${n.url}\n\n`;
-    });
-
-    text += `[ARTICOLI CALDI DI RICERCA]\n`;
-    researchPapers.forEach((p, i) => {
-      text += `${i + 1}. ${p.title} (${p.journal})\n   DOI: https://doi.org/${p.doi}\n\n`;
-    });
-
-    this.copyToClipboard(text, 'Sommario Zine copiato negli appunti!');
   }
 
   /* =========================================================================
@@ -941,5 +793,5 @@ class LumenApp {
 
 // Instantiate application on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
-  window.lumenApp = new LumenApp();
+  window.resonanceApp = new ResonanceApp();
 });

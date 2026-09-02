@@ -1,5 +1,5 @@
 /**
- * Test di validazione formale del dataset di LUMEN (Node.js version)
+ * Test di validazione formale del dataset di Resonance (Node.js version)
  */
 
 const fs = require('fs');
@@ -8,7 +8,7 @@ const path = require('path');
 const jsonPath = path.join(__dirname, '..', 'assets', 'data', 'articles.json');
 const jsPath = path.join(__dirname, '..', 'assets', 'js', 'articles-data.js');
 
-console.log('=== TEST DI VALIDAZIONE: LUMEN ===\n');
+console.log('=== TEST DI VALIDAZIONE: RESONANCE ===\n');
 
 // 1. Check articles.json
 if (!fs.existsSync(jsonPath)) {

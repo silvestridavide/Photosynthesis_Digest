@@ -13,7 +13,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 JSON_PATH = os.path.join(BASE_DIR, "assets", "data", "articles.json")
 JS_PATH = os.path.join(BASE_DIR, "assets", "js", "articles-data.js")
 
-print("=== TEST DI VALIDAZIONE: Photosynthesis Digest ===\n")
+print("=== TEST DI VALIDAZIONE: RESONANCE ===\n")
 
 if not os.path.exists(JSON_PATH):
     print(f"[ERRORE] File non trovato: {JSON_PATH}")

@@ -1,16 +1,17 @@
-# Istruzioni per LUMEN
+# Istruzioni per Resonance
 
 ## Direzione editoriale
 
-LUMEN è un research journal digitale per il Laboratorio di Fotosintesi e Bioenergetica. Ogni modifica all'interfaccia deve privilegiare il ritmo di una rivista scientifica contemporanea: una cover story visiva, titoli serif leggibili, metadati discreti, spazi bianchi intenzionali e articoli organizzati come un dossier, non come una dashboard SaaS.
+Resonance è un research journal digitale per il Laboratorio di Fotosintesi e Bioenergetica. Ogni modifica all'interfaccia deve privilegiare il ritmo di una rivista scientifica contemporanea: una cover story visiva, titoli serif leggibili, metadati discreti, spazi bianchi intenzionali e articoli organizzati come un dossier, non come una dashboard SaaS.
 
-L'ispirazione è il rigore e la gerarchia del giornalismo scientifico di alto livello, senza riprodurre logo, marchio, palette o elementi distintivi di altre testate. L'identità LUMEN usa carta calda, carbone, verde clorofilla e accenti giallo-verdi o ruggine solo quando hanno un significato editoriale.
+L'ispirazione è il rigore e la gerarchia del giornalismo scientifico di alto livello, senza riprodurre logo, marchio, palette o elementi distintivi di altre testate. L'identità Resonance usa carta calda, carbone, verde clorofilla e accenti giallo-verdi o ruggine solo quando hanno un significato editoriale.
 
 ## Immagini e dati
 
 - Usare immagini scientifiche pertinenti, con alt text e caption. Le illustrazioni generate vanno dichiarate come visual research illustration: non devono sembrare figure sperimentali o dati misurati.
 - Conservare dati, DOI, link e affiliazioni verificati: non inventare risultati, metriche, figure o crediti.
-- Mantenere ricerca, filtri, salvataggi, modale di lettura e ZINE A4 pienamente funzionanti quando si modificano i template.
+- Mantenere ricerca, filtri, salvataggi e modale di lettura pienamente funzionanti quando si modificano i template.
+- Non introdurre componenti di upload, download, stampa o esportazione di file.
 
 ## Collaborazione
 

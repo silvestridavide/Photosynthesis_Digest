@@ -1,10 +1,11 @@
-# LUMEN · Rivista Scientifica & Zine sulla Fotosintesi
+# Resonance · Rivista Scientifica sulla Fotosintesi
 
-**LUMEN** è una piattaforma editoriale e rassegna scientifica essenziale per il monitoraggio della letteratura internazionale su **fotosintesi**, biofisica delle membrane tilacoidali, biologia strutturale (Cryo-EM), fotoprotezione (NPQ, LHCSR, PsbS), ingegneria della Rubisco, pirenoide e bioenergie.
+**Resonance** è una piattaforma editoriale e rassegna scientifica essenziale per il monitoraggio della letteratura internazionale su **fotosintesi**, biofisica delle membrane tilacoidali, biologia strutturale (Cryo-EM), fotoprotezione (NPQ, LHCSR, PsbS), ingegneria della Rubisco, pirenoide e bioenergie.
 
 L'interfaccia adotta ora una direzione da research journal contemporaneo: cover story con visual research illustration originale, gerarchia tipografica editoriale, metadati discreti e un feed che privilegia il racconto scientifico rispetto a card da dashboard. L'ispirazione è il rigore dell'editoria scientifica internazionale, senza riprodurre brand o identità di altre testate.
 
-Include un generatore dedicato di **ZINE in 1 singola pagina A4** stampabile o salvabile in PDF, con la storia di copertina, le notizie più fresche e i paper di punta.
+La consultazione resta interamente nel browser: non sono presenti funzioni di caricamento, download, stampa o esportazione di file.
+I filtri tematici sono mostrati tutti insieme e vanno a capo sugli schermi stretti, senza caroselli o scorrimento orizzontale.
 
 ---
 
@@ -17,10 +18,6 @@ Include un generatore dedicato di **ZINE in 1 singola pagina A4** stampabile o s
 - **Link Diretti & 100% Verificati**:
   - Distinzione chiara tra **Articoli Peer-Reviewed** (`↗ Vai all'Articolo (${journal})` con rimando al DOI ufficiale) e **Notizie Scientifiche** (`↗ Leggi Notizia (${fonte})` con rimando diretto alla testata/comunicato stampa).
   - Tutti i 50 record censiti sono verificati con test di connessione live (`tests/test_links_live.py`) per garantire zero link rotti o errori 404/DOI not found.
-- **Generatore di ZINE (1 Pagina A4)**:
-  - Pulsante in testata: `📰 Scarica ZINE (1 Pagina A4)`.
-  - Layout compatto pronto per la stampa o l'esportazione PDF (`@media print` con `@page { size: A4; margin: 0; }`).
-  - Riassume su un singolo foglio il lead breakthrough, 3 notizie calde, 4 paper selezionati e la nota editoriale del laboratorio.
 - **50 Record Reali e Verificati**:
   - **40 Articoli Peer-Reviewed**: *Nature*, *Science*, *PNAS*, *Nature Plants*, *Nature Communications*, *The Plant Cell*, *Plant Physiology*, *The Plant Journal*, *The New Phytologist*, *Bioresource Technology*, *Nature Energy*.
   - **10 Notizie & Comunicati Ufficiali**: *University of Cambridge Research*, *MIT News*, *Berkeley Lab News Center*, *Osaka Metropolitan University*, *Nature Plants News & Views*, *Boyce Thompson Institute*, *ETH Zurich*, *Imperial College London*, *Max Planck Institute*.
