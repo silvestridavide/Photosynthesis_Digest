@@ -8,7 +8,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.crossref.org https://www.ebi.ac.uk; img-src 'self' data: https:; object-src 'none'; base-uri 'self';"
+          "value": "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; connect-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'none'"
         },
         {
           "key": "X-Content-Type-Options",
@@ -33,9 +33,15 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=3600, must-revalidate"
+          "value": "public, max-age=0, must-revalidate"
         }
       ]
     }
-  ]
+  ],
+  "functions": {
+    "api/news.py": {
+      "maxDuration": 30,
+      "excludeFiles": "{assets/**,tests/**,scripts/**,README.md,CONTESTO_PROGETTO.txt}"
+    }
+  }
 }

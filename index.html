@@ -1,285 +1,65 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resonance · Rivista Scientifica sulla Fotosintesi</title>
-  <meta name="description" content="Resonance: rassegna scientifica essenziale sulla fotosintesi, biofisica delle membrane, alghe e biologia strutturale.">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#174a3a">
+  <title>Resonance — Il magazine della fotosintesi</title>
+  <meta name="description" content="Il tuo briefing sulla fotosintesi: notizie, riassunti in italiano e una biblioteca di 50 lavori molto citati, con fonti e accessibilità documentate.">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <script type="module" src="assets/js/app.js"></script>
 </head>
 <body>
-  <div class="app-layout">
-    
-    <!-- Top Editorial Bar -->
-    <aside class="edition-topbar">
-      <div class="container edition-topbar-inner">
-        <div class="topbar-left">
-          <span class="edition-tag">Volume IV · Issue 8</span>
-          <span class="topbar-sep">•</span>
-          <span class="edition-date" id="topbar-current-date">Agosto 2026</span>
-          <span class="topbar-sep">•</span>
-          <span class="edition-lab">Laboratorio di Fotosintesi &amp; Bioenergetica</span>
-        </div>
-        <div class="topbar-right">
-          <span class="live-dot-wrapper">
-            <span class="live-dot"></span>
-            <span class="live-status">50 Record Verificati</span>
-          </span>
-        </div>
-      </div>
-    </aside>
-
-    <!-- Resonance Masthead -->
-    <header class="resonance-masthead">
-      <div class="container masthead-inner">
-        
-        <div class="masthead-brand">
-          <div class="brand-kicker">Research Journal · Curated weekly</div>
-          <h1 class="brand-title">RESONANCE</h1>
-          <p class="brand-subtitle">La ricerca che illumina la fotosintesi, dalle membrane tilacoidali alle colture del futuro.</p>
-        </div>
-
-        <div class="masthead-controls">
-          <!-- Metrics summary -->
-          <div class="metrics-pill-group">
-            <div class="metric-chip" title="Articoli scientifici peer-reviewed">
-              <span class="metric-val" id="metric-papers">40</span>
-              <span class="metric-tag">Articoli</span>
-            </div>
-            <div class="metric-chip" title="Notizie e rassegna stampa verificata">
-              <span class="metric-val" id="metric-news">10</span>
-              <span class="metric-tag">News</span>
-            </div>
-            <div class="metric-chip" title="Riviste e testate censite">
-              <span class="metric-val" id="metric-sources">14</span>
-              <span class="metric-tag">Fonti</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </header>
-
-    <!-- Clean Navigation & Search Bar -->
-    <nav class="streamlined-nav" id="toolbar">
-      <div class="container nav-inner">
-        
-        <!-- View Switcher Tabs -->
-        <div class="nav-tabs" aria-label="Filtra i contenuti">
-          <button class="tab-pill active" data-view="all" aria-pressed="true" id="tab-all">
-            <span>Edizione (<span id="tab-all-count">50</span>)</span>
-          </button>
-          <button class="tab-pill" data-view="articles" aria-pressed="false" id="tab-articles">
-            <span>Articoli Scientifici (<span id="tab-articles-count">40</span>)</span>
-          </button>
-          <button class="tab-pill" data-view="news" aria-pressed="false" id="tab-news">
-            <span>Notizie &amp; Rassegna (<span id="tab-news-count">10</span>)</span>
-          </button>
-          <button class="tab-pill" data-view="saved" aria-pressed="false" id="tab-saved">
-            <span>I Miei Salvati (<span id="saved-count">0</span>)</span>
-          </button>
-        </div>
-
-        <!-- Search Input Box -->
-        <div class="search-box-wrap">
-          <svg class="search-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-          <input type="text" id="search-input" placeholder="Cerca per titolo, autore, DOI, rivista, argomento..." autocomplete="off" spellcheck="false">
-          <button id="search-clear" class="btn-clear-search hidden" title="Cancella ricerca">✕</button>
-        </div>
-
-      </div>
-
-      <!-- Quick Filter Chips & Dropdowns -->
-      <div class="filters-subbar">
-        <div class="container filters-subbar-inner">
-          
-          <div class="category-chips-scroll" id="quick-category-pills">
-            <!-- Rendered by JS -->
-          </div>
-
-          <div class="dropdown-filters-wrap">
-            
-            <div class="filter-select-group">
-              <label for="filter-organism">Organismo:</label>
-              <select id="filter-organism" class="select-clean">
-                <option value="ALL">Tutti gli Organismi</option>
-                <option value="Arabidopsis">Arabidopsis thaliana</option>
-                <option value="Chlamydomonas">Chlamydomonas reinhardtii</option>
-                <option value="Chlorella">Chlorella (vulgaris / ohadii)</option>
-                <option value="Anabaena">Anabaena sp. PCC 7120</option>
-                <option value="Synechocystis">Synechocystis sp. PCC 6803</option>
-                <option value="Synechococcus">Synechococcus sp.</option>
-                <option value="Cyanidioschyzon">Cyanidioschyzon merolae</option>
-                <option value="Chromera">Chromera velia</option>
-                <option value="Chaetoceros">Chaetoceros (Diatomee)</option>
-                <option value="Oryza">Oryza sativa (Riso)</option>
-                <option value="Nicotiana">Nicotiana tabacum</option>
-                <option value="Glycine">Glycine max (Soia)</option>
-                <option value="Synthetic">Bioibridi &amp; Sintetici</option>
-              </select>
-            </div>
-
-            <div class="filter-select-group">
-              <label for="sort-order">Ordina:</label>
-              <select id="sort-order" class="select-clean">
-                <option value="date-desc">Più Recente</option>
-                <option value="date-asc">Meno Recente</option>
-                <option value="journal-asc">Rivista (A-Z)</option>
-                <option value="title-asc">Titolo (A-Z)</option>
-              </select>
-            </div>
-
-            <button class="btn btn-reset-clean" id="btn-reset-filters" title="Reimposta tutti i filtri">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
-              <span>Reimposta</span>
-            </button>
-
-          </div>
-
-        </div>
-      </div>
-    </nav>
-
-    <!-- Main editorial feed -->
-    <main class="container main-feed-layout">
-      
-      <!-- Filter status banner if active search -->
-      <div class="filter-status-banner hidden" id="filter-status-banner" role="status" aria-live="polite">
-        <span>Trovati <strong id="filter-active-count">0</strong> risultati per i criteri selezionati.</span>
-        <button class="btn-banner-reset" id="btn-banner-reset">Mostra Tutti i Contenuti</button>
-      </div>
-
-      <section class="edition-deck" aria-label="Sommario dell'edizione">
-        <p class="edition-deck-label">In questa edizione</p>
-        <p>Strutture native dei fotosistemi, adattamento alla luce estrema e nuovi strumenti per rendere più efficiente la fissazione del carbonio.</p>
-        <div class="edition-deck-stats" aria-label="Statistiche della rassegna">
-          <span><strong>40</strong> paper</span>
-          <span><strong>10</strong> dispatches</span>
-          <span><strong>23</strong> open access</span>
-        </div>
-      </section>
-
-      <!-- Lead Spotlight Feature -->
-      <section class="hero-spotlight-section" id="hero-spotlight-container">
-        <!-- Rendered dynamically by JS -->
-      </section>
-
-      <section class="edition-content" id="edition-content" aria-label="Edizione corrente"></section>
-
-      <!-- Results replace the edition only when a filter is active -->
-      <section class="feed-grid-section hidden" id="results-section" aria-label="Risultati della ricerca">
-        <header class="section-heading">
-          <div><span class="section-kicker">Research index</span><h2>Risultati</h2></div>
-        </header>
-        <div class="feed-grid" id="feed-cards-container">
-          <!-- Rendered dynamically by JS -->
-        </div>
-      </section>
-
-      <!-- Empty State -->
-      <div class="empty-state hidden" id="empty-state">
-        <div class="empty-state-icon">🔬</div>
-        <h3 class="empty-state-title">Nessun contenuto trovato</h3>
-        <p class="empty-state-text">Non abbiamo trovato articoli o notizie corrispondenti ai criteri di ricerca.</p>
-        <button class="btn btn-emerald" id="btn-empty-reset">Mostra Tutti i 50 Contenuti</button>
-      </div>
-
-    </main>
-
-    <!-- =================================================================== -->
-    <!-- ARTICLE & NEWS READER MODAL (Clean, Fast & Direct)                  -->
-    <!-- =================================================================== -->
-    <div class="modal-overlay hidden" id="article-modal" role="dialog" aria-modal="true">
-      <div class="modal-card">
-        
-        <header class="modal-header">
-          <div class="modal-meta-badges" id="modal-top-badges">
-            <!-- Injected by JS -->
-          </div>
-          <button class="modal-close-btn" id="modal-close" aria-label="Chiudi finestra">✕</button>
-        </header>
-
-        <div class="modal-body-scroll">
-          
-          <h2 class="modal-headline" id="modal-title">Titolo del documento</h2>
-          
-          <!-- Authors or News Source section -->
-          <div class="modal-source-section" id="modal-authors-section">
-            <div class="modal-section-kicker" id="modal-authors-kicker">AUTORI &amp; AFFILIAZIONI</div>
-            <div class="modal-authors-content" id="modal-authors"></div>
-          </div>
-
-          <!-- Tags & Organism Pills -->
-          <div class="modal-tags-row" id="modal-tags"></div>
-
-          <!-- Abstract or News Body -->
-          <div class="modal-abstract-box">
-            <div class="modal-section-kicker" id="modal-body-kicker">ABSTRACT / TESTO INTEGRALE</div>
-            <div class="modal-abstract-content" id="modal-abstract"></div>
-          </div>
-
-          <!-- Academic Citation Block -->
-          <div class="modal-citation-box" id="modal-citation-section">
-            <div class="citation-top">
-              <span class="modal-section-kicker">CITAZIONE BIBLIOGRAFICA</span>
-              <div class="citation-format-buttons">
-                <button class="btn-fmt active" data-fmt="apa">APA</button>
-                <button class="btn-fmt" data-fmt="bibtex">BibTeX</button>
-              </div>
-            </div>
-            <pre class="citation-code-block" id="modal-citation-text"></pre>
-          </div>
-
-        </div>
-
-        <footer class="modal-footer">
-          <div class="modal-footer-doi" id="modal-doi-container">
-            <span class="doi-lbl">DOI:</span>
-            <code class="doi-val" id="modal-doi">10.1038/xxx</code>
-            <button class="btn-copy-doi" id="btn-copy-doi" title="Copia DOI">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-              <span>Copia DOI</span>
-            </button>
-          </div>
-          <div class="modal-footer-actions">
-            <button class="btn btn-outline" id="modal-btn-bookmark">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-              <span id="modal-bookmark-label">Salva</span>
-            </button>
-            <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-emerald" id="modal-link-external">
-              <span id="modal-external-label">Apri Articolo Ufficiale (DOI)</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg>
-            </a>
-          </div>
-        </footer>
-
-      </div>
-    </div>
-
-    <!-- Resonance Footer -->
-    <footer class="resonance-footer">
-      <div class="container footer-content">
-        <div class="footer-brand-info">
-          <strong>RESONANCE</strong> · Rivista Scientifica &amp; Research Digest sulla Fotosintesi
-          <p>Laboratorio di Fotosintesi &amp; Bioenergetica · 50 Pubblicazioni &amp; Notizie Verificate</p>
-        </div>
-      </div>
-      <div class="footer-bottom-line">
-        <div class="container">
-          <span>&copy; 2026 Resonance · Local-First Architecture · Dati verificati da CrossRef, Europe PMC, Science, Nature, PNAS</span>
-        </div>
-      </div>
-    </footer>
-
+<a class="skip" href="#main">Vai ai contenuti</a>
+<div class="topline"><div class="container"><span>Fotosintesi · Biofisica · Carbonio</span><span id="edition-date">Caricamento dell’edizione…</span></div></div>
+<header class="masthead container">
+  <p class="eyebrow">Un osservatorio sulla ricerca che cattura la luce</p>
+  <h1>Resonance<span aria-hidden="true">.</span></h1>
+  <div class="masthead-bottom"><p>La fotosintesi, ogni giorno un po’ più chiara.</p><a href="#method">Il nostro metodo ↗</a></div>
+</header>
+<nav class="navigation container" aria-label="Sezioni del magazine">
+  <div id="view-tabs" class="tabs">
+    <button data-view="all" aria-pressed="true">Prima pagina</button>
+    <button data-view="news" aria-pressed="false">Notizie <span id="news-count"></span></button>
+    <button data-view="articles" aria-pressed="false">Biblioteca <span id="paper-count"></span></button>
+    <button data-view="saved" aria-pressed="false">Salvati <span id="saved-count">0</span></button>
   </div>
-
-  <!-- Toast Notification Container -->
-  <div class="toast-container" id="toast-container" role="status" aria-live="polite"></div>
-
-  <!-- Main ES Module Entry -->
-  <script type="module" src="assets/js/app.js"></script>
-</body>
-</html>
+  <button id="search-toggle" aria-expanded="false" aria-controls="filters">Cerca e filtra <span aria-hidden="true">⌕</span></button>
+</nav>
+<section class="container filters" id="filters" hidden aria-label="Ricerca nel magazine">
+  <div class="search-row"><label for="search-input">Cerca nella raccolta<input id="search-input" type="search" placeholder="Titolo, autore, DOI, argomento…" autocomplete="off"></label><button id="reset-filters">Azzera filtri</button></div>
+  <div id="theme-filters" class="chips" aria-label="Argomenti"></div>
+  <div class="filter-row">
+    <label for="filter-organism">Organismo<select id="filter-organism"><option value="">Tutti</option></select></label>
+    <label for="filter-source">Fonte<select id="filter-source"><option value="">Tutte</option></select></label>
+    <label for="sort-order">Ordina<select id="sort-order"><option value="editorial">Ordine editoriale</option><option value="citations">Più citati · Europe PMC</option><option value="recent">Più recenti</option><option value="oldest">Più antichi</option><option value="title">Titolo A–Z</option></select></label>
+    <label class="check"><input type="checkbox" id="only-unread"> Solo da leggere</label>
+    <label class="check"><input type="checkbox" id="only-oa"> Solo paper open access</label>
+  </div>
+</section>
+<main id="main" class="container" tabindex="-1">
+  <div id="load-status" class="load-status" role="status">Prepariamo la tua lettura…</div>
+  <div id="morning-note" class="morning-note" hidden></div>
+  <div id="home"></div>
+  <section id="results" hidden aria-labelledby="results-title">
+    <header class="section-head"><div><p class="eyebrow" id="results-kicker">La raccolta</p><h2 id="results-title" tabindex="-1">Articoli e notizie</h2></div><p id="result-count" role="status" aria-live="polite"></p></header>
+    <p id="results-note" class="section-note"></p><div id="result-list" class="story-list"></div>
+    <div class="pagination"><button id="load-more" hidden>Mostra altri</button></div>
+  </section>
+  <section id="method" class="method" aria-labelledby="method-title">
+    <header class="section-head"><div><p class="eyebrow">Trasparenza editoriale</p><h2 id="method-title">Dietro ogni estratto, una fonte.</h2></div></header>
+    <div class="method-grid"><div><h3>La biblioteca</h3><p>I 50 lavori pertinenti più citati tra i primi 122 risultati esaminati di una ricerca Europe PMC sulla fotosintesi biologica. Include studi, review e meta-analisi, etichettati separatamente. I conteggi dipendono dall’indice e non misurano la qualità scientifica.</p></div><div><h3>Le notizie</h3><p>20 notizie del 2026 selezionate da università, istituti e redazioni scientifiche. Il link principale apre la notizia, anche quando racconta uno studio. L’ordine è cronologico: non esiste una classifica affidabile delle notizie per citazioni.</p></div><div><h3>Cosa abbiamo letto</h3><p>Ogni scheda dichiara la base del riassunto, la data di verifica e l’esito di accesso. Abstract disponibile, record bibliografico e testo integrale sono livelli diversi. Le limitazioni degli studi accompagnano i risultati.</p></div></div>
+    <details><summary>Query, statistiche e limiti della raccolta</summary><div id="method-detail"><p>Caricamento della metodologia…</p></div></details>
+    <p class="quiet">La data in alto indica l’ultima edizione curata, non la data di oggi. Usa «Novità dalle fonti» per controllare le segnalazioni recenti: gli estratti automatici restano distinti dai riassunti curati.</p>
+  </section>
+  <section class="live-section" aria-labelledby="live-title"><header class="section-head"><div><p class="eyebrow">Oltre questa edizione</p><h2 id="live-title">Novità dalle fonti</h2></div><button id="refresh-news">Controlla le novità</button></header><p class="section-note">Segnalazioni dai feed di redazioni scientifiche e istituzioni: titoli ed estratti originali, senza riassunto editoriale. Disponibili online su Vercel.</p><p id="live-status" role="status" aria-live="polite"></p><div id="live-list" class="live-list"></div></section>
+</main>
+<footer class="footer"><div class="container"><strong>Resonance.</strong><p>Una lettura per chi studia la fotosintesi.<br>Preferiti e stato di lettura restano in questo browser.</p><a href="#main">Torna alla lettura ↑</a></div></footer>
+<dialog id="reader" aria-labelledby="reader-title">
+  <header class="reader-toolbar"><span id="reader-type" class="eyebrow"></span><button id="reader-close" aria-label="Chiudi lettura" autofocus>Chiudi ×</button></header>
+  <div class="reader-body"><p class="eyebrow" id="reader-source"></p><h2 id="reader-title"></h2><p id="reader-original" class="original-title" lang="en"></p><p id="reader-authors" class="quiet"></p><div id="reader-metrics" class="reader-metrics"></div><p class="eyebrow">Il riassunto</p><p id="reader-summary" class="reader-summary"></p><div id="reader-evidence" class="evidence"></div><div id="reader-citation"></div><section id="reader-related"></section></div>
+  <footer class="reader-actions"><button id="reader-save" aria-pressed="false">Salva</button><button id="reader-read" aria-pressed="false">Segna come letto</button><a id="reader-record" target="_blank" rel="noopener noreferrer">Record bibliografico ↗</a><a id="reader-link" class="primary" target="_blank" rel="noopener noreferrer">Apri fonte ↗</a></footer>
+</dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<noscript><p class="container">Per consultare il magazine è necessario JavaScript. Le fonti sono disponibili nel <a href="assets/data/articles.json">catalogo scientifico</a>.</p></noscript>
+</body></html>

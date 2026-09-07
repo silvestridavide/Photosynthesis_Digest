@@ -1,0 +1,888 @@
+{
+  "searched_at": "2026-09-07",
+  "depth": "Ricerca strutturata, non revisione sistematica",
+  "citation_database": "Europe PMC",
+  "query": "(TITLE_ABS:photosynth* OR TITLE_ABS:chlorophyll OR TITLE_ABS:rubisco OR TITLE_ABS:photosystem) AND FIRST_PDATE:[1900-01-01 TO 2026-09-07] AND (PUB_TYPE:\"Journal Article\" OR PUB_TYPE:Review) sort_cited:y",
+  "query_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%28TITLE_ABS%3Aphotosynth%2A+OR+TITLE_ABS%3Achlorophyll+OR+TITLE_ABS%3Arubisco+OR+TITLE_ABS%3Aphotosystem%29+AND+FIRST_PDATE%3A%5B1900-01-01+TO+2026-09-07%5D+AND+%28PUB_TYPE%3A%22Journal+Article%22+OR+PUB_TYPE%3AReview%29+sort_cited%3Ay&format=json&resultType=core&pageSize=200",
+  "hits": 147405,
+  "screened": 122,
+  "included": 50,
+  "scope": "Fotosintesi biologica: meccanismi, strutture, misure, regolazione e risposte ecologiche. Inclusi studi primari, review e meta-analisi. Esclusi genomica generale, patogeni, chimica fotocatalitica non biologica e studi senza focus diretto sulla fotosintesi.",
+  "ranking_limit": "Primi 50 lavori pertinenti fra i 122 record a maggior numero di citazioni esaminati nella query Europe PMC. Non classifica mondiale esaustiva. Citazioni del solo indice Europe PMC, non confrontabili direttamente con Google Scholar, Scopus o OpenAlex.",
+  "discovery": {
+    "query": "photosynthesis",
+    "sources": [
+      "europe-pmc",
+      "openalex",
+      "crossref"
+    ],
+    "searched_at": "2026-09-07T08:54:44.655285+00:00",
+    "from_year": null,
+    "to_year": null,
+    "limit_per_source": 70,
+    "counts_before_deduplication": {
+      "europe-pmc": 70,
+      "openalex": 70,
+      "crossref": 70
+    },
+    "errors": {},
+    "deduplication": "Records sharing a DOI, PMID, or normalized title are merged; reciprocal-rank fusion sets discovery order"
+  },
+  "news_method": "20 notizie istituzionali/editoriali del 2026 selezionate per pertinenza; ordinate per data. Esclusi paper, review e pagine di categoria come destinazione principale. Non esiste una graduatoria bibliometrica delle notizie.",
+  "screening": [
+    {
+      "position": 1,
+      "title": "Reactive oxygen species and antioxidant machinery in abiotic stress tolerance in crop plants.",
+      "doi": "10.1016/j.plaphy.2010.08.016",
+      "cited_by_count": 5190,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 2,
+      "title": "Chlorophyll fluorescence--a practical guide.",
+      "doi": "10.1093/jxb/51.345.659",
+      "cited_by_count": 3794,
+      "decision": "included"
+    },
+    {
+      "position": 3,
+      "title": "A biochemical model of photosynthetic CO2 assimilation in leaves of C 3 species.",
+      "doi": "10.1007/bf00386231",
+      "cited_by_count": 3251,
+      "decision": "included"
+    },
+    {
+      "position": 4,
+      "title": "A metal-free polymeric photocatalyst for hydrogen production from water under visible light.",
+      "doi": "10.1038/nmat2317",
+      "cited_by_count": 3219,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 5,
+      "title": "Powering the planet: chemical challenges in solar energy utilization.",
+      "doi": "10.1073/pnas.0603395103",
+      "cited_by_count": 2945,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 6,
+      "title": "Otto Warburg's contributions to current concepts of cancer metabolism.",
+      "doi": "10.1038/nrc3038",
+      "cited_by_count": 2746,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 7,
+      "title": "Plant pathogens and integrated defence responses to infection.",
+      "doi": "10.1038/35081161",
+      "cited_by_count": 2542,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 8,
+      "title": "MAPMAN: a user-driven tool to display genomics data sets onto diagrams of metabolic pathways and other biological processes.",
+      "doi": "10.1111/j.1365-313x.2004.02016.x",
+      "cited_by_count": 2509,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 9,
+      "title": "Crystal structure of oxygen-evolving photosystem II at a resolution of 1.9 Å.",
+      "doi": "10.1038/nature09913",
+      "cited_by_count": 2364,
+      "decision": "included"
+    },
+    {
+      "position": 10,
+      "title": "Chlorophyll fluorescence: a probe of photosynthesis in vivo.",
+      "doi": "10.1146/annurev.arplant.59.032607.092759",
+      "cited_by_count": 2200,
+      "decision": "included"
+    },
+    {
+      "position": 11,
+      "title": "Reactive oxygen species homeostasis and signalling during drought and salinity stresses.",
+      "doi": "10.1111/j.1365-3040.2009.02041.x",
+      "cited_by_count": 1983,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 12,
+      "title": "The Chlamydomonas genome reveals the evolution of key animal and plant functions.",
+      "doi": "10.1126/science.1143609",
+      "cited_by_count": 1951,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 13,
+      "title": "THE WATER-WATER CYCLE IN CHLOROPLASTS: Scavenging of Active Oxygens and Dissipation of Excess Photons.",
+      "doi": "10.1146/annurev.arplant.50.1.601",
+      "cited_by_count": 1916,
+      "decision": "included"
+    },
+    {
+      "position": 14,
+      "title": "Architecture of the photosynthetic oxygen-evolving center.",
+      "doi": "10.1126/science.1093087",
+      "cited_by_count": 1909,
+      "decision": "included"
+    },
+    {
+      "position": 15,
+      "title": "Physiological functions of thioredoxin and thioredoxin reductase.",
+      "doi": "10.1046/j.1432-1327.2000.01701.x",
+      "cited_by_count": 1811,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 16,
+      "title": "Antimicrobial activity of flavonoids.",
+      "doi": "10.1016/j.ijantimicag.2005.09.002",
+      "cited_by_count": 1803,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 17,
+      "title": "Graphitic Carbon Nitride (g-C3N4)-Based Photocatalysts for Artificial Photosynthesis and Environmental Remediation: Are We a Step Closer To Achieving Sustainability?",
+      "doi": "10.1021/acs.chemrev.6b00075",
+      "cited_by_count": 1764,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 18,
+      "title": "Chemiosmotic coupling in oxidative and photosynthetic phosphorylation.",
+      "doi": "10.1111/j.1469-185x.1966.tb01501.x",
+      "cited_by_count": 1735,
+      "decision": "included"
+    },
+    {
+      "position": 19,
+      "title": "Some relationships between the biochemistry of photosynthesis and the gas exchange of leaves.",
+      "doi": "10.1007/bf00384257",
+      "cited_by_count": 1728,
+      "decision": "included"
+    },
+    {
+      "position": 20,
+      "title": "Global analysis of nitrogen and phosphorus limitation of primary producers in freshwater, marine and terrestrial ecosystems.",
+      "doi": "10.1111/j.1461-0248.2007.01113.x",
+      "cited_by_count": 1726,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 21,
+      "title": "Comparative physiology of salt and water stress.",
+      "doi": "10.1046/j.0016-8025.2001.00808.x",
+      "cited_by_count": 1676,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 22,
+      "title": "Photosynthesis under drought and salt stress: regulation mechanisms from whole plant to cell.",
+      "doi": "10.1093/aob/mcn125",
+      "cited_by_count": 1670,
+      "decision": "included"
+    },
+    {
+      "position": 23,
+      "title": "Sequence analysis of the genome of the unicellular cyanobacterium Synechocystis sp. strain PCC6803. II. Sequence determination of the entire genome and assignment of potential protein-coding regions.",
+      "doi": "10.1093/dnares/3.3.109",
+      "cited_by_count": 1628,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 24,
+      "title": "What have we learned from 15 years of free-air CO2 enrichment (FACE)? A meta-analytic review of the responses of photosynthesis, canopy properties and plant production to rising CO2.",
+      "doi": "10.1111/j.1469-8137.2004.01224.x",
+      "cited_by_count": 1574,
+      "decision": "included"
+    },
+    {
+      "position": 25,
+      "title": "Three-dimensional structure of cyanobacterial photosystem I at 2.5 A resolution.",
+      "doi": "10.1038/35082000",
+      "cited_by_count": 1571,
+      "decision": "included"
+    },
+    {
+      "position": 26,
+      "title": "In situ formation of an oxygen-evolving catalyst in neutral water containing phosphate and Co2+.",
+      "doi": "10.1126/science.1162018",
+      "cited_by_count": 1501,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 27,
+      "title": "Direct observation of the rotation of F1-ATPase.",
+      "doi": "10.1038/386299a0",
+      "cited_by_count": 1461,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 28,
+      "title": "Assessing the generality of global leaf trait relationships.",
+      "doi": "10.1111/j.1469-8137.2005.01349.x",
+      "cited_by_count": 1447,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 29,
+      "title": "Sugar sensing and signaling in plants: conserved and novel mechanisms.",
+      "doi": "10.1146/annurev.arplant.57.032905.105441",
+      "cited_by_count": 1397,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 30,
+      "title": "Evidence for wavelike energy transfer through quantum coherence in photosynthetic systems.",
+      "doi": "10.1038/nature05678",
+      "cited_by_count": 1390,
+      "decision": "included"
+    },
+    {
+      "position": 31,
+      "title": "AAA+: A class of chaperone-like ATPases associated with the assembly, operation, and disassembly of protein complexes.",
+      "doi": "10.1101/gr.9.1.27",
+      "cited_by_count": 1361,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 32,
+      "title": "A molecular view of microbial diversity and the biosphere.",
+      "doi": "10.1126/science.276.5313.734",
+      "cited_by_count": 1330,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 33,
+      "title": "Global convergence in the vulnerability of forests to drought.",
+      "doi": "10.1038/nature11688",
+      "cited_by_count": 1303,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 34,
+      "title": "Photoinhibition of Photosystem II. Inactivation, protein damage and turnover.",
+      "doi": "10.1016/0005-2728(93)90134-2",
+      "cited_by_count": 1284,
+      "decision": "included"
+    },
+    {
+      "position": 35,
+      "title": "Biosynthesis of plant pigments: anthocyanins, betalains and carotenoids.",
+      "doi": "10.1111/j.1365-313x.2008.03447.x",
+      "cited_by_count": 1261,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 36,
+      "title": "Photosynthesis and nitrogen relationships in leaves of C3 plants.",
+      "doi": "10.1007/bf00377192",
+      "cited_by_count": 1217,
+      "decision": "included"
+    },
+    {
+      "position": 37,
+      "title": "Structure of the protein subunits in the photosynthetic reaction centre of Rhodopseudomonas viridis at 3Å resolution.",
+      "doi": "10.1038/318618a0",
+      "cited_by_count": 1212,
+      "decision": "included"
+    },
+    {
+      "position": 38,
+      "title": "Cytochrome f and plastocyanin: their sequence in the photosynthetic electron transport chain of Chlamydomonas reinhardi.",
+      "doi": "10.1073/pnas.54.6.1665",
+      "cited_by_count": 1200,
+      "decision": "included"
+    },
+    {
+      "position": 39,
+      "title": "Towards complete cofactor arrangement in the 3.0 A resolution structure of photosystem II.",
+      "doi": "10.1038/nature04224",
+      "cited_by_count": 1189,
+      "decision": "included"
+    },
+    {
+      "position": 40,
+      "title": "One molecule, many derivatives: a never-ending interaction of melatonin with reactive oxygen and nitrogen species?",
+      "doi": "10.1111/j.1600-079x.2006.00407.x",
+      "cited_by_count": 1147,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 41,
+      "title": "Crystal structure of spinach major light-harvesting complex at 2.72 A resolution.",
+      "doi": "10.1038/nature02373",
+      "cited_by_count": 1147,
+      "decision": "included"
+    },
+    {
+      "position": 42,
+      "title": "Ocean acidification: the other CO2 problem.",
+      "doi": "10.1146/annurev.marine.010908.163834",
+      "cited_by_count": 1130,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 43,
+      "title": "A central integrator of transcription networks in plant stress and energy signalling.",
+      "doi": "10.1038/nature06069",
+      "cited_by_count": 1129,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 44,
+      "title": "Cellular defenses against superoxide and hydrogen peroxide.",
+      "doi": "10.1146/annurev.biochem.77.061606.161055",
+      "cited_by_count": 1120,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 45,
+      "title": "Crystal structure of photosystem II from Synechococcus elongatus at 3.8 A resolution.",
+      "doi": "10.1038/35055589",
+      "cited_by_count": 1100,
+      "decision": "included"
+    },
+    {
+      "position": 46,
+      "title": "New Fluorescence Parameters for the Determination of QA Redox State and Excitation Energy Fluxes.",
+      "doi": "10.1023/b:pres.0000015391.99477.0d",
+      "cited_by_count": 1086,
+      "decision": "included"
+    },
+    {
+      "position": 47,
+      "title": "A pigment-binding protein essential for regulation of photosynthetic light harvesting.",
+      "doi": "10.1038/35000131",
+      "cited_by_count": 1073,
+      "decision": "included"
+    },
+    {
+      "position": 48,
+      "title": "PHOTOPROTECTION REVISITED: Genetic and Molecular Approaches.",
+      "doi": "10.1146/annurev.arplant.50.1.333",
+      "cited_by_count": 1071,
+      "decision": "included"
+    },
+    {
+      "position": 49,
+      "title": "Plant circadian clocks increase photosynthesis, growth, survival, and competitive advantage.",
+      "doi": "10.1126/science.1115581",
+      "cited_by_count": 1067,
+      "decision": "included"
+    },
+    {
+      "position": 50,
+      "title": "Continuous recording of photochemical and non-photochemical chlorophyll fluorescence quenching with a new type of modulation fluorometer.",
+      "doi": "10.1007/bf00024185",
+      "cited_by_count": 1065,
+      "decision": "included"
+    },
+    {
+      "position": 51,
+      "title": "Nitrite-driven anaerobic methane oxidation by oxygenic bacteria.",
+      "doi": "10.1038/nature08883",
+      "cited_by_count": 1060,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 52,
+      "title": "Improving photosynthetic efficiency for greater yield.",
+      "doi": "10.1146/annurev-arplant-042809-112206",
+      "cited_by_count": 1039,
+      "decision": "included"
+    },
+    {
+      "position": 53,
+      "title": "Chlorophyll fluorescence analysis: a guide to good practice and understanding some new applications.",
+      "doi": "10.1093/jxb/ert208",
+      "cited_by_count": 1031,
+      "decision": "included"
+    },
+    {
+      "position": 54,
+      "title": "Cooperation of charges in photosynthetic O2 evolution-I. A linear four step mechanism.",
+      "doi": "10.1111/j.1751-1097.1970.tb06017.x",
+      "cited_by_count": 1026,
+      "decision": "included"
+    },
+    {
+      "position": 55,
+      "title": "Mimicking photosynthetic solar energy transduction.",
+      "doi": "10.1021/ar9801301",
+      "cited_by_count": 1020,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 56,
+      "title": "The response of photosynthesis and stomatal conductance to rising [CO2]: mechanisms and environmental interactions.",
+      "doi": "10.1111/j.1365-3040.2007.01641.x",
+      "cited_by_count": 1019,
+      "decision": "included"
+    },
+    {
+      "position": 57,
+      "title": "Lessons from nature about solar light harvesting.",
+      "doi": "10.1038/nchem.1145",
+      "cited_by_count": 1017,
+      "decision": "included"
+    },
+    {
+      "position": 58,
+      "title": "Response of Phenylpropanoid Pathway and the Role of Polyphenols in Plants under Abiotic Stress.",
+      "doi": "10.3390/molecules24132452",
+      "cited_by_count": 1009,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 59,
+      "title": "Sucrose efflux mediated by SWEET proteins as a key step for phloem transport.",
+      "doi": "10.1126/science.1213351",
+      "cited_by_count": 1005,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 60,
+      "title": "The Phaeodactylum genome reveals the evolutionary history of diatom genomes.",
+      "doi": "10.1038/nature07410",
+      "cited_by_count": 996,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 61,
+      "title": "Atomic model of plant light-harvesting complex by electron crystallography.",
+      "doi": "10.1038/367614a0",
+      "cited_by_count": 974,
+      "decision": "included"
+    },
+    {
+      "position": 62,
+      "title": "Investigating deep phylogenetic relationships among cyanobacteria and plastids by small subunit rRNA sequence analysis.",
+      "doi": "10.1111/j.1550-7408.1999.tb04612.x",
+      "cited_by_count": 966,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 63,
+      "title": "REGULATION OF LIGHT HARVESTING IN GREEN PLANTS.",
+      "doi": "10.1146/annurev.arplant.47.1.655",
+      "cited_by_count": 963,
+      "decision": "included"
+    },
+    {
+      "position": 64,
+      "title": "Coaxial silicon nanowires as solar cells and nanoelectronic power sources.",
+      "doi": "10.1038/nature06181",
+      "cited_by_count": 948,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 65,
+      "title": "Femtosecond X-ray protein nanocrystallography.",
+      "doi": "10.1038/nature09750",
+      "cited_by_count": 946,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 66,
+      "title": "The shikimate pathway and aromatic amino Acid biosynthesis in plants.",
+      "doi": "10.1146/annurev-arplant-042811-105439",
+      "cited_by_count": 934,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 67,
+      "title": "BIOSYNTHESIS AND ACTION OF JASMONATES IN PLANTS.",
+      "doi": "10.1146/annurev.arplant.48.1.355",
+      "cited_by_count": 913,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 68,
+      "title": "Solar fuels via artificial photosynthesis.",
+      "doi": "10.1021/ar900209b",
+      "cited_by_count": 912,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 69,
+      "title": "Respiratory metabolism: glycolysis, the TCA cycle and mitochondrial electron transport.",
+      "doi": "10.1016/j.pbi.2004.03.007",
+      "cited_by_count": 911,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 70,
+      "title": "Water-splitting chemistry of photosystem II.",
+      "doi": "10.1021/cr0204294",
+      "cited_by_count": 904,
+      "decision": "included"
+    },
+    {
+      "position": 71,
+      "title": "Improving photosynthesis and crop productivity by accelerating recovery from photoprotection.",
+      "doi": "10.1126/science.aai8878",
+      "cited_by_count": 896,
+      "decision": "included"
+    },
+    {
+      "position": 72,
+      "title": "On the origin of mitosing cells",
+      "doi": "10.1016/0022-5193(67)90079-3",
+      "cited_by_count": 891,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 73,
+      "title": "ROS and redox signalling in the response of plants to abiotic stress.",
+      "doi": "10.1111/j.1365-3040.2011.02336.x",
+      "cited_by_count": 890,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 74,
+      "title": "Homologous plant and bacterial proteins chaperone oligomeric protein assembly.",
+      "doi": "10.1038/333330a0",
+      "cited_by_count": 889,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 75,
+      "title": "Photon yield of O2 evolution and chlorophyll fluorescence characteristics at 77 K among vascular plants of diverse origins.",
+      "doi": "10.1007/bf00402983",
+      "cited_by_count": 887,
+      "decision": "included"
+    },
+    {
+      "position": 76,
+      "title": "Overexpressing a NAM, ATAF, and CUC (NAC) transcription factor enhances drought resistance and salt tolerance in rice.",
+      "doi": "10.1073/pnas.0604882103",
+      "cited_by_count": 881,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 77,
+      "title": "From tropics to tundra: global convergence in plant functioning.",
+      "doi": "10.1073/pnas.94.25.13730",
+      "cited_by_count": 878,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 78,
+      "title": "Flooding stress: acclimations and genetic diversity.",
+      "doi": "10.1146/annurev.arplant.59.032607.092752",
+      "cited_by_count": 865,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 79,
+      "title": "The use of chlorophyll fluorescence nomenclature in plant stress physiology.",
+      "doi": "10.1007/bf00033156",
+      "cited_by_count": 854,
+      "decision": "included"
+    },
+    {
+      "position": 80,
+      "title": "Biogeochemical Controls and Feedbacks on Ocean Primary Production",
+      "doi": "10.1126/science.281.5374.200",
+      "cited_by_count": 848,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 81,
+      "title": "Photoinhibition of photosystem II under environmental stress.",
+      "doi": "10.1016/j.bbabio.2006.11.019",
+      "cited_by_count": 843,
+      "decision": "included"
+    },
+    {
+      "position": 82,
+      "title": "Present and future global distributions of the marine Cyanobacteria Prochlorococcus and Synechococcus.",
+      "doi": "10.1073/pnas.1307701110",
+      "cited_by_count": 840,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 83,
+      "title": "Optical trapping and manipulation of single cells using infrared laser beams.",
+      "doi": "10.1038/330769a0",
+      "cited_by_count": 834,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 84,
+      "title": "Role of the Arabidopsis glucose sensor HXK1 in nutrient, light, and hormonal signaling.",
+      "doi": "10.1126/science.1080585",
+      "cited_by_count": 833,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 85,
+      "title": "The role of microorganisms in coral health, disease and evolution.",
+      "doi": "10.1038/nrmicro1635",
+      "cited_by_count": 825,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 86,
+      "title": "Metal-organic frameworks for artificial photosynthesis and photocatalysis.",
+      "doi": "10.1039/c4cs00103f",
+      "cited_by_count": 824,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 87,
+      "title": "Toxicity of silver nanoparticles to Chlamydomonas reinhardtii.",
+      "doi": "10.1021/es801785m",
+      "cited_by_count": 813,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 88,
+      "title": "Particulate Photocatalysts for Light-Driven Water Splitting: Mechanisms, Challenges, and Design Strategies.",
+      "doi": "10.1021/acs.chemrev.9b00201",
+      "cited_by_count": 807,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 89,
+      "title": "Sponge-associated microorganisms: evolution, ecology, and biotechnological potential.",
+      "doi": "10.1128/mmbr.00040-06",
+      "cited_by_count": 806,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 90,
+      "title": "CARBOHYDRATE-MODULATED GENE EXPRESSION IN PLANTS.",
+      "doi": "10.1146/annurev.arplant.47.1.509",
+      "cited_by_count": 806,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 91,
+      "title": "Pentatricopeptide repeat proteins in plants.",
+      "doi": "10.1146/annurev-arplant-050213-040159",
+      "cited_by_count": 803,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 92,
+      "title": "Cyanobacterial photosystem II at 2.9-A resolution and the role of quinones, lipids, channels and chloride.",
+      "doi": "10.1038/nsmb.1559",
+      "cited_by_count": 799,
+      "decision": "included"
+    },
+    {
+      "position": 93,
+      "title": "Single-molecule strong coupling at room temperature in plasmonic nanocavities.",
+      "doi": "10.1038/nature17974",
+      "cited_by_count": 796,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 94,
+      "title": "Phytophthora genome sequences uncover evolutionary origins and mechanisms of pathogenesis.",
+      "doi": "10.1126/science.1128796",
+      "cited_by_count": 796,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 95,
+      "title": "Large-scale forest girdling shows that current photosynthesis drives soil respiration.",
+      "doi": "10.1038/35081058",
+      "cited_by_count": 792,
+      "decision": "included"
+    },
+    {
+      "position": 96,
+      "title": "Redox regulation in photosynthetic organisms: signaling, acclimation, and practical implications.",
+      "doi": "10.1089/ars.2008.2177",
+      "cited_by_count": 781,
+      "decision": "included"
+    },
+    {
+      "position": 97,
+      "title": "Fitting photosynthetic carbon dioxide response curves for C(3) leaves.",
+      "doi": "10.1111/j.1365-3040.2007.01710.x",
+      "cited_by_count": 776,
+      "decision": "included"
+    },
+    {
+      "position": 98,
+      "title": "Rising atmospheric carbon dioxide: plants FACE the future.",
+      "doi": "10.1146/annurev.arplant.55.031903.141610",
+      "cited_by_count": 770,
+      "decision": "included"
+    },
+    {
+      "position": 99,
+      "title": "Constitutive expression of the CIRCADIAN CLOCK ASSOCIATED 1 (CCA1) gene disrupts circadian rhythms and suppresses its own expression.",
+      "doi": "10.1016/s0092-8674(00)81464-6",
+      "cited_by_count": 767,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 100,
+      "title": "Drought-induced responses of photosynthesis and antioxidant metabolism in higher plants.",
+      "doi": "10.1016/j.jplph.2004.01.013",
+      "cited_by_count": 761,
+      "decision": "included"
+    },
+    {
+      "position": 101,
+      "title": "PGR5 is involved in cyclic electron flow around photosystem I and is essential for photoprotection in Arabidopsis.",
+      "doi": "10.1016/s0092-8674(02)00867-x",
+      "cited_by_count": 758,
+      "decision": "included"
+    },
+    {
+      "position": 102,
+      "title": "Photosynthetic energy conversion: natural and artificial.",
+      "doi": "10.1039/b802262n",
+      "cited_by_count": 757,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 103,
+      "title": "Roles of cocatalysts in photocatalysis and photoelectrocatalysis.",
+      "doi": "10.1021/ar300227e",
+      "cited_by_count": 751,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 104,
+      "title": "MORE EFFICIENT PLANTS: A Consequence of Rising Atmospheric CO2?",
+      "doi": "10.1146/annurev.arplant.48.1.609",
+      "cited_by_count": 749,
+      "decision": "included"
+    },
+    {
+      "position": 105,
+      "title": "Genome sequence of the ultrasmall unicellular red alga Cyanidioschyzon merolae 10D.",
+      "doi": "10.1038/nature02398",
+      "cited_by_count": 747,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 106,
+      "title": "COG database update: focus on microbial diversity, model organisms, and widespread pathogens.",
+      "doi": "10.1093/nar/gkaa1018",
+      "cited_by_count": 746,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 107,
+      "title": "A highly efficient rice green tissue protoplast system for transient gene expression and studying light/chloroplast-related processes.",
+      "doi": "10.1186/1746-4811-7-30",
+      "cited_by_count": 745,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 108,
+      "title": "A critical review on the treatment of dye-containing wastewater: Ecotoxicological and health concerns of textile dyes and possible remediation approaches for environmental safety.",
+      "doi": "10.1016/j.ecoenv.2021.113160",
+      "cited_by_count": 741,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 109,
+      "title": "Mutations in the gene for the red/far-red light receptor phytochrome B alter cell elongation and physiological responses throughout Arabidopsis development.",
+      "doi": "10.1105/tpc.5.2.147",
+      "cited_by_count": 739,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 110,
+      "title": "Carotenoid metabolism in plants.",
+      "doi": "10.1016/j.molp.2014.12.007",
+      "cited_by_count": 739,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 111,
+      "title": "Can improvement in photosynthesis increase crop yields?",
+      "doi": "10.1111/j.1365-3040.2005.01493.x",
+      "cited_by_count": 736,
+      "decision": "included"
+    },
+    {
+      "position": 112,
+      "title": "Analysis and biological activities of anthocyanins.",
+      "doi": "10.1016/s0031-9422(03)00438-2",
+      "cited_by_count": 731,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 113,
+      "title": "An outlook on microalgal biofuels.",
+      "doi": "10.1126/science.1189003",
+      "cited_by_count": 730,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 114,
+      "title": "Chromium toxicity in plants.",
+      "doi": "10.1016/j.envint.2005.02.003",
+      "cited_by_count": 726,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 115,
+      "title": "Coherently wired light-harvesting in photosynthetic marine algae at ambient temperature.",
+      "doi": "10.1038/nature08811",
+      "cited_by_count": 722,
+      "decision": "included"
+    },
+    {
+      "position": 116,
+      "title": "Comparing photosynthetic and photovoltaic efficiencies and recognizing the potential for improvement.",
+      "doi": "10.1126/science.1200165",
+      "cited_by_count": 719,
+      "decision": "included"
+    },
+    {
+      "position": 117,
+      "title": "Self-assembly strategies for integrating light harvesting and charge separation in artificial photosynthetic systems.",
+      "doi": "10.1021/ar9001735",
+      "cited_by_count": 718,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 118,
+      "title": "GUARD CELL SIGNAL TRANSDUCTION.",
+      "doi": "10.1146/annurev.arplant.52.1.627",
+      "cited_by_count": 718,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 119,
+      "title": "The use of circular dichroism in the investigation of protein structure and function.",
+      "doi": "10.2174/1389203003381315",
+      "cited_by_count": 718,
+      "decision": "excluded: outside biological photosynthesis focus"
+    },
+    {
+      "position": 120,
+      "title": "Native structure of photosystem II at 1.95 Å resolution viewed by femtosecond X-ray pulses.",
+      "doi": "10.1038/nature13991",
+      "cited_by_count": 717,
+      "decision": "included"
+    },
+    {
+      "position": 121,
+      "title": "Elevated CO2 effects on plant carbon, nitrogen, and water relations: six important lessons from FACE.",
+      "doi": "10.1093/jxb/erp096",
+      "cited_by_count": 715,
+      "decision": "included"
+    },
+    {
+      "position": 122,
+      "title": "Crystal structure of oxygen-evolving photosystem II from Thermosynechococcus vulcanus at 3.7-A resolution.",
+      "doi": "10.1073/pnas.0135651100",
+      "cited_by_count": 713,
+      "decision": "included"
+    }
+  ]
+}

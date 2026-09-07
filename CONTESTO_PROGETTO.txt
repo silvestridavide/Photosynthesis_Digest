@@ -1,40 +1,30 @@
-PROGETTO
-- Nome: LUMEN · Rivista Scientifica sulla Fotosintesi & Zine Generator.
-- Scopo: Fornire una rassegna scientifica e research feed essenziale, elegante e pratico per monitorare gli ultimi articoli peer-reviewed e le notizie scientifiche verificate sulla fotosintesi in qualsiasi organismo (piante superiori, Chlamydomonas, Chlorella, cianobatteri, alghe rosse, diatomee o sistemi sintetici).
-- Destinatario: Ricercatori del Laboratorio di Fotosintesi & Bioenergetica.
+PROGETTO: Resonance · Il magazine della fotosintesi
+Cartella canonica: LAVORO/TOOLS/Photosynthesis_Digest
+Repository: https://github.com/silvestridavide/Photosynthesis_Digest.git
+Branch edizione 2026-09-07: agent/resonance-morning-magazine-2026-09-07
 
-PERCORSO CANONICO
-- Cartella canonica: LAVORO/TOOLS/Photosynthesis_Digest.
-- Repository GitHub: https://github.com/silvestridavide/Photosynthesis_Digest.git (branch attivo: agent/lumen-nature-editorial-2026-09-01).
+SCOPO
+Briefing quotidiano leggibile per studenti e ricercatori: notizie, letteratura, sintesi e accesso alle fonti.
 
-INPUT E OUTPUT
-- Input: 
-  - File dati JSON (assets/data/articles.json) e modulo JS (assets/js/articles-data.js).
-  - 50 record censiti e verificati al 100% con test live di rete (40 articoli peer-reviewed + 10 notizie e rassegne scientifiche da testate e uffici stampa ufficiali).
-  - Ingestion da CLI tramite script Python (scripts/add_by_doi.py e scripts/daily_fetch.py).
-- Output:
-  - Feed editoriale da rivista scientifica:
-    * Spotlight Hero Card per il lead breakthrough della rassegna con punti chiave e azioni rapide.
-    * Griglia a card dense, leggibili ed eleganti con distinzione visiva tra Articolo Scientifico e Notizia / Research Highlight.
-    * Bottoni di reindirizzamento dedicati: "↗ Vai all'Articolo (${journal})" per i paper e "↗ Leggi Notizia (${source})" per le news.
-    * Switcher a tab snello: Tutti i Contenuti (50), Articoli Scientifici (40), Notizie & Rassegna (10), I Miei Salvati.
-    * Filtri per tema, organismo, ordinamento e ricerca istantanea full-text.
-  - Generatore di ZINE (1 Pagina A4):
-    * Modale di anteprima e motore di stampa/esportazione PDF (`window.print()`).
-    * Impaginazione A4 portrait in bianco e nero/ardesia editoriale con storia di copertina, flash news, paper di punta e nota editoriale.
-  - Modal di lettura essenziale come reprint accademico con abstract integrale, affiliazioni, ORCID, DOI e generatore di citazioni (APA, BibTeX).
+CONTENUTI
+70 record in un solo assets/data/articles.json: 50 lavori + 20 notizie reali.
+Ranking dei paper Europe PMC, 122 risultati sottoposti a screening; non classifica globale. Metodo e decisioni in assets/data/method.json.
+46 sintesi da abstract; quattro schede bibliografiche esplicitamente limitate. Verifiche e livello di accesso per ciascuna fonte. HTTP 200 non equivale a open access.
+Notizie cronologiche con date della pubblicazione giornalistica. Nessun paper travestito da news.
 
-DATI E REGOLE
-- Nessuna allucinazione: 50 record reali e verificati tramite CrossRef, Europe PMC, PubMed Central e riviste peer-reviewed internazionali (Nature, Science, PNAS, Nature Plants, Nature Communications, The Plant Cell, Plant Physiology, The Plant Journal, The New Phytologist, Bioresource Technology, ecc.) e testate scientifiche accreditate.
-- 0 link non funzionanti: suite `tests/test_links_live.py` che valida al 100% l'apertura e la risoluzione di tutti i 50 URL.
+ARCHITETTURA
+HTML/CSS/JS statici senza framework o font esterni. catalog.js contiene ricerca/filtri/citazioni; app.js gestisce rendering e stato. Catalogo singolo, paginazione 12 record, metodo caricato su richiesta.
+Funzione Python api/news.py su Vercel: feed predefiniti, filtro ultimi 90 giorni, verifica pagine, cache; estratti originali non curati. Aggiornamento manuale, non modifica catalogo.
+Salvati e letti locali, conservazione ID storici. Reader dialog nativo, link diretti, tastiera e mobile. Nessun trasferimento file, stampa o esportazione.
+Script di acquisizione raccolgono solo candidati da revisionare.
 
-DESIGN & PALETTE
-- Atmosfera: Research journal contemporaneo, ricco ma rigoroso; cover story visiva, titoli editoriali e feed a dossier invece di card da dashboard.
-- Palette: Carta calda (#f5f2ea), carbone (#16201c), verde clorofilla (#174a3a), verde foglia (#8fae42) e ruggine (#b6543d) per i dispatch; bordi discreti in pietra.
-- Tipografia: DM Serif Display per i titoli, Source Serif 4 per la lettura, Manrope per UI/metadati e IBM Plex Mono per dati e DOI.
-- Immagini: una sola cover story locale, `assets/images/lumen-rice-photosystems-editorial-v2.png`, dedicata all'articolo in evidenza sulle strutture native dei fotosistemi nel riso. Il feed non riutilizza l'immagine nelle singole schede: usa folio tipografici. La cover è una visual research illustration con caption e alt text, non una figura sperimentale.
-- Regole di collaborazione e direzione visiva persistenti: `AGENTS.md` nella root del tool.
+DESIGN
+Carta calda, verde clorofilla, carbone, titoli Georgia, font di sistema. Impaginazione da magazine con copertina tipografica, briefing, biblioteca e metodo. PNG storici conservati ma esclusi dal deploy.
 
 VERIFICA
-- Test di validazione sintattica e strutturale: `python3 tests/validate_data.py`.
-- Test di verifica live dei link: `python3 tests/test_links_live.py` (50/50 passati).
+tests/validate_data.py: integrità e provenienza.
+tests/catalog.mjs: filtri, ordinamenti e citazioni.
+tests/test_news.py: feed, accesso, controlli URL e date.
+tests/browser.cjs: flussi reali Chromium, reader, salvataggi, ricerca, mobile e gestione errori.
+tests/test_links_live.py: identità dei 50 DOI e accesso ai 70 URL; blocchi espliciti, nessuna garanzia permanente.
+Vedere README.md per comandi e limiti.

@@ -1,115 +1,39 @@
 #!/usr/bin/env python3
-"""
-Photosynthesis Digest - Scheduled Daily Literature Fetcher
-==========================================================
-Uso:
-  python3 scripts/daily_fetch.py [--days 7] [--max-results 20]
-
-Descrizione:
-  Interroga Europe PMC per le ultime pubblicazioni peer-reviewed aventi come oggetto
-  la fotosintesi (qualsiasi organismo: piante superiori, Chlamydomonas, Chlorella,
-  cianobatteri, alghe rosse, diatomee o sistemi sintetici).
-  Estrae i DOI, filtra i duplicati già presenti nel catalogo, recupera i metadati completi
-  e aggiorna automaticamente sia 'articles.json' che 'articles-data.js'.
-"""
-
-import sys
-import os
-import json
-import re
+"""Find new papers for editorial review; never overwrite the curated edition."""
 import argparse
-import urllib.request
+from datetime import datetime,timedelta,timezone
+import json
+from pathlib import Path
 import urllib.parse
-from datetime import datetime, timedelta
+import urllib.request
 
-# Import utilities from add_by_doi
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from add_by_doi import clean_doi, fetch_doi_metadata, save_databases, JSON_PATH, USER_AGENT
+ROOT=Path(__file__).resolve().parents[1]
+TOPIC='(TITLE_ABS:photosynth* OR TITLE_ABS:photosystem OR TITLE_ABS:rubisco OR TITLE_ABS:thylakoid OR TITLE_ABS:pyrenoid OR TITLE_ABS:LHCSR)'
 
-TOP_JOURNALS = [
-    "Nature",
-    "Science",
-    "Proc Natl Acad Sci U S A",
-    "Nat Plants",
-    "Nat Commun",
-    "Plant Cell",
-    "Plant Physiol",
-    "New Phytol",
-    "Plant Cell Environ",
-    "Biochim Biophys Acta Bioenerg",
-    "J Biol Chem",
-    "Photosynth Res",
-    "Bioresour Technol"
-]
+def build_query(days, now=None):
+    if not 1<=days<=3650:raise ValueError('days must be between 1 and 3650')
+    now=now or datetime.now(timezone.utc)
+    return f'{TOPIC} AND FIRST_PDATE:[{(now-timedelta(days=days)).date()} TO {now.date()}] sort_date:y'
 
-def search_recent_photosynthesis(days=30, max_results=20):
-    start_date = (datetime.now() - timedelta(days=days)).strftime("%Y-%m-%d")
-    end_date = datetime.now().strftime("%Y-%m-%d")
+def search(query,limit):
+    url='https://www.ebi.ac.uk/europepmc/webservices/rest/search?'+urllib.parse.urlencode({'query':query,'format':'json','resultType':'core','pageSize':min(limit,200)})
+    request=urllib.request.Request(url,headers={'User-Agent':'ResonanceResearch/1.0'})
+    with urllib.request.urlopen(request,timeout=30) as response:return json.load(response),url
 
-    journal_query = " OR ".join([f'JOURNAL:"{j}"' for j in TOP_JOURNALS])
-    topic_query = '(TITLE:"photosynthesis" OR TITLE:"photosystem" OR TITLE:"photoprotection" OR TITLE:"Rubisco" OR TITLE:"thylakoid" OR TITLE:"LHCSR" OR TITLE:"phycobilisome" OR TITLE:"chloroplast" OR ABSTRACT:"photosystem" OR ABSTRACT:"non-photochemical quenching")'
-    
-    # Query Europe PMC REST API
-    query_str = f'{topic_query} AND ({journal_query})'
-    
-    url = f"https://www.ebi.ac.uk/europepmc/webservices/rest/search?query={urllib.parse.quote(query_str)}&format=json&pageSize={max_results}&resultType=core&sort=P_PDATE_D%20desc"
-    
-    print(f"[*] Esecuzione ricerca letteratura recente su Europe PMC (ultimi {days} giorni)...")
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    
-    try:
-        with urllib.request.urlopen(req, timeout=20) as res:
-            data = json.loads(res.read().decode("utf-8"))
-            results = data.get("resultList", {}).get("result", [])
-            print(f"[+] Trovati {len(results)} articoli corrispondenti ai criteri scientifici.")
-            return results
-    except Exception as e:
-        print(f"[!] Errore durante la ricerca su Europe PMC: {e}")
-        return []
+def save_candidates(records,query,url):
+    path=ROOT/'research/candidates.json';path.parent.mkdir(exist_ok=True)
+    previous=json.loads(path.read_text()) if path.exists() else {'records':[]}
+    by_doi={r.get('doi',r.get('id')):r for r in previous['records']}
+    for r in records:by_doi[r.get('doi',r.get('id'))]=r
+    payload={'checked_at':datetime.now(timezone.utc).isoformat(),'query':query,'url':url,'status':'Candidates only: verify relevance, access and summary before publishing','records':list(by_doi.values())}
+    temporary=path.with_suffix('.tmp');temporary.write_text(json.dumps(payload,ensure_ascii=False,indent=2));temporary.replace(path)
+    return path
 
 def main():
-    parser = argparse.ArgumentParser(description="Scansione giornaliera automatica della letteratura sulla fotosintesi")
-    parser.add_argument("--days", type=int, default=30, help="Giorni di retrospezione (default: 30)")
-    parser.add_argument("--max-results", type=int, default=20, help="Numero massimo di articoli da esaminare (default: 20)")
-    args = parser.parse_args()
-
-    # Load existing database
-    existing_articles = []
-    if os.path.exists(JSON_PATH):
-        try:
-            with open(JSON_PATH, "r", encoding="utf-8") as f:
-                existing_articles = json.load(f)
-        except Exception as e:
-            print(f"[!] Errore lettura database: {e}")
-
-    existing_dois = {clean_doi(a["doi"]).lower() for a in existing_articles if a.get("doi")}
-
-    found_results = search_recent_photosynthesis(days=args.days, max_results=args.max_results)
-    if not found_results:
-        print("[*] Nessun nuovo articolo trovato o servizio temporaneamente non disponibile.")
-        return
-
-    new_articles_count = 0
-    for item in found_results:
-        doi = item.get("doi")
-        if not doi:
-            continue
-        doi_clean = clean_doi(doi)
-        if doi_clean.lower() in existing_dois:
-            continue
-
-        print(f"\n[+] Nuovo articolo rilevato: {item.get('title')} ({item.get('journalTitle')})")
-        meta = fetch_doi_metadata(doi_clean)
-        if meta:
-            existing_articles.insert(0, meta)
-            existing_dois.add(doi_clean.lower())
-            new_articles_count += 1
-
-    if new_articles_count > 0:
-        save_databases(existing_articles)
-        print(f"\n[SUCCESSO] Inseriti {new_articles_count} nuovi articoli nel database. Totale attuale: {len(existing_articles)}")
-    else:
-        print("\n[OK] Tutti gli articoli trovati sono già presenti nel catalogo. Nessun aggiornamento necessario.")
-
-if __name__ == "__main__":
-    main()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--days',type=int,default=7);parser.add_argument('--max-results',type=int,default=50);args=parser.parse_args()
+    if not 1<=args.max_results<=200:parser.error('--max-results must be 1–200')
+    query=build_query(args.days);data,url=search(query,args.max_results)
+    existing={a.get('doi','').lower() for a in json.loads((ROOT/'assets/data/articles.json').read_text())}
+    rows=[r for r in data['resultList']['result'] if r.get('doi','').lower() not in existing]
+    print(f'{len(rows)} candidates saved to {save_candidates(rows,query,url)}. Curated edition unchanged.')
+if __name__=='__main__':main()

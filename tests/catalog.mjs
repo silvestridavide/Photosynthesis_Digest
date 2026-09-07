@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {indexItems,selectItems,statistics,safeURL,citation} from '../assets/js/catalog.js';
+const items=indexItems(JSON.parse(await readFile(new URL('../assets/data/articles.json',import.meta.url))));
+const state={view:'all',search:'',sort:'editorial'};
+assert.equal(statistics(items).papers,50);assert.equal(statistics(items).news,20);
+const ranked=selectItems(items,{...state,view:'articles',sort:'citations'});
+assert.ok(ranked.every((a,i)=>!i||a.citation_count<=ranked[i-1].citation_count));
+assert.ok(selectItems(items,{...state,search:'Farquhar'}).some(a=>a.doi==='10.1007/bf00386231'));
+assert.ok(selectItems(items,{...state,search:'CO2'}).length>0);
+assert.equal(selectItems(items,{...state,view:'saved'},new Set([items[0].id])).length,1);
+assert.equal(selectItems(items,{...state,view:'saved',unread:true},new Set([items[0].id]),new Set([items[0].id])).length,0);
+assert.ok(selectItems(items,{...state,oa:true}).every(a=>a.item_type==='article'&&a.open_access));
+assert.equal(safeURL('javascript:alert(1)'),'');assert.equal(safeURL('https://user:password@example.com'),'');
+assert.ok(citation(ranked[0],'bibtex').includes(ranked[0].doi));
+assert.equal(selectItems(items,{...state,view:'news',sort:'citations'}).length,20);
+assert.equal(selectItems(items,{...state,search:'not-existing-item-zzzz'}).length,0);
+console.log('PASS: catalogue filtering, citation sorting, bookmarks, unread, OA, safe links, bibliography.');

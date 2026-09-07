@@ -4,3 +4,6 @@
 CONTESTO_PROGETTO.txt
 scripts/
 tests/
+assets/images/*.png
+research/
+*.md

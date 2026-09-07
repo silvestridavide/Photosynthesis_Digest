@@ -6,3 +6,5 @@ __pycache__/
 .env.local
 tmp/
 *.tmp
+research/candidates.json
+research/link-check-latest.json
